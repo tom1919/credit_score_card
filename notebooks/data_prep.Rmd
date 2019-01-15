@@ -1,0 +1,85 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+The purpose of this notebook is to explore the data and create features
+
+Load custom functions, libraries and data
+```{r}
+source("../scripts/helper_functions.R")
+LoadPackages(c("dplyr", 'haven', 'missForest'))
+accepts <- read_sas("../data/raw/accepted_customers.sas7bdat")
+rejects <- read_sas("../data/raw/rejected_customers.sas7bdat")
+```
+
+Summary of the accepts data set
+```{r}
+summarize_df(accepts)
+```
+
+Summary of the rejects data set
+```{r}
+summarize_df(rejects)
+```
+
+Subset rejects cols to only the ones in accepts df
+Bind accepts df with rejects df
+```{r}
+not_in_accepts <- setdiff(names(rejects), names(accepts))
+rejects <- rejects %>% select(setdiff( names(rejects), not_in_accepts))
+
+all <- bind_rows(accepts, rejects)
+```
+
+Issues with the data
+```{r}
+# 123 NA values for time at address
+all %>% filter(TMADD == 999) %>% nrow()
+# 45 NA values for time at job
+all %>% filter(TMJOB1 == 999) %>% nrow()
+# Someone has 23 childern
+table(all$CHILDREN)
+# Someone has 25 in their household
+table(all$PERS_H)
+```
+
+Replace implausible values with NA and cast non numeric variables to factors
+```{r}
+all <- all %>%
+  mutate(TMADD = ifelse(TMADD == 999, NA, TMADD),
+         TMJOB1 = ifelse(TMJOB1 == 999, NA, TMJOB1),
+         CHILDREN = ifelse(CHILDREN == 23, NA, CHILDREN),
+         PERS_H = ifelse(PERS_H == 25, NA, PERS_H))
+
+factor_cols <- c('TEL', 'STATUS', 'BUREAU', 'LOCATION', 'REGN', 'DIV', 'CARDS', 
+                 'PRODUCT', 'RESID', 'NAT', 'PROF', 'CAR', 'GB', 'TITLE', 
+                 'FINLOAN','EC_CARD')
+
+all <- all %>% mutate_at(factor_cols, funs(as.factor(.)))
+```
+Impute missing values
+```{r}
+impute_df <- all %>% select(-GB, -`_freq_`) # don't use target for imputation
+target <- all %>% select(GB, `_freq_`)
+
+set.seed(888)
+mf_imp <- missForest(as.data.frame(impute_df), verbose = T)
+
+all2 <- bind_cols(target, mf_imp$ximp) 
+```
+
+Create features
+```{r}
+all2 <- all2 %>% 
+  mutate(adult = PERS_H - CHILDREN,
+         cash_per_child = CASH / CHILDREN,
+         cash_per_pers = CASH / PERS_H,
+         cash_per_adult = CASH / adult,
+         income_per_child = INCOME / CHILDREN,
+         income_per_pers = INCOME / PERS_H,
+         income_per_adult = INCOME/ adult,
+         income_cash_ratio = INCOME / CASH,
+         total_loans = LOANS + NMBLOAN)
+```
+
