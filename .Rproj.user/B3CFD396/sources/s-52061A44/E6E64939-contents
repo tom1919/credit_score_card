@@ -10,8 +10,13 @@ Load custom functions, libraries and data
 source("../scripts/helper_functions.R")
 LoadPackages(c("dplyr", 'haven', 'missForest', "stringr",
                "Boruta", "tibble", 'caret', "onehot"))
+
+
 accepts <- read_sas("../data/raw/accepted_customers.sas7bdat")
 rejects <- read_sas("../data/raw/rejected_customers.sas7bdat")
+
+accepts[accepts==""] <- NA
+rejects[rejects==""] <- NA
 ```
 
 Summary of the accepts data set
@@ -55,10 +60,24 @@ all <- all %>%
 
 factor_cols <- c('TEL', 'STATUS', 'BUREAU', 'LOCATION', 'REGN', 'DIV', 'CARDS', 
                  'PRODUCT', 'RESID', 'NAT', 'PROF', 'CAR', 'GB', 'TITLE', 
-                 'FINLOAN','EC_CARD', 'NMBLOAN')
+                 'FINLOAN','EC_CARD')
 
 all <- all %>% mutate_at(factor_cols, funs(as.factor(.)))
 ```
+Create dummy vars that indicate variable was missing
+```{r}
+missing_flags <- all %>% 
+  mutate(TMADD_unk = ifelse(is.na(TMADD), 1, 0),
+         TMJOB1_unk = ifelse(is.na(TMJOB1), 1, 0),
+         RESID_unk = ifelse(is.na(RESID), 1, 0)) %>%
+  select(TMADD_unk, TMJOB1_unk, RESID_unk)
+# not creating flag for product, children and pers_h because there was little 
+# missing
+```
+
+
+
+
 Impute missing values
 ```{r}
 impute_df <- all %>% select(-GB, -`_freq_`) # don't use target for imputation
@@ -68,6 +87,7 @@ set.seed(888)
 mf_imp <- missForest(as.data.frame(impute_df), verbose = T)
 
 all2 <- bind_cols(target, mf_imp$ximp) 
+all2 <- bind_cols(all2, missing_flags)
 ```
 
 Create features
@@ -84,16 +104,18 @@ all2 <- all2 %>%
          # if cash is zero then division by zero so just impute 1.5 (avg)
          income_cash_ratio = ifelse(CASH == 0, 1.5, INCOME / CASH),
          total_loans = LOANS + NMBLOAN,
-         RESID = ifelse(RESID == "", "U", as.character(RESID)),
-         
-         id = row_number())
+         id = row_number()) %>%
+  select(GB, `_freq_`, id, everything())
 
 # treat these vars as factors because they have 3 or less unq values
 all2 <- all2 %>% 
-  mutate_at(c('NMBLOAN', 'RESID', 'adult'), funs(as.factor(.)))
+  mutate_at(c('NMBLOAN', 'RESID', 'adult', 'TMADD_unk', 'TMJOB1_unk', 
+              'RESID_unk'), funs(as.factor(.)))
 
-summarize_df(all2)
+summarize_df(all2) 
 ```
+
+one hot encode
 ```{r}
 enconder <- onehot(all2, max_levels = 15)
 
