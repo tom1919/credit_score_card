@@ -1,0 +1,6 @@
+"0","train2 <- train %>% 
+  select(-`_freq_`, -id, -GB) %>%
+  as.data.frame()
+"
+"2","Error in is_character(x) : object '_freq_' not found
+"

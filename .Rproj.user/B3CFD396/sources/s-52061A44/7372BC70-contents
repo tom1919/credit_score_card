@@ -1,0 +1,53 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+accepts <- read.csv(file = "../data/raw/accepts.csv", header = TRUE)
+```
+
+```{r}
+accepts$good <- abs(accepts$bad - 1)
+table(accepts$good)
+
+# Create Training and Validation #
+set.seed(12345)
+train_id <- sample(seq_len(nrow(accepts)), size = floor(0.75*nrow(accepts)))
+
+train <- accepts[train_id, ]
+test <- accepts[-train_id, ]
+
+table(train$good)
+table(test$good)
+
+# Binning of Continuous Variables #
+result <- smbinning(df = train, y = "good", x = "tot_income")
+result$ivtable
+result$cut
+result$iv
+```
+
+```{r}
+num_names <- names(train)[sapply(train, is.numeric)] # Gathering the names of numeric variables in data #
+
+result_all_sig <- list() # Creating empty list to store all results #
+
+for(i in 1:length(num_names)){
+  check_res <- smbinning(df = train, y = "good", x = num_names[i])
+  
+  if(check_res == "Uniques values < 5") {
+    next
+  }
+  else if(check_res == "No significant splits") {
+    next
+  }
+  else if(check_res$iv < 0.1) {
+    next
+  }
+  else {
+  result_all_sig[[num_names[i]]] <- check_res
+  }
+}
+```
+

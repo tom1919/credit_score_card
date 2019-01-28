@@ -261,7 +261,7 @@ rf3 <- train(GB ~. , data = train2,
             importance = 'permutation', metric = "ROC", method = "ranger", 
             trControl = ctrl)
 
-rf3$results %>% arrange(desc(ROC)) #0.7355033
+rf3$results %>% arrange(desc(ROC)) # mtry=12, min.node=45, roc = .7492746
 
 varImp(rf3)
 ```

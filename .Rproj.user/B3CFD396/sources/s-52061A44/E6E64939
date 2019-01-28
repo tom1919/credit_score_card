@@ -7,14 +7,14 @@
     "folds" : "",
     "hash" : "0",
     "id" : "E6E64939",
-    "lastKnownWriteTime" : 1548650172,
-    "last_content_update" : 1548650172821,
+    "lastKnownWriteTime" : 1548653735,
+    "last_content_update" : 1548653735870,
     "path" : "C:/Users/tommy/Google Drive/Coursework/Spring 1/Financial Analytics/credit_score_card/notebooks/data_prep.Rmd",
     "project_path" : "notebooks/data_prep.Rmd",
     "properties" : {
         "chunk_output_type" : "inline",
-        "cursorPosition" : "112,25",
-        "scrollLine" : "96"
+        "cursorPosition" : "113,0",
+        "scrollLine" : "89"
     },
     "relative_order" : 1,
     "source_on_save" : false,
