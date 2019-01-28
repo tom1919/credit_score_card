@@ -1,0 +1,8 @@
+"0","# saveRDS(accepts2, ""../data/accepts_v2.rds"")"
+"0","# saveRDS(rejects2, ""../data/rejects_v2.rds"")"
+"0","# saveRDS(train, ""../data/train.rds"")"
+"0","# saveRDS(test, ""../data/test.rds"")"
+"0","# accepts2 <- readRDS(""../data/accepts2.rds"")"
+"0","# rejects2 <- readRDS(""../data/rejects_v2.rds"")"
+"0","# train <- readRDS(""../data/train.rds"")"
+"0","# test <- readRDS(""../data/test.rds"")"

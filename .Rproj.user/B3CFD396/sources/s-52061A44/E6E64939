@@ -5,16 +5,16 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "0",
+    "hash" : "1627697378",
     "id" : "E6E64939",
-    "lastKnownWriteTime" : 1548653735,
-    "last_content_update" : 1548653735870,
-    "path" : "C:/Users/tommy/Google Drive/Coursework/Spring 1/Financial Analytics/credit_score_card/notebooks/data_prep.Rmd",
-    "project_path" : "notebooks/data_prep.Rmd",
+    "lastKnownWriteTime" : 1548718070,
+    "last_content_update" : 1548718071022,
+    "path" : "C:/Users/tommy/Google Drive/Coursework/Spring 1/Financial Analytics/credit_score_card/code/data_prep.Rmd",
+    "project_path" : "code/data_prep.Rmd",
     "properties" : {
         "chunk_output_type" : "inline",
-        "cursorPosition" : "113,0",
-        "scrollLine" : "89"
+        "cursorPosition" : "150,35",
+        "scrollLine" : "125"
     },
     "relative_order" : 1,
     "source_on_save" : false,
