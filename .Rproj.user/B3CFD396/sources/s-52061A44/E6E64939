@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1548199532337.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "204869477",
+    "id" : "E6E64939",
+    "lastKnownWriteTime" : 1548648393,
+    "last_content_update" : 1548648393074,
+    "path" : "C:/Users/tommy/Google Drive/Coursework/Spring 1/Financial Analytics/credit_score_card/notebooks/data_prep.Rmd",
+    "project_path" : "notebooks/data_prep.Rmd",
+    "properties" : {
+        "chunk_output_type" : "inline",
+        "cursorPosition" : "140,0",
+        "scrollLine" : "119"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

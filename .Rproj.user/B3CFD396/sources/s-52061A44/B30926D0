@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1548611994140.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "B30926D0",
+    "lastKnownWriteTime" : 1543272466,
+    "last_content_update" : 1543272466,
+    "path" : "C:/Users/tommy/Google Drive/Coursework/machine_learning/scripts/data_prep.R",
+    "project_path" : null,
+    "properties" : {
+        "cursorPosition" : "86,33",
+        "scrollLine" : "67"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
