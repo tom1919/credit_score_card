@@ -1,0 +1,266 @@
+"0","```r
+df_mod3 <- df %>%  
+  mutate(Target_Profit = 
+           Bid_Price__Millions_ - Estimated_Cost__Millions_) %>%
+  select(Win_Bid, 
+         Target_Profit,
+         Number_of_Competitor_Bids, 
+         known_comp_bids, 
+         Reg_Grp, 
+         Sec_Grp,
+         Estimated_Years_to_Complete,
+         Cost_After_Engineering_Estimate_) %>%
+  rename(\"Competitor_Bids_Total\" = Number_of_Competitor_Bids,
+         \"Competitor_Bids_A_J\" = known_comp_bids,
+         \"Region_Group_\" = Reg_Grp,
+         \"Sector_Group_\" = Sec_Grp,
+         \"Estimated_Completion_Years\" = Estimated_Years_to_Complete,
+         \"Bidding_Costs\" = Cost_After_Engineering_Estimate_)
+set.seed(88)
+glm3_cv <- train(Win_Bid ~ ., data=df_mod3, method = \"glm\", metric = \"ROC\", 
+              family = \"binomial\", trControl=ctrl)
+```"
+"1","+ Fold01.Rep01: parameter=none 
+- Fold01.Rep01: parameter=none 
++ Fold02.Rep01: parameter=none 
+- Fold02.Rep01: parameter=none 
++ Fold03.Rep01: parameter=none 
+- Fold03.Rep01: parameter=none 
++ Fold04.Rep01: parameter=none 
+- Fold04.Rep01: parameter=none 
++ Fold05.Rep01: parameter=none 
+- Fold05.Rep01: parameter=none 
++ Fold06.Rep01: parameter=none 
+- Fold06.Rep01: parameter=none 
++ Fold07.Rep01: parameter=none 
+- Fold07.Rep01: parameter=none 
++ Fold08.Rep01: parameter=none 
+- Fold08.Rep01: parameter=none 
++ Fold09.Rep01: parameter=none 
+- Fold09.Rep01: parameter=none 
++ Fold10.Rep01: parameter=none 
+- Fold10.Rep01: parameter=none 
++ Fold01.Rep02: parameter=none 
+- Fold01.Rep02: parameter=none 
++ Fold02.Rep02: parameter=none 
+- Fold02.Rep02: parameter=none 
++ Fold03.Rep02: parameter=none 
+- Fold03.Rep02: parameter=none 
++ Fold04.Rep02: parameter=none 
+- Fold04.Rep02: parameter=none 
++ Fold05.Rep02: parameter=none 
+- Fold05.Rep02: parameter=none 
++ Fold06.Rep02: parameter=none 
+- Fold06.Rep02: parameter=none 
++ Fold07.Rep02: parameter=none 
+- Fold07.Rep02: parameter=none 
++ Fold08.Rep02: parameter=none 
+- Fold08.Rep02: parameter=none 
++ Fold09.Rep02: parameter=none 
+- Fold09.Rep02: parameter=none 
++ Fold10.Rep02: parameter=none 
+- Fold10.Rep02: parameter=none 
++ Fold01.Rep03: parameter=none 
+- Fold01.Rep03: parameter=none 
++ Fold02.Rep03: parameter=none 
+- Fold02.Rep03: parameter=none 
++ Fold03.Rep03: parameter=none 
+- Fold03.Rep03: parameter=none 
++ Fold04.Rep03: parameter=none 
+- Fold04.Rep03: parameter=none 
++ Fold05.Rep03: parameter=none 
+- Fold05.Rep03: parameter=none 
++ Fold06.Rep03: parameter=none 
+- Fold06.Rep03: parameter=none 
++ Fold07.Rep03: parameter=none 
+- Fold07.Rep03: parameter=none 
++ Fold08.Rep03: parameter=none 
+- Fold08.Rep03: parameter=none 
++ Fold09.Rep03: parameter=none 
+- Fold09.Rep03: parameter=none 
++ Fold10.Rep03: parameter=none 
+- Fold10.Rep03: parameter=none 
++ Fold01.Rep04: parameter=none 
+- Fold01.Rep04: parameter=none 
++ Fold02.Rep04: parameter=none 
+- Fold02.Rep04: parameter=none 
++ Fold03.Rep04: parameter=none 
+- Fold03.Rep04: parameter=none 
++ Fold04.Rep04: parameter=none 
+- Fold04.Rep04: parameter=none 
++ Fold05.Rep04: parameter=none 
+- Fold05.Rep04: parameter=none 
++ Fold06.Rep04: parameter=none 
+- Fold06.Rep04: parameter=none 
++ Fold07.Rep04: parameter=none 
+- Fold07.Rep04: parameter=none 
++ Fold08.Rep04: parameter=none 
+- Fold08.Rep04: parameter=none 
++ Fold09.Rep04: parameter=none 
+- Fold09.Rep04: parameter=none 
++ Fold10.Rep04: parameter=none 
+- Fold10.Rep04: parameter=none 
++ Fold01.Rep05: parameter=none 
+- Fold01.Rep05: parameter=none 
++ Fold02.Rep05: parameter=none 
+- Fold02.Rep05: parameter=none 
++ Fold03.Rep05: parameter=none 
+- Fold03.Rep05: parameter=none 
++ Fold04.Rep05: parameter=none 
+- Fold04.Rep05: parameter=none 
++ Fold05.Rep05: parameter=none 
+- Fold05.Rep05: parameter=none 
++ Fold06.Rep05: parameter=none 
+- Fold06.Rep05: parameter=none 
++ Fold07.Rep05: parameter=none 
+- Fold07.Rep05: parameter=none 
++ Fold08.Rep05: parameter=none 
+- Fold08.Rep05: parameter=none 
++ Fold09.Rep05: parameter=none 
+- Fold09.Rep05: parameter=none 
++ Fold10.Rep05: parameter=none 
+- Fold10.Rep05: parameter=none 
++ Fold01.Rep06: parameter=none 
+- Fold01.Rep06: parameter=none 
++ Fold02.Rep06: parameter=none 
+- Fold02.Rep06: parameter=none 
++ Fold03.Rep06: parameter=none 
+- Fold03.Rep06: parameter=none 
++ Fold04.Rep06: parameter=none 
+- Fold04.Rep06: parameter=none 
++ Fold05.Rep06: parameter=none 
+- Fold05.Rep06: parameter=none 
++ Fold06.Rep06: parameter=none 
+- Fold06.Rep06: parameter=none 
++ Fold07.Rep06: parameter=none 
+- Fold07.Rep06: parameter=none 
++ Fold08.Rep06: parameter=none 
+- Fold08.Rep06: parameter=none 
++ Fold09.Rep06: parameter=none 
+- Fold09.Rep06: parameter=none 
++ Fold10.Rep06: parameter=none 
+- Fold10.Rep06: parameter=none 
++ Fold01.Rep07: parameter=none 
+- Fold01.Rep07: parameter=none 
++ Fold02.Rep07: parameter=none 
+- Fold02.Rep07: parameter=none 
++ Fold03.Rep07: parameter=none 
+- Fold03.Rep07: parameter=none 
++ Fold04.Rep07: parameter=none 
+- Fold04.Rep07: parameter=none 
++ Fold05.Rep07: parameter=none 
+- Fold05.Rep07: parameter=none 
++ Fold06.Rep07: parameter=none 
+- Fold06.Rep07: parameter=none 
++ Fold07.Rep07: parameter=none 
+- Fold07.Rep07: parameter=none 
++ Fold08.Rep07: parameter=none 
+- Fold08.Rep07: parameter=none 
++ Fold09.Rep07: parameter=none 
+- Fold09.Rep07: parameter=none 
++ Fold10.Rep07: parameter=none 
+- Fold10.Rep07: parameter=none 
++ Fold01.Rep08: parameter=none 
+- Fold01.Rep08: parameter=none 
++ Fold02.Rep08: parameter=none 
+- Fold02.Rep08: parameter=none 
++ Fold03.Rep08: parameter=none 
+- Fold03.Rep08: parameter=none 
++ Fold04.Rep08: parameter=none 
+- Fold04.Rep08: parameter=none 
++ Fold05.Rep08: parameter=none 
+- Fold05.Rep08: parameter=none 
++ Fold06.Rep08: parameter=none 
+- Fold06.Rep08: parameter=none 
++ Fold07.Rep08: parameter=none 
+- Fold07.Rep08: parameter=none 
++ Fold08.Rep08: parameter=none 
+- Fold08.Rep08: parameter=none 
++ Fold09.Rep08: parameter=none 
+- Fold09.Rep08: parameter=none 
++ Fold10.Rep08: parameter=none 
+- Fold10.Rep08: parameter=none 
++ Fold01.Rep09: parameter=none 
+- Fold01.Rep09: parameter=none 
++ Fold02.Rep09: parameter=none 
+- Fold02.Rep09: parameter=none 
++ Fold03.Rep09: parameter=none 
+- Fold03.Rep09: parameter=none 
++ Fold04.Rep09: parameter=none 
+- Fold04.Rep09: parameter=none 
++ Fold05.Rep09: parameter=none 
+- Fold05.Rep09: parameter=none 
++ Fold06.Rep09: parameter=none 
+- Fold06.Rep09: parameter=none 
++ Fold07.Rep09: parameter=none 
+- Fold07.Rep09: parameter=none 
++ Fold08.Rep09: parameter=none 
+- Fold08.Rep09: parameter=none 
++ Fold09.Rep09: parameter=none 
+- Fold09.Rep09: parameter=none 
++ Fold10.Rep09: parameter=none 
+- Fold10.Rep09: parameter=none 
++ Fold01.Rep10: parameter=none 
+- Fold01.Rep10: parameter=none 
++ Fold02.Rep10: parameter=none 
+- Fold02.Rep10: parameter=none 
++ Fold03.Rep10: parameter=none 
+- Fold03.Rep10: parameter=none 
++ Fold04.Rep10: parameter=none 
+- Fold04.Rep10: parameter=none 
++ Fold05.Rep10: parameter=none 
+- Fold05.Rep10: parameter=none 
++ Fold06.Rep10: parameter=none 
+- Fold06.Rep10: parameter=none 
++ Fold07.Rep10: parameter=none 
+- Fold07.Rep10: parameter=none 
++ Fold08.Rep10: parameter=none 
+- Fold08.Rep10: parameter=none 
++ Fold09.Rep10: parameter=none 
+- Fold09.Rep10: parameter=none 
++ Fold10.Rep10: parameter=none 
+- Fold10.Rep10: parameter=none 
+Aggregating results
+Fitting final model on full training set
+"
+"0","```r
+# bidding cost not included b/c not sig
+glm3 <- glm(Win_Bid ~ ., data=df_mod3, family = binomial(link = \"logit\"))
+summary(glm3)
+```"
+"1","
+Call:
+glm(formula = Win_Bid ~ ., family = binomial(link = \"logit\"), 
+    data = df_mod3)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-1.9201  -0.2432  -0.0730  -0.0117   3.3674  
+
+Coefficients:
+                            Estimate Std. Error z value Pr(>|z|)    
+(Intercept)                 4.181860   1.375249   3.041  0.00236 ** 
+Target_Profit              -0.138548   0.029451  -4.704 2.55e-06 ***
+Competitor_Bids_Total      -0.680943   0.087563  -7.777 7.45e-15 ***
+Competitor_Bids_A_J        -0.952645   0.171906  -5.542 3.00e-08 ***
+Region_Group_1              2.977476   0.691441   4.306 1.66e-05 ***
+Sector_Group_1              3.938890   0.673715   5.847 5.02e-09 ***
+Estimated_Completion_Years  0.165957   0.075311   2.204  0.02755 *  
+Bidding_Costs               0.001339   0.001183   1.132  0.25776    
+---
+Signif. codes:  0 â€˜***â€™ 0.001 â€˜**â€™ 0.01 â€˜*â€™ 0.05 â€˜.â€™ 0.1 â€˜ â€™ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 477.88  on 542  degrees of freedom
+Residual deviance: 193.97  on 535  degrees of freedom
+AIC: 209.97
+
+Number of Fisher Scoring iterations: 8
+"
+"0","```r
+PseudoR2(glm3, which = NULL)
+```"
+"1"," McFadden 
+0.5941025 
+"

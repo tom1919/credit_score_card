@@ -1,0 +1,6 @@
+"0","```r
+ctrl <- trainControl(method = \"repeatedcv\", number = 10, repeats = 10,
+                     summaryFunction = twoClassSummary, 
+                     classProbs=TRUE,
+                     verboseIter = TRUE)
+```"

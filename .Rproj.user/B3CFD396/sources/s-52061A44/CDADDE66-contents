@@ -1,0 +1,92 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+```{r}
+source("../scripts/helper_functions.R")
+LoadPackages(c("dplyr", "smbinning", "stringr",
+                "tibble", "gmodels", "vcd"))
+```
+
+```{r}
+all_sc <- all2
+```
+
+
+```{r}
+all_sc <- all2
+
+# create good variable bc smbinning uses it
+all_sc$good <- abs(as.numeric(all_sc$GB) - 2)
+all_sc <- all_sc %>% select(good, everything())
+
+accepts2 <- all_sc %>% filter(!is.na(GB))
+reject2 <- all_sc %>% filter(is.na(GB))
+
+set.seed(888)
+train <- accepts2 %>% sample_frac(size = .7) 
+test <- accepts2 %>% anti_join(train, by = "id")
+train2 <- train %>% 
+  select(-`_freq_`, -id, -GB) %>%
+  as.data.frame()
+```
+
+
+
+
+
+```{r}
+
+
+# Gathering the names of numeric variables in data #
+num_names <- names(train2 )[sapply(train2, is.numeric)]
+num_names <- num_names[2:length(num_names)]
+
+result_all <- list() 
+
+# loop through each numeric col and use smbinning to bin numeric vars
+# only create bins if unique vales > 5, there are significant splits and 
+# iv value is greater than 0.1
+# smbinning expcts "good variable"
+result_all_sig <- list() # Creating empty list to store all results #
+
+for(i in 1:length(num_names)){
+  check_res <- smbinning(df = train2, y = "good", x = num_names[i])
+  
+  if(check_res == "Uniques values < 5") {
+    print(paste0(num_names[i], " has less than 5 unq values"))
+    next
+  }
+  else if(check_res == "No significant splits") {
+    print(paste0(num_names[i], " has no sig splits"))
+    next
+  }
+  else if(check_res$iv < 0.1) {
+    print(paste0(num_names[i], " has iv less than .1"))
+    next
+  }
+  else {
+  result_all_sig[[num_names[i]]] <- check_res
+  print(paste0(num_names[i], " has splits created"))
+  }
+}
+
+#Able to pull all information within list by variable name #
+#result_all_sig$AGE$ivtable 
+
+
+
+```
+
+```{r}
+smbinning(df = train2, y = "good", x = num_names[3])
+```
+
+```{r}
+table(train2$CHILDREN)
+
+train2 %>% filter(is.na(CHILDREN))
+```
+

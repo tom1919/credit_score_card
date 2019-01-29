@@ -1,0 +1,24 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1548735446568.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "CDADDE66",
+    "lastKnownWriteTime" : 1548717508,
+    "last_content_update" : 1548717508,
+    "path" : "C:/Users/tommy/Google Drive/Coursework/Spring 1/Financial Analytics/credit_score_card/code/score_card.Rmd",
+    "project_path" : "code/score_card.Rmd",
+    "properties" : {
+        "chunk_output_type" : "inline",
+        "cursorPosition" : "27,0",
+        "scrollLine" : "10",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

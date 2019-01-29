@@ -1,0 +1,714 @@
+---
+title: "Final Project"
+output: html_notebook
+---
+
+```{r}
+LoadPackages <- function(packages) {
+  # Load or install packages if they aren't already loaded.
+  #
+  # Args:
+  #   packages: a vector of package names
+  #
+  for (package in packages) {
+    if (!require(package, character.only=T, quietly=T)) {
+      if (!package %in% installed.packages()) install.packages(package)
+      library(package, character.only=T)
+    }
+  }
+}
+
+summarize_df <- function(df, r = 4) {
+  # Create summary information about a data set
+  #
+  # Args:
+  #   df = data frame 
+  #   r = number of decimal places to round
+  #
+  # Return: A data frame containing various summary info about each column
+  require(dplyr)
+  df <- as.data.frame(df)
+  summary_names <- c("col_name", 
+                     "type", 
+                     "num_unq",
+                     "mode", 
+                     "mode_ratio",                     
+                     "num_missing", 
+                     "num_na", 
+                     "num_inf", 
+                     "num_nan",
+                     "min", 
+                     "q1", 
+                     "median", 
+                     "mean", 
+                     "q3", 
+                     "max", 
+                     "std_dev")
+  col_summary <- data.frame(matrix(ncol = length(summary_names), nrow = ncol(df)))
+  names(col_summary) <- summary_names
+  
+  for(i in 1:ncol(df)) {
+    col <- df[,i]
+    not_inf <- df[!is.infinite(col), i]
+    freq_table <- sort(table(not_inf), decreasing=TRUE)[1]
+    
+    col_name <- names(df)[i]
+    type <- class(col)
+    num_inf <- length(df[is.infinite(col),i])
+    num_nan <- length(df[is.nan(col),i])
+    num_na <- length(df[is.na(col),i]) - num_nan
+    num_missing <- num_na + num_inf + num_nan
+    num_unq <- length(unique(not_inf[!is.na(not_inf)])) # NAs and INF values not included
+    mode <- names(freq_table) # NAs and INF values not included
+    mode_ratio <- unname(freq_table) / (length(col) - num_missing)
+    
+    
+    if(is.numeric(col) == TRUE) {
+      min <- min(col, na.rm = TRUE)
+      q1 <- quantile(not_inf, .25, na.rm = TRUE) %>% unname()
+      median <- median(not_inf, na.rm = TRUE)
+      mean <- mean(not_inf, na.rm = TRUE)
+      q3 <- quantile(not_inf, .75, na.rm = TRUE) %>% unname()
+      max <- max(not_inf, na.rm = TRUE)
+      std_dev <- sd(not_inf, na.rm = TRUE)
+    } else {
+      min <- NA
+      q1 <- NA
+      median <- NA
+      mean <- NA
+      q3 <- NA
+      max <- NA
+      std_dev <- NA
+    }
+    
+    col_summary[i,] <- c(col_name, 
+                         type, 
+                         num_unq,
+                         mode,
+                         mode_ratio,
+                         num_missing, 
+                         num_na,
+                         num_inf, 
+                         num_nan,
+                         min, 
+                         q1, 
+                         median, 
+                         mean, 
+                         q3, 
+                         max, 
+                         std_dev)
+  }
+  numerics <- dplyr::setdiff(names(col_summary),c("col_name", "type", "mode")) 
+  col_summary <- dplyr::mutate_at(col_summary, numerics, funs(as.double(.)))
+  col_summary <- dplyr::mutate_at(col_summary, numerics, funs(round(., r)))
+  
+  return(col_summary)
+}
+```
+
+```{r}
+LoadPackages(c("dplyr", "haven", "caret", "MLmetrics", "stringr",
+               "mgcv", "DescTools", "tibble", "brglm", "olsrr"))
+```
+
+Variables for file directories 
+```{r}
+data <- paste0('C:/Users/tommy/Google Drive/Coursework/',
+               'logistic_regression/data/')
+raw <- paste0('C:/Users/tommy/Google Drive/Coursework/',
+               'logistic_regression/data/raw/')
+```
+
+Read in data
+```{r}
+const <- read_sas(paste0(raw,"construction.sas7bdat")) 
+```
+
+Summary of the data
+```{r}
+const_summary <- summarize_df(const)
+# write.csv(const_summary, paste0(data,"con_summary.csv"))
+# write.csv(const, paste0(data,"const.csv"))
+```
+
+Cast Win_Bid as numeric 1 and 0s
+```{r}
+df_cast <- const %>% 
+  mutate_at('Win_Bid', funs(str_replace_all(.,c("Yes" = "1", "No" = "0")))) %>%
+  mutate_at('Win_Bid', funs(as.numeric(.)))
+```
+
+
+Some exploration
+```{r}
+df <- df_cast
+
+# max 8 predictors based on rule of thumb
+table(df$Win_Bid)
+
+# percentage of times bid is won in each region
+# make a bar chart of this
+# make a new binary variable Yes = Northeast or Southeast or West and no otherwise
+reg_p <- df %>% 
+  group_by(Region_of_Country) %>% 
+  summarise(n = n(), win = sum(Win_Bid)) %>%
+  mutate(percent_win = win/n) %>%
+  arrange(percent_win)
+
+# percentage of times bid is won in each sector
+# make a new binary variable Yes = 5 or 6 or 4 and no other wise
+# make a bar chart of this
+sec_p <- df %>% 
+  group_by(Sector) %>% 
+  summarise(n = n(), win = sum(Win_Bid)) %>%
+  mutate(percent_win = win/n) %>%
+  arrange(percent_win)  
+```
+
+Bar charts
+```{r}
+reg_lab <- data.frame("Region Group" = c(0,0,1,1,1))
+reg_p <- reg_p %>% bind_cols(reg_lab) %>%
+  mutate_at("Region.Group", funs(as.factor(.)))
+
+ggplot(reg_p, aes(x = Region_of_Country, y = percent_win, fill = Region.Group)) + 
+  geom_bar(stat = 'identity', position = "identity") +
+  labs(title = "Proportion of Winning Bids By Region",
+       x = "Region of Country",
+       y = "Proportion of Bids Won",
+       legend.title = "F") +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = .5, size = 22, face = "bold"),
+        axis.text=element_text(size=14),
+        axis.title=element_text(size=18),
+        legend.text=element_text(size=13),
+        legend.title=element_text(size=13)) +
+  labs(fill = "Region Group")
+
+
+sec_lab <- data.frame("sec_grp" = c(0,0,0, rep(1,7)))
+sec_p <- sec_p %>% bind_cols(sec_lab) %>%
+  mutate_at("sec_grp", funs(as.factor(.))) %>%
+  mutate_at("Sector", funs(as.factor(.)))
+
+
+sec_p <- sec_p %>% arrange(Sector)
+
+c_sec <- data.frame(c_sec = c("Transportation", "Lodging", "Multi-family residential",
+                              "Amusement/recreation", "Highway/street", "Education", 
+                              "Healthcare", "Manufacturing", "Power", "Military"))
+
+sec_p <- bind_cols(sec_p, c_sec)
+
+ggplot(sec_p, aes(x = c_sec, y = percent_win, fill = sec_grp)) + 
+  geom_bar(stat = 'identity', position = "identity") +
+  labs(title = "Proportion of Winning Bids By Sector",
+       x = "Construction Sector",
+       y = "Proportion of Bids Won",
+       legend.title = "F") +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = .5, size = 22, face = "bold"),
+        axis.text=element_text(size=14),
+        axis.title=element_text(size=18),
+        legend.text=element_text(size=13),
+        legend.title=element_text(size=13)) +
+  labs(fill = "Sector Group") +
+  coord_flip()
+  
+```
+
+
+
+Group competitors together
+```{r}
+# df %>% 
+#   filter(Competitor_A == 1) %>% 
+#   summarise(n = n(), win = sum(Win_Bid)) %>%
+#   mutate(percent_win = win/n)
+# 
+# df %>% 
+#   filter(Competitor_B == 1) %>% 
+#   summarise(n = n(), win = sum(Win_Bid)) %>%
+#   mutate(percent_win = win/n)
+# 
+# df %>% 
+#   filter(Competitor_C == 1) %>% 
+#   summarise(n = n(), win = sum(Win_Bid)) %>%
+#   mutate(percent_win = win/n)
+# 
+# df %>% 
+#   filter(Competitor_D == 1) %>% 
+#   summarise(n = n(), win = sum(Win_Bid)) %>%
+#   mutate(percent_win = win/n)
+# 
+# df %>% 
+#   filter(Competitor_E == 1) %>% 
+#   summarise(n = n(), win = sum(Win_Bid)) %>%
+#   mutate(percent_win = win/n)
+# 
+# df %>% 
+#   filter(Competitor_F == 1) %>% 
+#   summarise(n = n(), win = sum(Win_Bid)) %>%
+#   mutate(percent_win = win/n)
+# 
+# df %>% 
+#   filter(Competitor_G == 1) %>% 
+#   summarise(n = n(), win = sum(Win_Bid)) %>%
+#   mutate(percent_win = win/n)
+# 
+# df %>% 
+#   filter(Competitor_H == 1) %>% 
+#   summarise(n = n(), win = sum(Win_Bid)) %>%
+#   mutate(percent_win = win/n)
+# 
+# df %>% 
+#   filter(Competitor_I == 1) %>% 
+#   summarise(n = n(), win = sum(Win_Bid)) %>%
+#   mutate(percent_win = win/n)
+# 
+# df %>% 
+#   filter(Competitor_J == 1) %>% 
+#   summarise(n = n(), win = sum(Win_Bid)) %>%
+#   mutate(percent_win = win/n)
+# 
+# # Make a bar chart out of this
+# win_rate_v_comp <- read.csv(paste0(data,'comp_lose_rate.csv'))
+# 
+# # make new variable, comp_group = 1 if C, 2 if B,A,E,J,D,F, 3 if H,I, 4 if G
+# win_rate_v_comp %>% arrange(lose_rate)
+```
+
+Create new variables
+```{r}
+#create variable for number bids from known competitors
+known_comp_bids <- df %>%
+  select(starts_with("comp")) %>%
+  mutate(known_comp_bids = rowSums(.)) %>%
+  select(known_comp_bids)
+
+df <- df %>% bind_cols(known_comp_bids)
+
+# Region binary variable Yes = Northeast | Southeast |West and no otherwise
+# Sector binary variable Yes = 5 or 6 or 4 and no other wise
+df <- df %>%
+  mutate(Reg_Grp = ifelse(Region_of_Country %in% 
+                                 c('Northeast', 'Southeast', 'West'), 1,0),
+         Sec_Grp = ifelse(Sector %in% c(5,6,4), 0, 1))
+
+df <- df %>% 
+  mutate_at('Win_Bid', funs(str_replace_all(.,c("1" = "Y", "0" = "N")))) 
+
+
+df <- df %>% 
+  mutate_at(c('Reg_Grp', 'Sec_Grp', 'Win_Bid'), funs(as.factor(.)))
+```
+
+
+
+```{r}
+ctrl <- trainControl(method = "repeatedcv", number = 10, repeats = 10,
+                     summaryFunction = twoClassSummary, 
+                     classProbs=TRUE,
+                     verboseIter = TRUE)
+```
+
+
+Model 1
+```{r}
+# select data for model 1
+df_mod1 <- df %>% select(Win_Bid, Region_of_Country, Sec_Grp)
+
+# log reg
+set.seed(88)
+
+glm1 <- train(Win_Bid ~ ., data=df_mod1,  
+              method = "glm", metric = "ROC", family = "binomial", 
+              trControl=ctrl)
+
+# random forest
+set.seed(88)
+grid_rf1 <- expand.grid(splitrule = "extratrees", 
+                       mtry = c(1,2), min.node.size = 1)
+
+rf1 <- train(Win_Bid ~ ., data=df_mod1, tuneGrid = grid_rf1,  
+             method = "ranger", metric = "ROC", 
+             trControl=ctrl)
+
+# elastic net regression
+set.seed(888)
+grid_glmnet <- expand.grid(alpha = seq(0,1, length = 10),
+                           lambda = seq(0.001, 1, length = 20))
+
+glmnet1 <- train(Win_Bid ~ ., data = df_mod1, tuneGrid = grid_glmnet,
+                 preProcess = c("center", "scale"), metric = "ROC",
+                 method = "glmnet", trControl = ctrl)
+
+# knn
+set.seed(888)
+knn1 <- train(Win_Bid ~ ., data = df_mod1,
+                 preProcess = c("center", "scale"), metric = "ROC",
+                 method = "knn", trControl = ctrl)
+```
+
+Model 1 box plot
+```{r}
+mod1_resample <- data.frame("glm" = glm1$resample$ROC, 
+                            "rf" = rf1$resample$ROC, 
+                            "glmnet" = glmnet1$resample$ROC,
+                            "knn" = knn1$resample$ROC)
+
+glm_re1 <- mod1_resample %>% 
+  select(glm) %>% 
+  mutate(Model = "Log Reg") %>%
+  rename("C-Stat" = glm)
+
+rf_re1 <- mod1_resample %>% 
+  select(rf) %>% 
+  mutate(Model = "RandomForest") %>%
+  rename("C-Stat" = rf)
+
+glmnet_re1 <- mod1_resample %>% 
+  select(glmnet) %>% 
+  mutate(Model = "Elastic Net") %>%
+  rename("C-Stat" = glmnet)
+
+knn_re1 <- mod1_resample %>% 
+  select(knn) %>% 
+  mutate(Model = "KNN") %>%
+  rename("C-Stat" = knn)
+
+mod1_long <- glm_re1 %>% 
+  bind_rows(rf_re1) %>% 
+  bind_rows(glmnet_re1) %>% 
+  bind_rows(knn_re1) %>%
+  mutate("Model", funs(as.factor(.)))
+
+
+
+ggplot(data=  mod1_long, aes(y=`C-Stat` , x=Model, fill=Model ) ) +
+  geom_boxplot() +
+  labs(title = "Cross Validated Model 1 Comparison",
+       x = "Model Type",
+       y = "C - Statistic") +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = .5, size = 26, face = "bold"),
+        axis.text=element_text(size=19),
+        axis.title=element_text(size=21),
+        legend.text=element_text(size=13),
+        legend.title=element_text(size=13)) +
+  guides(fill=FALSE)
+
+
+med_c1 <- mod1_long %>% 
+  group_by(Model) %>% 
+  summarize(med = median(`C-Stat`)) %>%
+  arrange(med)
+```
+
+
+Model 2
+```{r}
+df_mod2 <- df %>% select(Win_Bid, Reg_Grp, Sec_Grp,
+                         Estimated_Cost__Millions_, 
+                         Estimated_Years_to_Complete) 
+
+# log reg
+set.seed(88)
+
+glm2 <- train(Win_Bid ~ ., data=df_mod2,  
+              method = "glm", metric = "ROC", family = "binomial", 
+              trControl=ctrl)
+
+# random forest
+set.seed(88)
+grid_rf2 <- expand.grid(splitrule = "extratrees", 
+                       mtry = c(2,3,4), min.node.size = 1)
+
+rf2 <- train(Win_Bid ~ ., data=df_mod2, tuneGrid = grid_rf2,  
+             method = "ranger", metric = "ROC", 
+             trControl=ctrl)
+
+# elastic net regression
+set.seed(888)
+grid_glmnet <- expand.grid(alpha = seq(0,1, length = 10),
+                           lambda = seq(0.001, 1, length = 20))
+
+glmnet2 <- train(Win_Bid ~ ., data = df_mod2, tuneGrid = grid_glmnet,
+                 preProcess = c("center", "scale"), metric = "ROC",
+                 method = "glmnet", trControl = ctrl)
+
+# knn
+set.seed(888)
+knn2 <- train(Win_Bid ~ ., data = df_mod2,
+                 preProcess = c("center", "scale"), metric = "ROC",
+                 method = "knn", trControl = ctrl)
+```
+
+
+Model 2 boxplot
+```{r}
+mod2_resample <- data.frame("glm" = glm2$resample$ROC, 
+                            "rf" = rf2$resample$ROC, 
+                            "glmnet" = glmnet2$resample$ROC,
+                            "knn" = knn2$resample$ROC)
+
+glm_re2 <- mod2_resample %>% 
+  select(glm) %>% 
+  mutate(Model = "Log Reg") %>%
+  rename("C-Stat" = glm)
+
+rf_re2 <- mod2_resample %>% 
+  select(rf) %>% 
+  mutate(Model = "RandomForest") %>%
+  rename("C-Stat" = rf)
+
+glmnet_re2 <- mod2_resample %>% 
+  select(glmnet) %>% 
+  mutate(Model = "Elastic Net") %>%
+  rename("C-Stat" = glmnet)
+
+knn_re2 <- mod2_resample %>% 
+  select(knn) %>% 
+  mutate(Model = "KNN") %>%
+  rename("C-Stat" = knn)
+
+mod2_long <- glm_re2 %>% 
+  bind_rows(rf_re2) %>% 
+  bind_rows(glmnet_re2) %>% 
+  bind_rows(knn_re2) %>%
+  mutate("Model", funs(as.factor(.)))
+
+ggplot(data=  mod2_long, aes(y=`C-Stat` , x=Model, fill=Model ) ) +
+  geom_boxplot() +
+  labs(title = "Cross Validated Model 2 Comparison",
+       x = "Model Type",
+       y = "C - Statistic") +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = .5, size = 26, face = "bold"),
+        axis.text=element_text(size=19),
+        axis.title=element_text(size=21),
+        legend.text=element_text(size=13),
+        legend.title=element_text(size=13)) +
+  guides(fill=FALSE)
+
+med_c2 <- mod2_long %>% 
+  group_by(Model) %>% 
+  summarize(med = median(`C-Stat`)) %>%
+  arrange(med)
+
+glm2_2 <- glm(Win_Bid ~ ., data=df_mod2, family = binomial(link = "logit"))
+summary(glm2)
+
+exp(1.812902)
+```
+
+
+
+Model 3
+```{r}
+df_mod3 <- df %>%  
+  mutate(Target_Profit = 
+           Bid_Price__Millions_ - Estimated_Cost__Millions_) %>%
+  select(Win_Bid, 
+         Target_Profit,
+         Number_of_Competitor_Bids, 
+         known_comp_bids, 
+         Reg_Grp, 
+         Sec_Grp,
+         Estimated_Years_to_Complete,
+         Cost_After_Engineering_Estimate_) %>%
+  rename("Competitor_Bids_Total" = Number_of_Competitor_Bids,
+         "Competitor_Bids_A_J" = known_comp_bids,
+         "Region_Group_" = Reg_Grp,
+         "Sector_Group_" = Sec_Grp,
+         "Estimated_Completion_Years" = Estimated_Years_to_Complete,
+         "Bidding_Costs" = Cost_After_Engineering_Estimate_)
+
+set.seed(88)
+glm3_cv <- train(Win_Bid ~ ., data=df_mod3, method = "glm", metric = "ROC", 
+              family = "binomial", trControl=ctrl)
+
+# bidding cost not included b/c not sig
+glm3 <- glm(Win_Bid ~ ., data=df_mod3, family = binomial(link = "logit"))
+summary(glm3)
+
+PseudoR2(glm3, which = NULL)
+```
+
+CI plot
+```{r}
+ci <- confint(glm3)
+
+ci_df <- ci %>% 
+  as.data.frame() %>% 
+  rownames_to_column("Predictor") %>% 
+   slice(-1) #%>%
+  # mutate(rn = row_number(),
+  #        Type = ifelse(rn <=6, "Main", "foo"),
+  #        Type = ifelse(rn >6 & rn < 12, "Squared", Type),
+  #        Type = ifelse(rn > 11, "Interaction", Type)) %>%
+  # select(-rn)
+
+names(ci_df) <- c("Predictor", "low", "high")
+
+ci_high <- ci_df %>% select(Predictor, high) %>%
+  rename("est" = high)
+
+ci_low <- ci_df %>% select(Predictor, low) %>%
+  rename("est" = low)
+
+ci_long <- bind_rows(ci_low, ci_high)
+
+ggplot(data = ci_long, aes(x = est, y = Predictor)) +
+  geom_point() +
+  geom_line() +
+  geom_vline(xintercept = 0, linetype= "dotted", 
+             color = "red", size=.9) +
+  labs(title = "95% Confidence Intervals", 
+       y = "Predictor", 
+       x = "Parameter Estimate") +
+  scale_x_continuous(breaks = seq(-2,6.5, by =1)) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = .5, size = 24, face = "bold"),
+        axis.text=element_text(size=16),
+        axis.title=element_text(size=19),
+        axis.line = element_line(colour = "black")) 
+```
+
+
+
+Model 3, check VIF and sepratation
+```{r}
+# All VIF less than 3
+mod_vif <- lm(Win_Bid ~ ., data=df_mod3)
+ols_vif_tol(mod_vif) %>% arrange(VIF)
+
+# No separation issue
+separation.detection(glm3)
+```
+
+test linearity
+```{r}
+# non linear effect of Profit_Actual_Mil was no sig at .01 los
+fit.gam <- gam(Win_Bid ~ s(Bidding_Costs) + 
+                 Target_Profit + 
+                 Competitor_Bids_Total + 
+                 Competitor_Bids_A_J + 
+                 Region_Group_ + 
+                 Sector_Group_ + 
+                 Estimated_Completion_Years,
+               data = df_mod3, family = binomial, method = "REML")
+summary(fit.gam)
+plot(fit.gam, ylab = "f(age)", shade = TRUE, main = "effect of age", jit = TRUE,
+     seWithMean = TRUE)
+```
+
+test interaction
+```{r}
+df_mod4 <- df_mod3 %>%
+  mutate(Sector_x_Region = 
+           (as.numeric(Sector_Group_)-1) * (as.numeric(Region_Group_)-1))
+
+glm4 <- glm(Win_Bid ~ ., data=df_mod4, family = binomial(link = "logit"))
+summary(glm4)
+
+# interaction is not signifigant
+anova(glm4 , glm3, test = "LRT") 
+```
+
+Influential observations 
+```{r}
+plot(glm3, 4)
+```
+
+
+similarity models to check for future extrapolation
+```{r}
+# model 1
+set.seed(44)
+train_pred1 <- df_mod1 %>% select(-Win_Bid)
+permute_train1 <- apply(train_pred1, 2, function(x) sample(x))
+sim_x1 <- rbind(train_pred1, permute_train1)
+group_vals1 <- c("train", "random")
+group_y1 <- factor(rep(group_vals1, each = nrow(train_pred1)))
+sim_x1$train <- group_y1
+sim_x1 <- sim_x1 %>%
+  dplyr::mutate(train = ifelse(train == "train", "pos", "neg")) %>%
+  dplyr::mutate_at("train", as.factor)
+sim_x1$train <- relevel(sim_x1$train, "pos")
+
+ctrl2 <- trainControl(method = "repeatedcv", number = 10, repeats = 1,
+                     classProbs=TRUE,
+                     verboseIter = TRUE)
+
+rf_sim1 <- train(train ~ ., data=sim_x1, tuneGrid = grid_rf1,  
+             method = "ranger", metric = "Accuracy", 
+             trControl=ctrl2)
+
+# Accuracy
+rf_sim1$results$Accuracy
+
+
+# model 2
+set.seed(44)
+train_pred2 <- df_mod2 %>% select(-Win_Bid)
+permute_train2 <- apply(train_pred2, 2, function(x) sample(x))
+sim_x2 <- rbind(train_pred2, permute_train2)
+group_vals2 <- c("train", "random")
+group_y2 <- factor(rep(group_vals2, each = nrow(train_pred2)))
+sim_x2$train <- group_y2
+sim_x2 <- sim_x2 %>%
+  dplyr::mutate(train = ifelse(train == "train", "pos", "neg")) %>%
+  dplyr::mutate_at("train", as.factor)
+sim_x2$train <- relevel(sim_x2$train, "pos")
+
+rf_sim2 <- train(train ~ ., data=sim_x2, tuneGrid = grid_rf2,  
+             method = "ranger", metric = "Accuracy", 
+             trControl=ctrl2)
+
+# Accuracy
+rf_sim2$results$Accuracy
+
+# accuracy for both is less than 50%. This suggests that the predictor space is
+# well saturated and as long as any new observations that are in the invdivual
+# ranges of the predictors will also be in the joint range of them
+```
+
+# do psedo r squared
+
+Comparison between two projects
+```{r}
+
+
+# create a new dataset of the subjects we'd like to compare
+newdata <- data.frame(Target_Profit = c(100, 50),
+                      Competitor_Bids_Total = c(0, 0),
+                      Competitor_Bids_A_J = c(0, 0),
+                      Region_Group_ = c(1, 0),
+                      Sector_Group_ = c(1, 0),
+                      Estimated_Completion_Years = c(0, 0),
+                      Bidding_Costs = c(0,0)) %>%
+  mutate_at(c("Region_Group_", "Sector_Group_"), funs(as.factor(.)))
+
+
+# the diff() function is the second value minus the first
+# so the following statement is comparing two observations
+exp(diff(predict(glm3, newdata = newdata, type = "link")))
+```
+
+```{r}
+newdata <- data.frame(Target_Profit = c(100, 100),
+                      Competitor_Bids_Total = c(0, 0),
+                      Competitor_Bids_A_J = c(0, 0),
+                      Region_Group_ = c(0, 1),
+                      Sector_Group_ = c(0, 0),
+                      Estimated_Completion_Years = c(0, 0),
+                      Bidding_Costs = c(0,0)) %>%
+  mutate_at(c("Region_Group_", "Sector_Group_"), funs(as.factor(.)))
+
+
+# the diff() function is the second value minus the first
+# so the following statement is comparing two observations
+exp(diff(predict(glm3, newdata = newdata, type = "link")))
+```
+

@@ -1,0 +1,43 @@
+"0","```r
+# non linear effect of Profit_Actual_Mil was no sig at .01 los
+fit.gam <- gam(Win_Bid ~ s(Bidding_Costs) + 
+                 Target_Profit + 
+                 Competitor_Bids_Total + 
+                 Competitor_Bids_A_J + 
+                 Region_Group_ + 
+                 Sector_Group_ + 
+                 Estimated_Completion_Years,
+               data = df_mod3, family = binomial, method = \"REML\")
+summary(fit.gam)
+```"
+"1","
+Family: binomial 
+Link function: logit 
+
+Formula:
+Win_Bid ~ s(Bidding_Costs) + Target_Profit + Competitor_Bids_Total + 
+    Competitor_Bids_A_J + Region_Group_ + Sector_Group_ + Estimated_Completion_Years
+
+Parametric coefficients:
+                           Estimate Std. Error z value Pr(>|z|)    
+(Intercept)                 4.75123    1.37596   3.453 0.000554 ***
+Target_Profit              -0.14417    0.03013  -4.784 1.72e-06 ***
+Competitor_Bids_Total      -0.69420    0.08940  -7.765 8.18e-15 ***
+Competitor_Bids_A_J        -0.95666    0.17263  -5.542 3.00e-08 ***
+Region_Group_1              2.96971    0.69605   4.267 1.99e-05 ***
+Sector_Group_1              3.99369    0.67794   5.891 3.84e-09 ***
+Estimated_Completion_Years  0.16430    0.07588   2.165 0.030372 *  
+---
+Signif. codes:  0 â€˜***â€™ 0.001 â€˜**â€™ 0.01 â€˜*â€™ 0.05 â€˜.â€™ 0.1 â€˜ â€™ 1
+
+Approximate significance of smooth terms:
+                   edf Ref.df Chi.sq p-value
+s(Bidding_Costs) 1.833    2.3  2.421    0.32
+
+R-sq.(adj) =  0.611   Deviance explained = 59.9%
+-REML = 104.84  Scale est. = 1         n = 543
+"
+"0","```r
+plot(fit.gam, ylab = \"f(age)\", shade = TRUE, main = \"effect of age\", jit = TRUE,
+     seWithMean = TRUE)
+```"

@@ -1,0 +1,18 @@
+"0","```r
+#create variable for number bids from known competitors
+known_comp_bids <- df %>%
+  select(starts_with(\"comp\")) %>%
+  mutate(known_comp_bids = rowSums(.)) %>%
+  select(known_comp_bids)
+df <- df %>% bind_cols(known_comp_bids)
+# Region binary variable Yes = Northeast | Southeast |West and no otherwise
+# Sector binary variable Yes = 5 or 6 or 4 and no other wise
+df <- df %>%
+  mutate(Reg_Grp = ifelse(Region_of_Country %in% 
+                                 c('Northeast', 'Southeast', 'West'), 1,0),
+         Sec_Grp = ifelse(Sector %in% c(5,6,4), 0, 1))
+df <- df %>% 
+  mutate_at('Win_Bid', funs(str_replace_all(.,c(\"1\" = \"Y\", \"0\" = \"N\")))) 
+df <- df %>% 
+  mutate_at(c('Reg_Grp', 'Sec_Grp', 'Win_Bid'), funs(as.factor(.)))
+```"

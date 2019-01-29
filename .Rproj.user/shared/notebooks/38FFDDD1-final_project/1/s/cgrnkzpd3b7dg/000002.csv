@@ -1,0 +1,57 @@
+"0","```r
+# df %>% 
+#   filter(Competitor_A == 1) %>% 
+#   summarise(n = n(), win = sum(Win_Bid)) %>%
+#   mutate(percent_win = win/n)
+# 
+# df %>% 
+#   filter(Competitor_B == 1) %>% 
+#   summarise(n = n(), win = sum(Win_Bid)) %>%
+#   mutate(percent_win = win/n)
+# 
+# df %>% 
+#   filter(Competitor_C == 1) %>% 
+#   summarise(n = n(), win = sum(Win_Bid)) %>%
+#   mutate(percent_win = win/n)
+# 
+# df %>% 
+#   filter(Competitor_D == 1) %>% 
+#   summarise(n = n(), win = sum(Win_Bid)) %>%
+#   mutate(percent_win = win/n)
+# 
+# df %>% 
+#   filter(Competitor_E == 1) %>% 
+#   summarise(n = n(), win = sum(Win_Bid)) %>%
+#   mutate(percent_win = win/n)
+# 
+# df %>% 
+#   filter(Competitor_F == 1) %>% 
+#   summarise(n = n(), win = sum(Win_Bid)) %>%
+#   mutate(percent_win = win/n)
+# 
+# df %>% 
+#   filter(Competitor_G == 1) %>% 
+#   summarise(n = n(), win = sum(Win_Bid)) %>%
+#   mutate(percent_win = win/n)
+# 
+# df %>% 
+#   filter(Competitor_H == 1) %>% 
+#   summarise(n = n(), win = sum(Win_Bid)) %>%
+#   mutate(percent_win = win/n)
+# 
+# df %>% 
+#   filter(Competitor_I == 1) %>% 
+#   summarise(n = n(), win = sum(Win_Bid)) %>%
+#   mutate(percent_win = win/n)
+# 
+# df %>% 
+#   filter(Competitor_J == 1) %>% 
+#   summarise(n = n(), win = sum(Win_Bid)) %>%
+#   mutate(percent_win = win/n)
+# 
+# # Make a bar chart out of this
+# win_rate_v_comp <- read.csv(paste0(data,'comp_lose_rate.csv'))
+# 
+# # make new variable, comp_group = 1 if C, 2 if B,A,E,J,D,F, 3 if H,I, 4 if G
+# win_rate_v_comp %>% arrange(lose_rate)
+```"

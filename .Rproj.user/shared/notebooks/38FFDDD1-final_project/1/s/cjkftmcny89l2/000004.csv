@@ -1,0 +1,6 @@
+"0","```r
+med_c1 <- mod1_long %>% 
+  group_by(Model) %>% 
+  summarize(med = median(`C-Stat`)) %>%
+  arrange(med)
+```"

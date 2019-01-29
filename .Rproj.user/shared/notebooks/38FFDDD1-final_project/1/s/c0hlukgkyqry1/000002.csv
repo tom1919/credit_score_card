@@ -1,0 +1,3249 @@
+"0","```r
+# select data for model 1
+df_mod1 <- df %>% select(Win_Bid, Region_of_Country, Sec_Grp)
+# log reg
+set.seed(88)
+glm1 <- train(Win_Bid ~ ., data=df_mod1,  
+              method = \"glm\", metric = \"ROC\", family = \"binomial\", 
+              trControl=ctrl)
+```"
+"1","+ Fold01.Rep01: parameter=none 
+- Fold01.Rep01: parameter=none 
++ Fold02.Rep01: parameter=none 
+- Fold02.Rep01: parameter=none 
++ Fold03.Rep01: parameter=none 
+- Fold03.Rep01: parameter=none 
++ Fold04.Rep01: parameter=none 
+- Fold04.Rep01: parameter=none 
++ Fold05.Rep01: parameter=none 
+- Fold05.Rep01: parameter=none 
++ Fold06.Rep01: parameter=none 
+- Fold06.Rep01: parameter=none 
++ Fold07.Rep01: parameter=none 
+- Fold07.Rep01: parameter=none 
++ Fold08.Rep01: parameter=none 
+- Fold08.Rep01: parameter=none 
++ Fold09.Rep01: parameter=none 
+- Fold09.Rep01: parameter=none 
++ Fold10.Rep01: parameter=none 
+- Fold10.Rep01: parameter=none 
++ Fold01.Rep02: parameter=none 
+- Fold01.Rep02: parameter=none 
++ Fold02.Rep02: parameter=none 
+- Fold02.Rep02: parameter=none 
++ Fold03.Rep02: parameter=none 
+- Fold03.Rep02: parameter=none 
++ Fold04.Rep02: parameter=none 
+- Fold04.Rep02: parameter=none 
++ Fold05.Rep02: parameter=none 
+- Fold05.Rep02: parameter=none 
++ Fold06.Rep02: parameter=none 
+- Fold06.Rep02: parameter=none 
++ Fold07.Rep02: parameter=none 
+- Fold07.Rep02: parameter=none 
++ Fold08.Rep02: parameter=none 
+- Fold08.Rep02: parameter=none 
++ Fold09.Rep02: parameter=none 
+- Fold09.Rep02: parameter=none 
++ Fold10.Rep02: parameter=none 
+- Fold10.Rep02: parameter=none 
++ Fold01.Rep03: parameter=none 
+- Fold01.Rep03: parameter=none 
++ Fold02.Rep03: parameter=none 
+- Fold02.Rep03: parameter=none 
++ Fold03.Rep03: parameter=none 
+- Fold03.Rep03: parameter=none 
++ Fold04.Rep03: parameter=none 
+- Fold04.Rep03: parameter=none 
++ Fold05.Rep03: parameter=none 
+- Fold05.Rep03: parameter=none 
++ Fold06.Rep03: parameter=none 
+- Fold06.Rep03: parameter=none 
++ Fold07.Rep03: parameter=none 
+- Fold07.Rep03: parameter=none 
++ Fold08.Rep03: parameter=none 
+- Fold08.Rep03: parameter=none 
++ Fold09.Rep03: parameter=none 
+- Fold09.Rep03: parameter=none 
++ Fold10.Rep03: parameter=none 
+- Fold10.Rep03: parameter=none 
++ Fold01.Rep04: parameter=none 
+- Fold01.Rep04: parameter=none 
++ Fold02.Rep04: parameter=none 
+- Fold02.Rep04: parameter=none 
++ Fold03.Rep04: parameter=none 
+- Fold03.Rep04: parameter=none 
++ Fold04.Rep04: parameter=none 
+- Fold04.Rep04: parameter=none 
++ Fold05.Rep04: parameter=none 
+- Fold05.Rep04: parameter=none 
++ Fold06.Rep04: parameter=none 
+- Fold06.Rep04: parameter=none 
++ Fold07.Rep04: parameter=none 
+- Fold07.Rep04: parameter=none 
++ Fold08.Rep04: parameter=none 
+- Fold08.Rep04: parameter=none 
++ Fold09.Rep04: parameter=none 
+- Fold09.Rep04: parameter=none 
++ Fold10.Rep04: parameter=none 
+- Fold10.Rep04: parameter=none 
++ Fold01.Rep05: parameter=none 
+- Fold01.Rep05: parameter=none 
++ Fold02.Rep05: parameter=none 
+- Fold02.Rep05: parameter=none 
++ Fold03.Rep05: parameter=none 
+- Fold03.Rep05: parameter=none 
++ Fold04.Rep05: parameter=none 
+- Fold04.Rep05: parameter=none 
++ Fold05.Rep05: parameter=none 
+- Fold05.Rep05: parameter=none 
++ Fold06.Rep05: parameter=none 
+- Fold06.Rep05: parameter=none 
++ Fold07.Rep05: parameter=none 
+- Fold07.Rep05: parameter=none 
++ Fold08.Rep05: parameter=none 
+- Fold08.Rep05: parameter=none 
++ Fold09.Rep05: parameter=none 
+- Fold09.Rep05: parameter=none 
++ Fold10.Rep05: parameter=none 
+- Fold10.Rep05: parameter=none 
++ Fold01.Rep06: parameter=none 
+- Fold01.Rep06: parameter=none 
++ Fold02.Rep06: parameter=none 
+- Fold02.Rep06: parameter=none 
++ Fold03.Rep06: parameter=none 
+- Fold03.Rep06: parameter=none 
++ Fold04.Rep06: parameter=none 
+- Fold04.Rep06: parameter=none 
++ Fold05.Rep06: parameter=none 
+- Fold05.Rep06: parameter=none 
++ Fold06.Rep06: parameter=none 
+- Fold06.Rep06: parameter=none 
++ Fold07.Rep06: parameter=none 
+- Fold07.Rep06: parameter=none 
++ Fold08.Rep06: parameter=none 
+- Fold08.Rep06: parameter=none 
++ Fold09.Rep06: parameter=none 
+- Fold09.Rep06: parameter=none 
++ Fold10.Rep06: parameter=none 
+- Fold10.Rep06: parameter=none 
++ Fold01.Rep07: parameter=none 
+- Fold01.Rep07: parameter=none 
++ Fold02.Rep07: parameter=none 
+- Fold02.Rep07: parameter=none 
++ Fold03.Rep07: parameter=none 
+- Fold03.Rep07: parameter=none 
++ Fold04.Rep07: parameter=none 
+- Fold04.Rep07: parameter=none 
++ Fold05.Rep07: parameter=none 
+- Fold05.Rep07: parameter=none 
++ Fold06.Rep07: parameter=none 
+- Fold06.Rep07: parameter=none 
++ Fold07.Rep07: parameter=none 
+- Fold07.Rep07: parameter=none 
++ Fold08.Rep07: parameter=none 
+- Fold08.Rep07: parameter=none 
++ Fold09.Rep07: parameter=none 
+- Fold09.Rep07: parameter=none 
++ Fold10.Rep07: parameter=none 
+- Fold10.Rep07: parameter=none 
++ Fold01.Rep08: parameter=none 
+- Fold01.Rep08: parameter=none 
++ Fold02.Rep08: parameter=none 
+- Fold02.Rep08: parameter=none 
++ Fold03.Rep08: parameter=none 
+- Fold03.Rep08: parameter=none 
++ Fold04.Rep08: parameter=none 
+- Fold04.Rep08: parameter=none 
++ Fold05.Rep08: parameter=none 
+- Fold05.Rep08: parameter=none 
++ Fold06.Rep08: parameter=none 
+- Fold06.Rep08: parameter=none 
++ Fold07.Rep08: parameter=none 
+- Fold07.Rep08: parameter=none 
++ Fold08.Rep08: parameter=none 
+- Fold08.Rep08: parameter=none 
++ Fold09.Rep08: parameter=none 
+- Fold09.Rep08: parameter=none 
++ Fold10.Rep08: parameter=none 
+- Fold10.Rep08: parameter=none 
++ Fold01.Rep09: parameter=none 
+- Fold01.Rep09: parameter=none 
++ Fold02.Rep09: parameter=none 
+- Fold02.Rep09: parameter=none 
++ Fold03.Rep09: parameter=none 
+- Fold03.Rep09: parameter=none 
++ Fold04.Rep09: parameter=none 
+- Fold04.Rep09: parameter=none 
++ Fold05.Rep09: parameter=none 
+- Fold05.Rep09: parameter=none 
++ Fold06.Rep09: parameter=none 
+- Fold06.Rep09: parameter=none 
++ Fold07.Rep09: parameter=none 
+- Fold07.Rep09: parameter=none 
++ Fold08.Rep09: parameter=none 
+- Fold08.Rep09: parameter=none 
++ Fold09.Rep09: parameter=none 
+- Fold09.Rep09: parameter=none 
++ Fold10.Rep09: parameter=none 
+- Fold10.Rep09: parameter=none 
++ Fold01.Rep10: parameter=none 
+- Fold01.Rep10: parameter=none 
++ Fold02.Rep10: parameter=none 
+- Fold02.Rep10: parameter=none 
++ Fold03.Rep10: parameter=none 
+- Fold03.Rep10: parameter=none 
++ Fold04.Rep10: parameter=none 
+- Fold04.Rep10: parameter=none 
++ Fold05.Rep10: parameter=none 
+- Fold05.Rep10: parameter=none 
++ Fold06.Rep10: parameter=none 
+- Fold06.Rep10: parameter=none 
++ Fold07.Rep10: parameter=none 
+- Fold07.Rep10: parameter=none 
++ Fold08.Rep10: parameter=none 
+- Fold08.Rep10: parameter=none 
++ Fold09.Rep10: parameter=none 
+- Fold09.Rep10: parameter=none 
++ Fold10.Rep10: parameter=none 
+- Fold10.Rep10: parameter=none 
+Aggregating results
+Fitting final model on full training set
+"
+"0","```r
+# random forest
+set.seed(88)
+grid_rf1 <- expand.grid(splitrule = \"extratrees\", 
+                       mtry = c(1,2), min.node.size = 1)
+rf1 <- train(Win_Bid ~ ., data=df_mod1, tuneGrid = grid_rf1,  
+             method = \"ranger\", metric = \"ROC\", 
+             trControl=ctrl)
+```"
+"1","+ Fold01.Rep01: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold01.Rep01: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold01.Rep01: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold01.Rep01: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold02.Rep01: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold02.Rep01: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold02.Rep01: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold02.Rep01: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold03.Rep01: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold03.Rep01: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold03.Rep01: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold03.Rep01: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold04.Rep01: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold04.Rep01: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold04.Rep01: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold04.Rep01: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold05.Rep01: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold05.Rep01: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold05.Rep01: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold05.Rep01: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold06.Rep01: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold06.Rep01: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold06.Rep01: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold06.Rep01: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold07.Rep01: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold07.Rep01: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold07.Rep01: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold07.Rep01: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold08.Rep01: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold08.Rep01: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold08.Rep01: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold08.Rep01: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold09.Rep01: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold09.Rep01: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold09.Rep01: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold09.Rep01: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold10.Rep01: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold10.Rep01: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold10.Rep01: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold10.Rep01: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold01.Rep02: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold01.Rep02: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold01.Rep02: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold01.Rep02: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold02.Rep02: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold02.Rep02: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold02.Rep02: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold02.Rep02: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold03.Rep02: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold03.Rep02: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold03.Rep02: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold03.Rep02: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold04.Rep02: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold04.Rep02: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold04.Rep02: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold04.Rep02: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold05.Rep02: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold05.Rep02: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold05.Rep02: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold05.Rep02: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold06.Rep02: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold06.Rep02: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold06.Rep02: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold06.Rep02: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold07.Rep02: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold07.Rep02: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold07.Rep02: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold07.Rep02: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold08.Rep02: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold08.Rep02: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold08.Rep02: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold08.Rep02: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold09.Rep02: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold09.Rep02: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold09.Rep02: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold09.Rep02: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold10.Rep02: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold10.Rep02: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold10.Rep02: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold10.Rep02: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold01.Rep03: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold01.Rep03: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold01.Rep03: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold01.Rep03: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold02.Rep03: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold02.Rep03: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold02.Rep03: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold02.Rep03: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold03.Rep03: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold03.Rep03: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold03.Rep03: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold03.Rep03: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold04.Rep03: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold04.Rep03: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold04.Rep03: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold04.Rep03: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold05.Rep03: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold05.Rep03: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold05.Rep03: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold05.Rep03: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold06.Rep03: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold06.Rep03: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold06.Rep03: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold06.Rep03: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold07.Rep03: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold07.Rep03: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold07.Rep03: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold07.Rep03: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold08.Rep03: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold08.Rep03: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold08.Rep03: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold08.Rep03: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold09.Rep03: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold09.Rep03: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold09.Rep03: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold09.Rep03: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold10.Rep03: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold10.Rep03: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold10.Rep03: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold10.Rep03: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold01.Rep04: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold01.Rep04: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold01.Rep04: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold01.Rep04: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold02.Rep04: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold02.Rep04: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold02.Rep04: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold02.Rep04: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold03.Rep04: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold03.Rep04: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold03.Rep04: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold03.Rep04: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold04.Rep04: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold04.Rep04: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold04.Rep04: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold04.Rep04: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold05.Rep04: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold05.Rep04: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold05.Rep04: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold05.Rep04: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold06.Rep04: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold06.Rep04: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold06.Rep04: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold06.Rep04: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold07.Rep04: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold07.Rep04: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold07.Rep04: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold07.Rep04: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold08.Rep04: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold08.Rep04: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold08.Rep04: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold08.Rep04: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold09.Rep04: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold09.Rep04: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold09.Rep04: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold09.Rep04: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold10.Rep04: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold10.Rep04: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold10.Rep04: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold10.Rep04: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold01.Rep05: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold01.Rep05: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold01.Rep05: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold01.Rep05: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold02.Rep05: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold02.Rep05: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold02.Rep05: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold02.Rep05: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold03.Rep05: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold03.Rep05: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold03.Rep05: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold03.Rep05: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold04.Rep05: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold04.Rep05: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold04.Rep05: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold04.Rep05: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold05.Rep05: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold05.Rep05: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold05.Rep05: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold05.Rep05: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold06.Rep05: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold06.Rep05: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold06.Rep05: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold06.Rep05: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold07.Rep05: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold07.Rep05: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold07.Rep05: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold07.Rep05: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold08.Rep05: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold08.Rep05: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold08.Rep05: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold08.Rep05: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold09.Rep05: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold09.Rep05: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold09.Rep05: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold09.Rep05: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold10.Rep05: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold10.Rep05: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold10.Rep05: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold10.Rep05: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold01.Rep06: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold01.Rep06: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold01.Rep06: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold01.Rep06: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold02.Rep06: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold02.Rep06: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold02.Rep06: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold02.Rep06: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold03.Rep06: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold03.Rep06: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold03.Rep06: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold03.Rep06: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold04.Rep06: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold04.Rep06: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold04.Rep06: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold04.Rep06: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold05.Rep06: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold05.Rep06: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold05.Rep06: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold05.Rep06: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold06.Rep06: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold06.Rep06: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold06.Rep06: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold06.Rep06: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold07.Rep06: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold07.Rep06: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold07.Rep06: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold07.Rep06: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold08.Rep06: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold08.Rep06: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold08.Rep06: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold08.Rep06: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold09.Rep06: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold09.Rep06: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold09.Rep06: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold09.Rep06: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold10.Rep06: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold10.Rep06: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold10.Rep06: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold10.Rep06: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold01.Rep07: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold01.Rep07: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold01.Rep07: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold01.Rep07: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold02.Rep07: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold02.Rep07: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold02.Rep07: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold02.Rep07: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold03.Rep07: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold03.Rep07: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold03.Rep07: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold03.Rep07: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold04.Rep07: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold04.Rep07: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold04.Rep07: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold04.Rep07: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold05.Rep07: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold05.Rep07: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold05.Rep07: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold05.Rep07: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold06.Rep07: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold06.Rep07: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold06.Rep07: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold06.Rep07: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold07.Rep07: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold07.Rep07: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold07.Rep07: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold07.Rep07: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold08.Rep07: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold08.Rep07: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold08.Rep07: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold08.Rep07: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold09.Rep07: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold09.Rep07: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold09.Rep07: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold09.Rep07: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold10.Rep07: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold10.Rep07: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold10.Rep07: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold10.Rep07: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold01.Rep08: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold01.Rep08: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold01.Rep08: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold01.Rep08: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold02.Rep08: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold02.Rep08: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold02.Rep08: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold02.Rep08: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold03.Rep08: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold03.Rep08: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold03.Rep08: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold03.Rep08: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold04.Rep08: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold04.Rep08: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold04.Rep08: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold04.Rep08: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold05.Rep08: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold05.Rep08: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold05.Rep08: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold05.Rep08: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold06.Rep08: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold06.Rep08: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold06.Rep08: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold06.Rep08: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold07.Rep08: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold07.Rep08: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold07.Rep08: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold07.Rep08: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold08.Rep08: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold08.Rep08: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold08.Rep08: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold08.Rep08: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold09.Rep08: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold09.Rep08: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold09.Rep08: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold09.Rep08: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold10.Rep08: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold10.Rep08: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold10.Rep08: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold10.Rep08: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold01.Rep09: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold01.Rep09: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold01.Rep09: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold01.Rep09: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold02.Rep09: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold02.Rep09: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold02.Rep09: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold02.Rep09: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold03.Rep09: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold03.Rep09: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold03.Rep09: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold03.Rep09: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold04.Rep09: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold04.Rep09: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold04.Rep09: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold04.Rep09: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold05.Rep09: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold05.Rep09: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold05.Rep09: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold05.Rep09: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold06.Rep09: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold06.Rep09: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold06.Rep09: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold06.Rep09: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold07.Rep09: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold07.Rep09: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold07.Rep09: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold07.Rep09: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold08.Rep09: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold08.Rep09: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold08.Rep09: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold08.Rep09: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold09.Rep09: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold09.Rep09: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold09.Rep09: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold09.Rep09: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold10.Rep09: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold10.Rep09: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold10.Rep09: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold10.Rep09: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold01.Rep10: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold01.Rep10: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold01.Rep10: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold01.Rep10: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold02.Rep10: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold02.Rep10: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold02.Rep10: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold02.Rep10: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold03.Rep10: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold03.Rep10: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold03.Rep10: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold03.Rep10: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold04.Rep10: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold04.Rep10: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold04.Rep10: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold04.Rep10: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold05.Rep10: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold05.Rep10: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold05.Rep10: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold05.Rep10: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold06.Rep10: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold06.Rep10: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold06.Rep10: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold06.Rep10: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold07.Rep10: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold07.Rep10: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold07.Rep10: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold07.Rep10: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold08.Rep10: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold08.Rep10: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold08.Rep10: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold08.Rep10: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold09.Rep10: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold09.Rep10: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold09.Rep10: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold09.Rep10: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold10.Rep10: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold10.Rep10: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold10.Rep10: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold10.Rep10: splitrule=extratrees, mtry=2, min.node.size=1 
+Aggregating results
+Selecting tuning parameters
+Fitting mtry = 2, splitrule = extratrees, min.node.size = 1 on full training set
+"
+"0","```r
+# elastic net regression
+set.seed(888)
+grid_glmnet <- expand.grid(alpha = seq(0,1, length = 10),
+                           lambda = seq(0.001, 1, length = 20))
+glmnet1 <- train(Win_Bid ~ ., data = df_mod1, tuneGrid = grid_glmnet,
+                 preProcess = c(\"center\", \"scale\"), metric = \"ROC\",
+                 method = \"glmnet\", trControl = ctrl)
+```"
+"1","+ Fold01.Rep01: alpha=0.0000, lambda=1 
+- Fold01.Rep01: alpha=0.0000, lambda=1 
++ Fold01.Rep01: alpha=0.1111, lambda=1 
+- Fold01.Rep01: alpha=0.1111, lambda=1 
++ Fold01.Rep01: alpha=0.2222, lambda=1 
+- Fold01.Rep01: alpha=0.2222, lambda=1 
++ Fold01.Rep01: alpha=0.3333, lambda=1 
+- Fold01.Rep01: alpha=0.3333, lambda=1 
++ Fold01.Rep01: alpha=0.4444, lambda=1 
+- Fold01.Rep01: alpha=0.4444, lambda=1 
++ Fold01.Rep01: alpha=0.5556, lambda=1 
+- Fold01.Rep01: alpha=0.5556, lambda=1 
++ Fold01.Rep01: alpha=0.6667, lambda=1 
+- Fold01.Rep01: alpha=0.6667, lambda=1 
++ Fold01.Rep01: alpha=0.7778, lambda=1 
+- Fold01.Rep01: alpha=0.7778, lambda=1 
++ Fold01.Rep01: alpha=0.8889, lambda=1 
+- Fold01.Rep01: alpha=0.8889, lambda=1 
++ Fold01.Rep01: alpha=1.0000, lambda=1 
+- Fold01.Rep01: alpha=1.0000, lambda=1 
++ Fold02.Rep01: alpha=0.0000, lambda=1 
+- Fold02.Rep01: alpha=0.0000, lambda=1 
++ Fold02.Rep01: alpha=0.1111, lambda=1 
+- Fold02.Rep01: alpha=0.1111, lambda=1 
++ Fold02.Rep01: alpha=0.2222, lambda=1 
+- Fold02.Rep01: alpha=0.2222, lambda=1 
++ Fold02.Rep01: alpha=0.3333, lambda=1 
+- Fold02.Rep01: alpha=0.3333, lambda=1 
++ Fold02.Rep01: alpha=0.4444, lambda=1 
+- Fold02.Rep01: alpha=0.4444, lambda=1 
++ Fold02.Rep01: alpha=0.5556, lambda=1 
+- Fold02.Rep01: alpha=0.5556, lambda=1 
++ Fold02.Rep01: alpha=0.6667, lambda=1 
+- Fold02.Rep01: alpha=0.6667, lambda=1 
++ Fold02.Rep01: alpha=0.7778, lambda=1 
+- Fold02.Rep01: alpha=0.7778, lambda=1 
++ Fold02.Rep01: alpha=0.8889, lambda=1 
+- Fold02.Rep01: alpha=0.8889, lambda=1 
++ Fold02.Rep01: alpha=1.0000, lambda=1 
+- Fold02.Rep01: alpha=1.0000, lambda=1 
++ Fold03.Rep01: alpha=0.0000, lambda=1 
+- Fold03.Rep01: alpha=0.0000, lambda=1 
++ Fold03.Rep01: alpha=0.1111, lambda=1 
+- Fold03.Rep01: alpha=0.1111, lambda=1 
++ Fold03.Rep01: alpha=0.2222, lambda=1 
+- Fold03.Rep01: alpha=0.2222, lambda=1 
++ Fold03.Rep01: alpha=0.3333, lambda=1 
+- Fold03.Rep01: alpha=0.3333, lambda=1 
++ Fold03.Rep01: alpha=0.4444, lambda=1 
+- Fold03.Rep01: alpha=0.4444, lambda=1 
++ Fold03.Rep01: alpha=0.5556, lambda=1 
+- Fold03.Rep01: alpha=0.5556, lambda=1 
++ Fold03.Rep01: alpha=0.6667, lambda=1 
+- Fold03.Rep01: alpha=0.6667, lambda=1 
++ Fold03.Rep01: alpha=0.7778, lambda=1 
+- Fold03.Rep01: alpha=0.7778, lambda=1 
++ Fold03.Rep01: alpha=0.8889, lambda=1 
+- Fold03.Rep01: alpha=0.8889, lambda=1 
++ Fold03.Rep01: alpha=1.0000, lambda=1 
+- Fold03.Rep01: alpha=1.0000, lambda=1 
++ Fold04.Rep01: alpha=0.0000, lambda=1 
+- Fold04.Rep01: alpha=0.0000, lambda=1 
++ Fold04.Rep01: alpha=0.1111, lambda=1 
+- Fold04.Rep01: alpha=0.1111, lambda=1 
++ Fold04.Rep01: alpha=0.2222, lambda=1 
+- Fold04.Rep01: alpha=0.2222, lambda=1 
++ Fold04.Rep01: alpha=0.3333, lambda=1 
+- Fold04.Rep01: alpha=0.3333, lambda=1 
++ Fold04.Rep01: alpha=0.4444, lambda=1 
+- Fold04.Rep01: alpha=0.4444, lambda=1 
++ Fold04.Rep01: alpha=0.5556, lambda=1 
+- Fold04.Rep01: alpha=0.5556, lambda=1 
++ Fold04.Rep01: alpha=0.6667, lambda=1 
+- Fold04.Rep01: alpha=0.6667, lambda=1 
++ Fold04.Rep01: alpha=0.7778, lambda=1 
+- Fold04.Rep01: alpha=0.7778, lambda=1 
++ Fold04.Rep01: alpha=0.8889, lambda=1 
+- Fold04.Rep01: alpha=0.8889, lambda=1 
++ Fold04.Rep01: alpha=1.0000, lambda=1 
+- Fold04.Rep01: alpha=1.0000, lambda=1 
++ Fold05.Rep01: alpha=0.0000, lambda=1 
+- Fold05.Rep01: alpha=0.0000, lambda=1 
++ Fold05.Rep01: alpha=0.1111, lambda=1 
+- Fold05.Rep01: alpha=0.1111, lambda=1 
++ Fold05.Rep01: alpha=0.2222, lambda=1 
+- Fold05.Rep01: alpha=0.2222, lambda=1 
++ Fold05.Rep01: alpha=0.3333, lambda=1 
+- Fold05.Rep01: alpha=0.3333, lambda=1 
++ Fold05.Rep01: alpha=0.4444, lambda=1 
+- Fold05.Rep01: alpha=0.4444, lambda=1 
++ Fold05.Rep01: alpha=0.5556, lambda=1 
+- Fold05.Rep01: alpha=0.5556, lambda=1 
++ Fold05.Rep01: alpha=0.6667, lambda=1 
+- Fold05.Rep01: alpha=0.6667, lambda=1 
++ Fold05.Rep01: alpha=0.7778, lambda=1 
+- Fold05.Rep01: alpha=0.7778, lambda=1 
++ Fold05.Rep01: alpha=0.8889, lambda=1 
+- Fold05.Rep01: alpha=0.8889, lambda=1 
++ Fold05.Rep01: alpha=1.0000, lambda=1 
+- Fold05.Rep01: alpha=1.0000, lambda=1 
++ Fold06.Rep01: alpha=0.0000, lambda=1 
+- Fold06.Rep01: alpha=0.0000, lambda=1 
++ Fold06.Rep01: alpha=0.1111, lambda=1 
+- Fold06.Rep01: alpha=0.1111, lambda=1 
++ Fold06.Rep01: alpha=0.2222, lambda=1 
+- Fold06.Rep01: alpha=0.2222, lambda=1 
++ Fold06.Rep01: alpha=0.3333, lambda=1 
+- Fold06.Rep01: alpha=0.3333, lambda=1 
++ Fold06.Rep01: alpha=0.4444, lambda=1 
+- Fold06.Rep01: alpha=0.4444, lambda=1 
++ Fold06.Rep01: alpha=0.5556, lambda=1 
+- Fold06.Rep01: alpha=0.5556, lambda=1 
++ Fold06.Rep01: alpha=0.6667, lambda=1 
+- Fold06.Rep01: alpha=0.6667, lambda=1 
++ Fold06.Rep01: alpha=0.7778, lambda=1 
+- Fold06.Rep01: alpha=0.7778, lambda=1 
++ Fold06.Rep01: alpha=0.8889, lambda=1 
+- Fold06.Rep01: alpha=0.8889, lambda=1 
++ Fold06.Rep01: alpha=1.0000, lambda=1 
+- Fold06.Rep01: alpha=1.0000, lambda=1 
++ Fold07.Rep01: alpha=0.0000, lambda=1 
+- Fold07.Rep01: alpha=0.0000, lambda=1 
++ Fold07.Rep01: alpha=0.1111, lambda=1 
+- Fold07.Rep01: alpha=0.1111, lambda=1 
++ Fold07.Rep01: alpha=0.2222, lambda=1 
+- Fold07.Rep01: alpha=0.2222, lambda=1 
++ Fold07.Rep01: alpha=0.3333, lambda=1 
+- Fold07.Rep01: alpha=0.3333, lambda=1 
++ Fold07.Rep01: alpha=0.4444, lambda=1 
+- Fold07.Rep01: alpha=0.4444, lambda=1 
++ Fold07.Rep01: alpha=0.5556, lambda=1 
+- Fold07.Rep01: alpha=0.5556, lambda=1 
++ Fold07.Rep01: alpha=0.6667, lambda=1 
+- Fold07.Rep01: alpha=0.6667, lambda=1 
++ Fold07.Rep01: alpha=0.7778, lambda=1 
+- Fold07.Rep01: alpha=0.7778, lambda=1 
++ Fold07.Rep01: alpha=0.8889, lambda=1 
+- Fold07.Rep01: alpha=0.8889, lambda=1 
++ Fold07.Rep01: alpha=1.0000, lambda=1 
+- Fold07.Rep01: alpha=1.0000, lambda=1 
++ Fold08.Rep01: alpha=0.0000, lambda=1 
+- Fold08.Rep01: alpha=0.0000, lambda=1 
++ Fold08.Rep01: alpha=0.1111, lambda=1 
+- Fold08.Rep01: alpha=0.1111, lambda=1 
++ Fold08.Rep01: alpha=0.2222, lambda=1 
+- Fold08.Rep01: alpha=0.2222, lambda=1 
++ Fold08.Rep01: alpha=0.3333, lambda=1 
+- Fold08.Rep01: alpha=0.3333, lambda=1 
++ Fold08.Rep01: alpha=0.4444, lambda=1 
+- Fold08.Rep01: alpha=0.4444, lambda=1 
++ Fold08.Rep01: alpha=0.5556, lambda=1 
+- Fold08.Rep01: alpha=0.5556, lambda=1 
++ Fold08.Rep01: alpha=0.6667, lambda=1 
+- Fold08.Rep01: alpha=0.6667, lambda=1 
++ Fold08.Rep01: alpha=0.7778, lambda=1 
+- Fold08.Rep01: alpha=0.7778, lambda=1 
++ Fold08.Rep01: alpha=0.8889, lambda=1 
+- Fold08.Rep01: alpha=0.8889, lambda=1 
++ Fold08.Rep01: alpha=1.0000, lambda=1 
+- Fold08.Rep01: alpha=1.0000, lambda=1 
++ Fold09.Rep01: alpha=0.0000, lambda=1 
+- Fold09.Rep01: alpha=0.0000, lambda=1 
++ Fold09.Rep01: alpha=0.1111, lambda=1 
+- Fold09.Rep01: alpha=0.1111, lambda=1 
++ Fold09.Rep01: alpha=0.2222, lambda=1 
+- Fold09.Rep01: alpha=0.2222, lambda=1 
++ Fold09.Rep01: alpha=0.3333, lambda=1 
+- Fold09.Rep01: alpha=0.3333, lambda=1 
++ Fold09.Rep01: alpha=0.4444, lambda=1 
+- Fold09.Rep01: alpha=0.4444, lambda=1 
++ Fold09.Rep01: alpha=0.5556, lambda=1 
+- Fold09.Rep01: alpha=0.5556, lambda=1 
++ Fold09.Rep01: alpha=0.6667, lambda=1 
+- Fold09.Rep01: alpha=0.6667, lambda=1 
++ Fold09.Rep01: alpha=0.7778, lambda=1 
+- Fold09.Rep01: alpha=0.7778, lambda=1 
++ Fold09.Rep01: alpha=0.8889, lambda=1 
+- Fold09.Rep01: alpha=0.8889, lambda=1 
++ Fold09.Rep01: alpha=1.0000, lambda=1 
+- Fold09.Rep01: alpha=1.0000, lambda=1 
++ Fold10.Rep01: alpha=0.0000, lambda=1 
+- Fold10.Rep01: alpha=0.0000, lambda=1 
++ Fold10.Rep01: alpha=0.1111, lambda=1 
+- Fold10.Rep01: alpha=0.1111, lambda=1 
++ Fold10.Rep01: alpha=0.2222, lambda=1 
+- Fold10.Rep01: alpha=0.2222, lambda=1 
++ Fold10.Rep01: alpha=0.3333, lambda=1 
+- Fold10.Rep01: alpha=0.3333, lambda=1 
++ Fold10.Rep01: alpha=0.4444, lambda=1 
+- Fold10.Rep01: alpha=0.4444, lambda=1 
++ Fold10.Rep01: alpha=0.5556, lambda=1 
+- Fold10.Rep01: alpha=0.5556, lambda=1 
++ Fold10.Rep01: alpha=0.6667, lambda=1 
+- Fold10.Rep01: alpha=0.6667, lambda=1 
++ Fold10.Rep01: alpha=0.7778, lambda=1 
+- Fold10.Rep01: alpha=0.7778, lambda=1 
++ Fold10.Rep01: alpha=0.8889, lambda=1 
+- Fold10.Rep01: alpha=0.8889, lambda=1 
++ Fold10.Rep01: alpha=1.0000, lambda=1 
+- Fold10.Rep01: alpha=1.0000, lambda=1 
++ Fold01.Rep02: alpha=0.0000, lambda=1 
+- Fold01.Rep02: alpha=0.0000, lambda=1 
++ Fold01.Rep02: alpha=0.1111, lambda=1 
+- Fold01.Rep02: alpha=0.1111, lambda=1 
++ Fold01.Rep02: alpha=0.2222, lambda=1 
+- Fold01.Rep02: alpha=0.2222, lambda=1 
++ Fold01.Rep02: alpha=0.3333, lambda=1 
+- Fold01.Rep02: alpha=0.3333, lambda=1 
++ Fold01.Rep02: alpha=0.4444, lambda=1 
+- Fold01.Rep02: alpha=0.4444, lambda=1 
++ Fold01.Rep02: alpha=0.5556, lambda=1 
+- Fold01.Rep02: alpha=0.5556, lambda=1 
++ Fold01.Rep02: alpha=0.6667, lambda=1 
+- Fold01.Rep02: alpha=0.6667, lambda=1 
++ Fold01.Rep02: alpha=0.7778, lambda=1 
+- Fold01.Rep02: alpha=0.7778, lambda=1 
++ Fold01.Rep02: alpha=0.8889, lambda=1 
+- Fold01.Rep02: alpha=0.8889, lambda=1 
++ Fold01.Rep02: alpha=1.0000, lambda=1 
+- Fold01.Rep02: alpha=1.0000, lambda=1 
++ Fold02.Rep02: alpha=0.0000, lambda=1 
+- Fold02.Rep02: alpha=0.0000, lambda=1 
++ Fold02.Rep02: alpha=0.1111, lambda=1 
+- Fold02.Rep02: alpha=0.1111, lambda=1 
++ Fold02.Rep02: alpha=0.2222, lambda=1 
+- Fold02.Rep02: alpha=0.2222, lambda=1 
++ Fold02.Rep02: alpha=0.3333, lambda=1 
+- Fold02.Rep02: alpha=0.3333, lambda=1 
++ Fold02.Rep02: alpha=0.4444, lambda=1 
+- Fold02.Rep02: alpha=0.4444, lambda=1 
++ Fold02.Rep02: alpha=0.5556, lambda=1 
+- Fold02.Rep02: alpha=0.5556, lambda=1 
++ Fold02.Rep02: alpha=0.6667, lambda=1 
+- Fold02.Rep02: alpha=0.6667, lambda=1 
++ Fold02.Rep02: alpha=0.7778, lambda=1 
+- Fold02.Rep02: alpha=0.7778, lambda=1 
++ Fold02.Rep02: alpha=0.8889, lambda=1 
+- Fold02.Rep02: alpha=0.8889, lambda=1 
++ Fold02.Rep02: alpha=1.0000, lambda=1 
+- Fold02.Rep02: alpha=1.0000, lambda=1 
++ Fold03.Rep02: alpha=0.0000, lambda=1 
+- Fold03.Rep02: alpha=0.0000, lambda=1 
++ Fold03.Rep02: alpha=0.1111, lambda=1 
+- Fold03.Rep02: alpha=0.1111, lambda=1 
++ Fold03.Rep02: alpha=0.2222, lambda=1 
+- Fold03.Rep02: alpha=0.2222, lambda=1 
++ Fold03.Rep02: alpha=0.3333, lambda=1 
+- Fold03.Rep02: alpha=0.3333, lambda=1 
++ Fold03.Rep02: alpha=0.4444, lambda=1 
+- Fold03.Rep02: alpha=0.4444, lambda=1 
++ Fold03.Rep02: alpha=0.5556, lambda=1 
+- Fold03.Rep02: alpha=0.5556, lambda=1 
++ Fold03.Rep02: alpha=0.6667, lambda=1 
+- Fold03.Rep02: alpha=0.6667, lambda=1 
++ Fold03.Rep02: alpha=0.7778, lambda=1 
+- Fold03.Rep02: alpha=0.7778, lambda=1 
++ Fold03.Rep02: alpha=0.8889, lambda=1 
+- Fold03.Rep02: alpha=0.8889, lambda=1 
++ Fold03.Rep02: alpha=1.0000, lambda=1 
+- Fold03.Rep02: alpha=1.0000, lambda=1 
++ Fold04.Rep02: alpha=0.0000, lambda=1 
+- Fold04.Rep02: alpha=0.0000, lambda=1 
++ Fold04.Rep02: alpha=0.1111, lambda=1 
+- Fold04.Rep02: alpha=0.1111, lambda=1 
++ Fold04.Rep02: alpha=0.2222, lambda=1 
+- Fold04.Rep02: alpha=0.2222, lambda=1 
++ Fold04.Rep02: alpha=0.3333, lambda=1 
+- Fold04.Rep02: alpha=0.3333, lambda=1 
++ Fold04.Rep02: alpha=0.4444, lambda=1 
+- Fold04.Rep02: alpha=0.4444, lambda=1 
++ Fold04.Rep02: alpha=0.5556, lambda=1 
+- Fold04.Rep02: alpha=0.5556, lambda=1 
++ Fold04.Rep02: alpha=0.6667, lambda=1 
+- Fold04.Rep02: alpha=0.6667, lambda=1 
++ Fold04.Rep02: alpha=0.7778, lambda=1 
+- Fold04.Rep02: alpha=0.7778, lambda=1 
++ Fold04.Rep02: alpha=0.8889, lambda=1 
+- Fold04.Rep02: alpha=0.8889, lambda=1 
++ Fold04.Rep02: alpha=1.0000, lambda=1 
+- Fold04.Rep02: alpha=1.0000, lambda=1 
++ Fold05.Rep02: alpha=0.0000, lambda=1 
+- Fold05.Rep02: alpha=0.0000, lambda=1 
++ Fold05.Rep02: alpha=0.1111, lambda=1 
+- Fold05.Rep02: alpha=0.1111, lambda=1 
++ Fold05.Rep02: alpha=0.2222, lambda=1 
+- Fold05.Rep02: alpha=0.2222, lambda=1 
++ Fold05.Rep02: alpha=0.3333, lambda=1 
+- Fold05.Rep02: alpha=0.3333, lambda=1 
++ Fold05.Rep02: alpha=0.4444, lambda=1 
+- Fold05.Rep02: alpha=0.4444, lambda=1 
++ Fold05.Rep02: alpha=0.5556, lambda=1 
+- Fold05.Rep02: alpha=0.5556, lambda=1 
++ Fold05.Rep02: alpha=0.6667, lambda=1 
+- Fold05.Rep02: alpha=0.6667, lambda=1 
++ Fold05.Rep02: alpha=0.7778, lambda=1 
+- Fold05.Rep02: alpha=0.7778, lambda=1 
++ Fold05.Rep02: alpha=0.8889, lambda=1 
+- Fold05.Rep02: alpha=0.8889, lambda=1 
++ Fold05.Rep02: alpha=1.0000, lambda=1 
+- Fold05.Rep02: alpha=1.0000, lambda=1 
++ Fold06.Rep02: alpha=0.0000, lambda=1 
+- Fold06.Rep02: alpha=0.0000, lambda=1 
++ Fold06.Rep02: alpha=0.1111, lambda=1 
+- Fold06.Rep02: alpha=0.1111, lambda=1 
++ Fold06.Rep02: alpha=0.2222, lambda=1 
+- Fold06.Rep02: alpha=0.2222, lambda=1 
++ Fold06.Rep02: alpha=0.3333, lambda=1 
+- Fold06.Rep02: alpha=0.3333, lambda=1 
++ Fold06.Rep02: alpha=0.4444, lambda=1 
+- Fold06.Rep02: alpha=0.4444, lambda=1 
++ Fold06.Rep02: alpha=0.5556, lambda=1 
+- Fold06.Rep02: alpha=0.5556, lambda=1 
++ Fold06.Rep02: alpha=0.6667, lambda=1 
+- Fold06.Rep02: alpha=0.6667, lambda=1 
++ Fold06.Rep02: alpha=0.7778, lambda=1 
+- Fold06.Rep02: alpha=0.7778, lambda=1 
++ Fold06.Rep02: alpha=0.8889, lambda=1 
+- Fold06.Rep02: alpha=0.8889, lambda=1 
++ Fold06.Rep02: alpha=1.0000, lambda=1 
+- Fold06.Rep02: alpha=1.0000, lambda=1 
++ Fold07.Rep02: alpha=0.0000, lambda=1 
+- Fold07.Rep02: alpha=0.0000, lambda=1 
++ Fold07.Rep02: alpha=0.1111, lambda=1 
+- Fold07.Rep02: alpha=0.1111, lambda=1 
++ Fold07.Rep02: alpha=0.2222, lambda=1 
+- Fold07.Rep02: alpha=0.2222, lambda=1 
++ Fold07.Rep02: alpha=0.3333, lambda=1 
+- Fold07.Rep02: alpha=0.3333, lambda=1 
++ Fold07.Rep02: alpha=0.4444, lambda=1 
+- Fold07.Rep02: alpha=0.4444, lambda=1 
++ Fold07.Rep02: alpha=0.5556, lambda=1 
+- Fold07.Rep02: alpha=0.5556, lambda=1 
++ Fold07.Rep02: alpha=0.6667, lambda=1 
+- Fold07.Rep02: alpha=0.6667, lambda=1 
++ Fold07.Rep02: alpha=0.7778, lambda=1 
+- Fold07.Rep02: alpha=0.7778, lambda=1 
++ Fold07.Rep02: alpha=0.8889, lambda=1 
+- Fold07.Rep02: alpha=0.8889, lambda=1 
++ Fold07.Rep02: alpha=1.0000, lambda=1 
+- Fold07.Rep02: alpha=1.0000, lambda=1 
++ Fold08.Rep02: alpha=0.0000, lambda=1 
+- Fold08.Rep02: alpha=0.0000, lambda=1 
++ Fold08.Rep02: alpha=0.1111, lambda=1 
+- Fold08.Rep02: alpha=0.1111, lambda=1 
++ Fold08.Rep02: alpha=0.2222, lambda=1 
+- Fold08.Rep02: alpha=0.2222, lambda=1 
++ Fold08.Rep02: alpha=0.3333, lambda=1 
+- Fold08.Rep02: alpha=0.3333, lambda=1 
++ Fold08.Rep02: alpha=0.4444, lambda=1 
+- Fold08.Rep02: alpha=0.4444, lambda=1 
++ Fold08.Rep02: alpha=0.5556, lambda=1 
+- Fold08.Rep02: alpha=0.5556, lambda=1 
++ Fold08.Rep02: alpha=0.6667, lambda=1 
+- Fold08.Rep02: alpha=0.6667, lambda=1 
++ Fold08.Rep02: alpha=0.7778, lambda=1 
+- Fold08.Rep02: alpha=0.7778, lambda=1 
++ Fold08.Rep02: alpha=0.8889, lambda=1 
+- Fold08.Rep02: alpha=0.8889, lambda=1 
++ Fold08.Rep02: alpha=1.0000, lambda=1 
+- Fold08.Rep02: alpha=1.0000, lambda=1 
++ Fold09.Rep02: alpha=0.0000, lambda=1 
+- Fold09.Rep02: alpha=0.0000, lambda=1 
++ Fold09.Rep02: alpha=0.1111, lambda=1 
+- Fold09.Rep02: alpha=0.1111, lambda=1 
++ Fold09.Rep02: alpha=0.2222, lambda=1 
+- Fold09.Rep02: alpha=0.2222, lambda=1 
++ Fold09.Rep02: alpha=0.3333, lambda=1 
+- Fold09.Rep02: alpha=0.3333, lambda=1 
++ Fold09.Rep02: alpha=0.4444, lambda=1 
+- Fold09.Rep02: alpha=0.4444, lambda=1 
++ Fold09.Rep02: alpha=0.5556, lambda=1 
+- Fold09.Rep02: alpha=0.5556, lambda=1 
++ Fold09.Rep02: alpha=0.6667, lambda=1 
+- Fold09.Rep02: alpha=0.6667, lambda=1 
++ Fold09.Rep02: alpha=0.7778, lambda=1 
+- Fold09.Rep02: alpha=0.7778, lambda=1 
++ Fold09.Rep02: alpha=0.8889, lambda=1 
+- Fold09.Rep02: alpha=0.8889, lambda=1 
++ Fold09.Rep02: alpha=1.0000, lambda=1 
+- Fold09.Rep02: alpha=1.0000, lambda=1 
++ Fold10.Rep02: alpha=0.0000, lambda=1 
+- Fold10.Rep02: alpha=0.0000, lambda=1 
++ Fold10.Rep02: alpha=0.1111, lambda=1 
+- Fold10.Rep02: alpha=0.1111, lambda=1 
++ Fold10.Rep02: alpha=0.2222, lambda=1 
+- Fold10.Rep02: alpha=0.2222, lambda=1 
++ Fold10.Rep02: alpha=0.3333, lambda=1 
+- Fold10.Rep02: alpha=0.3333, lambda=1 
++ Fold10.Rep02: alpha=0.4444, lambda=1 
+- Fold10.Rep02: alpha=0.4444, lambda=1 
++ Fold10.Rep02: alpha=0.5556, lambda=1 
+- Fold10.Rep02: alpha=0.5556, lambda=1 
++ Fold10.Rep02: alpha=0.6667, lambda=1 
+- Fold10.Rep02: alpha=0.6667, lambda=1 
++ Fold10.Rep02: alpha=0.7778, lambda=1 
+- Fold10.Rep02: alpha=0.7778, lambda=1 
++ Fold10.Rep02: alpha=0.8889, lambda=1 
+- Fold10.Rep02: alpha=0.8889, lambda=1 
++ Fold10.Rep02: alpha=1.0000, lambda=1 
+- Fold10.Rep02: alpha=1.0000, lambda=1 
++ Fold01.Rep03: alpha=0.0000, lambda=1 
+- Fold01.Rep03: alpha=0.0000, lambda=1 
++ Fold01.Rep03: alpha=0.1111, lambda=1 
+- Fold01.Rep03: alpha=0.1111, lambda=1 
++ Fold01.Rep03: alpha=0.2222, lambda=1 
+- Fold01.Rep03: alpha=0.2222, lambda=1 
++ Fold01.Rep03: alpha=0.3333, lambda=1 
+- Fold01.Rep03: alpha=0.3333, lambda=1 
++ Fold01.Rep03: alpha=0.4444, lambda=1 
+- Fold01.Rep03: alpha=0.4444, lambda=1 
++ Fold01.Rep03: alpha=0.5556, lambda=1 
+- Fold01.Rep03: alpha=0.5556, lambda=1 
++ Fold01.Rep03: alpha=0.6667, lambda=1 
+- Fold01.Rep03: alpha=0.6667, lambda=1 
++ Fold01.Rep03: alpha=0.7778, lambda=1 
+- Fold01.Rep03: alpha=0.7778, lambda=1 
++ Fold01.Rep03: alpha=0.8889, lambda=1 
+- Fold01.Rep03: alpha=0.8889, lambda=1 
++ Fold01.Rep03: alpha=1.0000, lambda=1 
+- Fold01.Rep03: alpha=1.0000, lambda=1 
++ Fold02.Rep03: alpha=0.0000, lambda=1 
+- Fold02.Rep03: alpha=0.0000, lambda=1 
++ Fold02.Rep03: alpha=0.1111, lambda=1 
+- Fold02.Rep03: alpha=0.1111, lambda=1 
++ Fold02.Rep03: alpha=0.2222, lambda=1 
+- Fold02.Rep03: alpha=0.2222, lambda=1 
++ Fold02.Rep03: alpha=0.3333, lambda=1 
+- Fold02.Rep03: alpha=0.3333, lambda=1 
++ Fold02.Rep03: alpha=0.4444, lambda=1 
+- Fold02.Rep03: alpha=0.4444, lambda=1 
++ Fold02.Rep03: alpha=0.5556, lambda=1 
+- Fold02.Rep03: alpha=0.5556, lambda=1 
++ Fold02.Rep03: alpha=0.6667, lambda=1 
+- Fold02.Rep03: alpha=0.6667, lambda=1 
++ Fold02.Rep03: alpha=0.7778, lambda=1 
+- Fold02.Rep03: alpha=0.7778, lambda=1 
++ Fold02.Rep03: alpha=0.8889, lambda=1 
+- Fold02.Rep03: alpha=0.8889, lambda=1 
++ Fold02.Rep03: alpha=1.0000, lambda=1 
+- Fold02.Rep03: alpha=1.0000, lambda=1 
++ Fold03.Rep03: alpha=0.0000, lambda=1 
+- Fold03.Rep03: alpha=0.0000, lambda=1 
++ Fold03.Rep03: alpha=0.1111, lambda=1 
+- Fold03.Rep03: alpha=0.1111, lambda=1 
++ Fold03.Rep03: alpha=0.2222, lambda=1 
+- Fold03.Rep03: alpha=0.2222, lambda=1 
++ Fold03.Rep03: alpha=0.3333, lambda=1 
+- Fold03.Rep03: alpha=0.3333, lambda=1 
++ Fold03.Rep03: alpha=0.4444, lambda=1 
+- Fold03.Rep03: alpha=0.4444, lambda=1 
++ Fold03.Rep03: alpha=0.5556, lambda=1 
+- Fold03.Rep03: alpha=0.5556, lambda=1 
++ Fold03.Rep03: alpha=0.6667, lambda=1 
+- Fold03.Rep03: alpha=0.6667, lambda=1 
++ Fold03.Rep03: alpha=0.7778, lambda=1 
+- Fold03.Rep03: alpha=0.7778, lambda=1 
++ Fold03.Rep03: alpha=0.8889, lambda=1 
+- Fold03.Rep03: alpha=0.8889, lambda=1 
++ Fold03.Rep03: alpha=1.0000, lambda=1 
+- Fold03.Rep03: alpha=1.0000, lambda=1 
++ Fold04.Rep03: alpha=0.0000, lambda=1 
+- Fold04.Rep03: alpha=0.0000, lambda=1 
++ Fold04.Rep03: alpha=0.1111, lambda=1 
+- Fold04.Rep03: alpha=0.1111, lambda=1 
++ Fold04.Rep03: alpha=0.2222, lambda=1 
+- Fold04.Rep03: alpha=0.2222, lambda=1 
++ Fold04.Rep03: alpha=0.3333, lambda=1 
+- Fold04.Rep03: alpha=0.3333, lambda=1 
++ Fold04.Rep03: alpha=0.4444, lambda=1 
+- Fold04.Rep03: alpha=0.4444, lambda=1 
++ Fold04.Rep03: alpha=0.5556, lambda=1 
+- Fold04.Rep03: alpha=0.5556, lambda=1 
++ Fold04.Rep03: alpha=0.6667, lambda=1 
+- Fold04.Rep03: alpha=0.6667, lambda=1 
++ Fold04.Rep03: alpha=0.7778, lambda=1 
+- Fold04.Rep03: alpha=0.7778, lambda=1 
++ Fold04.Rep03: alpha=0.8889, lambda=1 
+- Fold04.Rep03: alpha=0.8889, lambda=1 
++ Fold04.Rep03: alpha=1.0000, lambda=1 
+- Fold04.Rep03: alpha=1.0000, lambda=1 
++ Fold05.Rep03: alpha=0.0000, lambda=1 
+- Fold05.Rep03: alpha=0.0000, lambda=1 
++ Fold05.Rep03: alpha=0.1111, lambda=1 
+- Fold05.Rep03: alpha=0.1111, lambda=1 
++ Fold05.Rep03: alpha=0.2222, lambda=1 
+- Fold05.Rep03: alpha=0.2222, lambda=1 
++ Fold05.Rep03: alpha=0.3333, lambda=1 
+- Fold05.Rep03: alpha=0.3333, lambda=1 
++ Fold05.Rep03: alpha=0.4444, lambda=1 
+- Fold05.Rep03: alpha=0.4444, lambda=1 
++ Fold05.Rep03: alpha=0.5556, lambda=1 
+- Fold05.Rep03: alpha=0.5556, lambda=1 
++ Fold05.Rep03: alpha=0.6667, lambda=1 
+- Fold05.Rep03: alpha=0.6667, lambda=1 
++ Fold05.Rep03: alpha=0.7778, lambda=1 
+- Fold05.Rep03: alpha=0.7778, lambda=1 
++ Fold05.Rep03: alpha=0.8889, lambda=1 
+- Fold05.Rep03: alpha=0.8889, lambda=1 
++ Fold05.Rep03: alpha=1.0000, lambda=1 
+- Fold05.Rep03: alpha=1.0000, lambda=1 
++ Fold06.Rep03: alpha=0.0000, lambda=1 
+- Fold06.Rep03: alpha=0.0000, lambda=1 
++ Fold06.Rep03: alpha=0.1111, lambda=1 
+- Fold06.Rep03: alpha=0.1111, lambda=1 
++ Fold06.Rep03: alpha=0.2222, lambda=1 
+- Fold06.Rep03: alpha=0.2222, lambda=1 
++ Fold06.Rep03: alpha=0.3333, lambda=1 
+- Fold06.Rep03: alpha=0.3333, lambda=1 
++ Fold06.Rep03: alpha=0.4444, lambda=1 
+- Fold06.Rep03: alpha=0.4444, lambda=1 
++ Fold06.Rep03: alpha=0.5556, lambda=1 
+- Fold06.Rep03: alpha=0.5556, lambda=1 
++ Fold06.Rep03: alpha=0.6667, lambda=1 
+- Fold06.Rep03: alpha=0.6667, lambda=1 
++ Fold06.Rep03: alpha=0.7778, lambda=1 
+- Fold06.Rep03: alpha=0.7778, lambda=1 
++ Fold06.Rep03: alpha=0.8889, lambda=1 
+- Fold06.Rep03: alpha=0.8889, lambda=1 
++ Fold06.Rep03: alpha=1.0000, lambda=1 
+- Fold06.Rep03: alpha=1.0000, lambda=1 
++ Fold07.Rep03: alpha=0.0000, lambda=1 
+- Fold07.Rep03: alpha=0.0000, lambda=1 
++ Fold07.Rep03: alpha=0.1111, lambda=1 
+- Fold07.Rep03: alpha=0.1111, lambda=1 
++ Fold07.Rep03: alpha=0.2222, lambda=1 
+- Fold07.Rep03: alpha=0.2222, lambda=1 
++ Fold07.Rep03: alpha=0.3333, lambda=1 
+- Fold07.Rep03: alpha=0.3333, lambda=1 
++ Fold07.Rep03: alpha=0.4444, lambda=1 
+- Fold07.Rep03: alpha=0.4444, lambda=1 
++ Fold07.Rep03: alpha=0.5556, lambda=1 
+- Fold07.Rep03: alpha=0.5556, lambda=1 
++ Fold07.Rep03: alpha=0.6667, lambda=1 
+- Fold07.Rep03: alpha=0.6667, lambda=1 
++ Fold07.Rep03: alpha=0.7778, lambda=1 
+- Fold07.Rep03: alpha=0.7778, lambda=1 
++ Fold07.Rep03: alpha=0.8889, lambda=1 
+- Fold07.Rep03: alpha=0.8889, lambda=1 
++ Fold07.Rep03: alpha=1.0000, lambda=1 
+- Fold07.Rep03: alpha=1.0000, lambda=1 
++ Fold08.Rep03: alpha=0.0000, lambda=1 
+- Fold08.Rep03: alpha=0.0000, lambda=1 
++ Fold08.Rep03: alpha=0.1111, lambda=1 
+- Fold08.Rep03: alpha=0.1111, lambda=1 
++ Fold08.Rep03: alpha=0.2222, lambda=1 
+- Fold08.Rep03: alpha=0.2222, lambda=1 
++ Fold08.Rep03: alpha=0.3333, lambda=1 
+- Fold08.Rep03: alpha=0.3333, lambda=1 
++ Fold08.Rep03: alpha=0.4444, lambda=1 
+- Fold08.Rep03: alpha=0.4444, lambda=1 
++ Fold08.Rep03: alpha=0.5556, lambda=1 
+- Fold08.Rep03: alpha=0.5556, lambda=1 
++ Fold08.Rep03: alpha=0.6667, lambda=1 
+- Fold08.Rep03: alpha=0.6667, lambda=1 
++ Fold08.Rep03: alpha=0.7778, lambda=1 
+- Fold08.Rep03: alpha=0.7778, lambda=1 
++ Fold08.Rep03: alpha=0.8889, lambda=1 
+- Fold08.Rep03: alpha=0.8889, lambda=1 
++ Fold08.Rep03: alpha=1.0000, lambda=1 
+- Fold08.Rep03: alpha=1.0000, lambda=1 
++ Fold09.Rep03: alpha=0.0000, lambda=1 
+- Fold09.Rep03: alpha=0.0000, lambda=1 
++ Fold09.Rep03: alpha=0.1111, lambda=1 
+- Fold09.Rep03: alpha=0.1111, lambda=1 
++ Fold09.Rep03: alpha=0.2222, lambda=1 
+- Fold09.Rep03: alpha=0.2222, lambda=1 
++ Fold09.Rep03: alpha=0.3333, lambda=1 
+- Fold09.Rep03: alpha=0.3333, lambda=1 
++ Fold09.Rep03: alpha=0.4444, lambda=1 
+- Fold09.Rep03: alpha=0.4444, lambda=1 
++ Fold09.Rep03: alpha=0.5556, lambda=1 
+- Fold09.Rep03: alpha=0.5556, lambda=1 
++ Fold09.Rep03: alpha=0.6667, lambda=1 
+- Fold09.Rep03: alpha=0.6667, lambda=1 
++ Fold09.Rep03: alpha=0.7778, lambda=1 
+- Fold09.Rep03: alpha=0.7778, lambda=1 
++ Fold09.Rep03: alpha=0.8889, lambda=1 
+- Fold09.Rep03: alpha=0.8889, lambda=1 
++ Fold09.Rep03: alpha=1.0000, lambda=1 
+- Fold09.Rep03: alpha=1.0000, lambda=1 
++ Fold10.Rep03: alpha=0.0000, lambda=1 
+- Fold10.Rep03: alpha=0.0000, lambda=1 
++ Fold10.Rep03: alpha=0.1111, lambda=1 
+- Fold10.Rep03: alpha=0.1111, lambda=1 
++ Fold10.Rep03: alpha=0.2222, lambda=1 
+- Fold10.Rep03: alpha=0.2222, lambda=1 
++ Fold10.Rep03: alpha=0.3333, lambda=1 
+- Fold10.Rep03: alpha=0.3333, lambda=1 
++ Fold10.Rep03: alpha=0.4444, lambda=1 
+- Fold10.Rep03: alpha=0.4444, lambda=1 
++ Fold10.Rep03: alpha=0.5556, lambda=1 
+- Fold10.Rep03: alpha=0.5556, lambda=1 
++ Fold10.Rep03: alpha=0.6667, lambda=1 
+- Fold10.Rep03: alpha=0.6667, lambda=1 
++ Fold10.Rep03: alpha=0.7778, lambda=1 
+- Fold10.Rep03: alpha=0.7778, lambda=1 
++ Fold10.Rep03: alpha=0.8889, lambda=1 
+- Fold10.Rep03: alpha=0.8889, lambda=1 
++ Fold10.Rep03: alpha=1.0000, lambda=1 
+- Fold10.Rep03: alpha=1.0000, lambda=1 
++ Fold01.Rep04: alpha=0.0000, lambda=1 
+- Fold01.Rep04: alpha=0.0000, lambda=1 
++ Fold01.Rep04: alpha=0.1111, lambda=1 
+- Fold01.Rep04: alpha=0.1111, lambda=1 
++ Fold01.Rep04: alpha=0.2222, lambda=1 
+- Fold01.Rep04: alpha=0.2222, lambda=1 
++ Fold01.Rep04: alpha=0.3333, lambda=1 
+- Fold01.Rep04: alpha=0.3333, lambda=1 
++ Fold01.Rep04: alpha=0.4444, lambda=1 
+- Fold01.Rep04: alpha=0.4444, lambda=1 
++ Fold01.Rep04: alpha=0.5556, lambda=1 
+- Fold01.Rep04: alpha=0.5556, lambda=1 
++ Fold01.Rep04: alpha=0.6667, lambda=1 
+- Fold01.Rep04: alpha=0.6667, lambda=1 
++ Fold01.Rep04: alpha=0.7778, lambda=1 
+- Fold01.Rep04: alpha=0.7778, lambda=1 
++ Fold01.Rep04: alpha=0.8889, lambda=1 
+- Fold01.Rep04: alpha=0.8889, lambda=1 
++ Fold01.Rep04: alpha=1.0000, lambda=1 
+- Fold01.Rep04: alpha=1.0000, lambda=1 
++ Fold02.Rep04: alpha=0.0000, lambda=1 
+- Fold02.Rep04: alpha=0.0000, lambda=1 
++ Fold02.Rep04: alpha=0.1111, lambda=1 
+- Fold02.Rep04: alpha=0.1111, lambda=1 
++ Fold02.Rep04: alpha=0.2222, lambda=1 
+- Fold02.Rep04: alpha=0.2222, lambda=1 
++ Fold02.Rep04: alpha=0.3333, lambda=1 
+- Fold02.Rep04: alpha=0.3333, lambda=1 
++ Fold02.Rep04: alpha=0.4444, lambda=1 
+- Fold02.Rep04: alpha=0.4444, lambda=1 
++ Fold02.Rep04: alpha=0.5556, lambda=1 
+- Fold02.Rep04: alpha=0.5556, lambda=1 
++ Fold02.Rep04: alpha=0.6667, lambda=1 
+- Fold02.Rep04: alpha=0.6667, lambda=1 
++ Fold02.Rep04: alpha=0.7778, lambda=1 
+- Fold02.Rep04: alpha=0.7778, lambda=1 
++ Fold02.Rep04: alpha=0.8889, lambda=1 
+- Fold02.Rep04: alpha=0.8889, lambda=1 
++ Fold02.Rep04: alpha=1.0000, lambda=1 
+- Fold02.Rep04: alpha=1.0000, lambda=1 
++ Fold03.Rep04: alpha=0.0000, lambda=1 
+- Fold03.Rep04: alpha=0.0000, lambda=1 
++ Fold03.Rep04: alpha=0.1111, lambda=1 
+- Fold03.Rep04: alpha=0.1111, lambda=1 
++ Fold03.Rep04: alpha=0.2222, lambda=1 
+- Fold03.Rep04: alpha=0.2222, lambda=1 
++ Fold03.Rep04: alpha=0.3333, lambda=1 
+- Fold03.Rep04: alpha=0.3333, lambda=1 
++ Fold03.Rep04: alpha=0.4444, lambda=1 
+- Fold03.Rep04: alpha=0.4444, lambda=1 
++ Fold03.Rep04: alpha=0.5556, lambda=1 
+- Fold03.Rep04: alpha=0.5556, lambda=1 
++ Fold03.Rep04: alpha=0.6667, lambda=1 
+- Fold03.Rep04: alpha=0.6667, lambda=1 
++ Fold03.Rep04: alpha=0.7778, lambda=1 
+- Fold03.Rep04: alpha=0.7778, lambda=1 
++ Fold03.Rep04: alpha=0.8889, lambda=1 
+- Fold03.Rep04: alpha=0.8889, lambda=1 
++ Fold03.Rep04: alpha=1.0000, lambda=1 
+- Fold03.Rep04: alpha=1.0000, lambda=1 
++ Fold04.Rep04: alpha=0.0000, lambda=1 
+- Fold04.Rep04: alpha=0.0000, lambda=1 
++ Fold04.Rep04: alpha=0.1111, lambda=1 
+- Fold04.Rep04: alpha=0.1111, lambda=1 
++ Fold04.Rep04: alpha=0.2222, lambda=1 
+- Fold04.Rep04: alpha=0.2222, lambda=1 
++ Fold04.Rep04: alpha=0.3333, lambda=1 
+- Fold04.Rep04: alpha=0.3333, lambda=1 
++ Fold04.Rep04: alpha=0.4444, lambda=1 
+- Fold04.Rep04: alpha=0.4444, lambda=1 
++ Fold04.Rep04: alpha=0.5556, lambda=1 
+- Fold04.Rep04: alpha=0.5556, lambda=1 
++ Fold04.Rep04: alpha=0.6667, lambda=1 
+- Fold04.Rep04: alpha=0.6667, lambda=1 
++ Fold04.Rep04: alpha=0.7778, lambda=1 
+- Fold04.Rep04: alpha=0.7778, lambda=1 
++ Fold04.Rep04: alpha=0.8889, lambda=1 
+- Fold04.Rep04: alpha=0.8889, lambda=1 
++ Fold04.Rep04: alpha=1.0000, lambda=1 
+- Fold04.Rep04: alpha=1.0000, lambda=1 
++ Fold05.Rep04: alpha=0.0000, lambda=1 
+- Fold05.Rep04: alpha=0.0000, lambda=1 
++ Fold05.Rep04: alpha=0.1111, lambda=1 
+- Fold05.Rep04: alpha=0.1111, lambda=1 
++ Fold05.Rep04: alpha=0.2222, lambda=1 
+- Fold05.Rep04: alpha=0.2222, lambda=1 
++ Fold05.Rep04: alpha=0.3333, lambda=1 
+- Fold05.Rep04: alpha=0.3333, lambda=1 
++ Fold05.Rep04: alpha=0.4444, lambda=1 
+- Fold05.Rep04: alpha=0.4444, lambda=1 
++ Fold05.Rep04: alpha=0.5556, lambda=1 
+- Fold05.Rep04: alpha=0.5556, lambda=1 
++ Fold05.Rep04: alpha=0.6667, lambda=1 
+- Fold05.Rep04: alpha=0.6667, lambda=1 
++ Fold05.Rep04: alpha=0.7778, lambda=1 
+- Fold05.Rep04: alpha=0.7778, lambda=1 
++ Fold05.Rep04: alpha=0.8889, lambda=1 
+- Fold05.Rep04: alpha=0.8889, lambda=1 
++ Fold05.Rep04: alpha=1.0000, lambda=1 
+- Fold05.Rep04: alpha=1.0000, lambda=1 
++ Fold06.Rep04: alpha=0.0000, lambda=1 
+- Fold06.Rep04: alpha=0.0000, lambda=1 
++ Fold06.Rep04: alpha=0.1111, lambda=1 
+- Fold06.Rep04: alpha=0.1111, lambda=1 
++ Fold06.Rep04: alpha=0.2222, lambda=1 
+- Fold06.Rep04: alpha=0.2222, lambda=1 
++ Fold06.Rep04: alpha=0.3333, lambda=1 
+- Fold06.Rep04: alpha=0.3333, lambda=1 
++ Fold06.Rep04: alpha=0.4444, lambda=1 
+- Fold06.Rep04: alpha=0.4444, lambda=1 
++ Fold06.Rep04: alpha=0.5556, lambda=1 
+- Fold06.Rep04: alpha=0.5556, lambda=1 
++ Fold06.Rep04: alpha=0.6667, lambda=1 
+- Fold06.Rep04: alpha=0.6667, lambda=1 
++ Fold06.Rep04: alpha=0.7778, lambda=1 
+- Fold06.Rep04: alpha=0.7778, lambda=1 
++ Fold06.Rep04: alpha=0.8889, lambda=1 
+- Fold06.Rep04: alpha=0.8889, lambda=1 
++ Fold06.Rep04: alpha=1.0000, lambda=1 
+- Fold06.Rep04: alpha=1.0000, lambda=1 
++ Fold07.Rep04: alpha=0.0000, lambda=1 
+- Fold07.Rep04: alpha=0.0000, lambda=1 
++ Fold07.Rep04: alpha=0.1111, lambda=1 
+- Fold07.Rep04: alpha=0.1111, lambda=1 
++ Fold07.Rep04: alpha=0.2222, lambda=1 
+- Fold07.Rep04: alpha=0.2222, lambda=1 
++ Fold07.Rep04: alpha=0.3333, lambda=1 
+- Fold07.Rep04: alpha=0.3333, lambda=1 
++ Fold07.Rep04: alpha=0.4444, lambda=1 
+- Fold07.Rep04: alpha=0.4444, lambda=1 
++ Fold07.Rep04: alpha=0.5556, lambda=1 
+- Fold07.Rep04: alpha=0.5556, lambda=1 
++ Fold07.Rep04: alpha=0.6667, lambda=1 
+- Fold07.Rep04: alpha=0.6667, lambda=1 
++ Fold07.Rep04: alpha=0.7778, lambda=1 
+- Fold07.Rep04: alpha=0.7778, lambda=1 
++ Fold07.Rep04: alpha=0.8889, lambda=1 
+- Fold07.Rep04: alpha=0.8889, lambda=1 
++ Fold07.Rep04: alpha=1.0000, lambda=1 
+- Fold07.Rep04: alpha=1.0000, lambda=1 
++ Fold08.Rep04: alpha=0.0000, lambda=1 
+- Fold08.Rep04: alpha=0.0000, lambda=1 
++ Fold08.Rep04: alpha=0.1111, lambda=1 
+- Fold08.Rep04: alpha=0.1111, lambda=1 
++ Fold08.Rep04: alpha=0.2222, lambda=1 
+- Fold08.Rep04: alpha=0.2222, lambda=1 
++ Fold08.Rep04: alpha=0.3333, lambda=1 
+- Fold08.Rep04: alpha=0.3333, lambda=1 
++ Fold08.Rep04: alpha=0.4444, lambda=1 
+- Fold08.Rep04: alpha=0.4444, lambda=1 
++ Fold08.Rep04: alpha=0.5556, lambda=1 
+- Fold08.Rep04: alpha=0.5556, lambda=1 
++ Fold08.Rep04: alpha=0.6667, lambda=1 
+- Fold08.Rep04: alpha=0.6667, lambda=1 
++ Fold08.Rep04: alpha=0.7778, lambda=1 
+- Fold08.Rep04: alpha=0.7778, lambda=1 
++ Fold08.Rep04: alpha=0.8889, lambda=1 
+- Fold08.Rep04: alpha=0.8889, lambda=1 
++ Fold08.Rep04: alpha=1.0000, lambda=1 
+- Fold08.Rep04: alpha=1.0000, lambda=1 
++ Fold09.Rep04: alpha=0.0000, lambda=1 
+- Fold09.Rep04: alpha=0.0000, lambda=1 
++ Fold09.Rep04: alpha=0.1111, lambda=1 
+- Fold09.Rep04: alpha=0.1111, lambda=1 
++ Fold09.Rep04: alpha=0.2222, lambda=1 
+- Fold09.Rep04: alpha=0.2222, lambda=1 
++ Fold09.Rep04: alpha=0.3333, lambda=1 
+- Fold09.Rep04: alpha=0.3333, lambda=1 
++ Fold09.Rep04: alpha=0.4444, lambda=1 
+- Fold09.Rep04: alpha=0.4444, lambda=1 
++ Fold09.Rep04: alpha=0.5556, lambda=1 
+- Fold09.Rep04: alpha=0.5556, lambda=1 
++ Fold09.Rep04: alpha=0.6667, lambda=1 
+- Fold09.Rep04: alpha=0.6667, lambda=1 
++ Fold09.Rep04: alpha=0.7778, lambda=1 
+- Fold09.Rep04: alpha=0.7778, lambda=1 
++ Fold09.Rep04: alpha=0.8889, lambda=1 
+- Fold09.Rep04: alpha=0.8889, lambda=1 
++ Fold09.Rep04: alpha=1.0000, lambda=1 
+- Fold09.Rep04: alpha=1.0000, lambda=1 
++ Fold10.Rep04: alpha=0.0000, lambda=1 
+- Fold10.Rep04: alpha=0.0000, lambda=1 
++ Fold10.Rep04: alpha=0.1111, lambda=1 
+- Fold10.Rep04: alpha=0.1111, lambda=1 
++ Fold10.Rep04: alpha=0.2222, lambda=1 
+- Fold10.Rep04: alpha=0.2222, lambda=1 
++ Fold10.Rep04: alpha=0.3333, lambda=1 
+- Fold10.Rep04: alpha=0.3333, lambda=1 
++ Fold10.Rep04: alpha=0.4444, lambda=1 
+- Fold10.Rep04: alpha=0.4444, lambda=1 
++ Fold10.Rep04: alpha=0.5556, lambda=1 
+- Fold10.Rep04: alpha=0.5556, lambda=1 
++ Fold10.Rep04: alpha=0.6667, lambda=1 
+- Fold10.Rep04: alpha=0.6667, lambda=1 
++ Fold10.Rep04: alpha=0.7778, lambda=1 
+- Fold10.Rep04: alpha=0.7778, lambda=1 
++ Fold10.Rep04: alpha=0.8889, lambda=1 
+- Fold10.Rep04: alpha=0.8889, lambda=1 
++ Fold10.Rep04: alpha=1.0000, lambda=1 
+- Fold10.Rep04: alpha=1.0000, lambda=1 
++ Fold01.Rep05: alpha=0.0000, lambda=1 
+- Fold01.Rep05: alpha=0.0000, lambda=1 
++ Fold01.Rep05: alpha=0.1111, lambda=1 
+- Fold01.Rep05: alpha=0.1111, lambda=1 
++ Fold01.Rep05: alpha=0.2222, lambda=1 
+- Fold01.Rep05: alpha=0.2222, lambda=1 
++ Fold01.Rep05: alpha=0.3333, lambda=1 
+- Fold01.Rep05: alpha=0.3333, lambda=1 
++ Fold01.Rep05: alpha=0.4444, lambda=1 
+- Fold01.Rep05: alpha=0.4444, lambda=1 
++ Fold01.Rep05: alpha=0.5556, lambda=1 
+- Fold01.Rep05: alpha=0.5556, lambda=1 
++ Fold01.Rep05: alpha=0.6667, lambda=1 
+- Fold01.Rep05: alpha=0.6667, lambda=1 
++ Fold01.Rep05: alpha=0.7778, lambda=1 
+- Fold01.Rep05: alpha=0.7778, lambda=1 
++ Fold01.Rep05: alpha=0.8889, lambda=1 
+- Fold01.Rep05: alpha=0.8889, lambda=1 
++ Fold01.Rep05: alpha=1.0000, lambda=1 
+- Fold01.Rep05: alpha=1.0000, lambda=1 
++ Fold02.Rep05: alpha=0.0000, lambda=1 
+- Fold02.Rep05: alpha=0.0000, lambda=1 
++ Fold02.Rep05: alpha=0.1111, lambda=1 
+- Fold02.Rep05: alpha=0.1111, lambda=1 
++ Fold02.Rep05: alpha=0.2222, lambda=1 
+- Fold02.Rep05: alpha=0.2222, lambda=1 
++ Fold02.Rep05: alpha=0.3333, lambda=1 
+- Fold02.Rep05: alpha=0.3333, lambda=1 
++ Fold02.Rep05: alpha=0.4444, lambda=1 
+- Fold02.Rep05: alpha=0.4444, lambda=1 
++ Fold02.Rep05: alpha=0.5556, lambda=1 
+- Fold02.Rep05: alpha=0.5556, lambda=1 
++ Fold02.Rep05: alpha=0.6667, lambda=1 
+- Fold02.Rep05: alpha=0.6667, lambda=1 
++ Fold02.Rep05: alpha=0.7778, lambda=1 
+- Fold02.Rep05: alpha=0.7778, lambda=1 
++ Fold02.Rep05: alpha=0.8889, lambda=1 
+- Fold02.Rep05: alpha=0.8889, lambda=1 
++ Fold02.Rep05: alpha=1.0000, lambda=1 
+- Fold02.Rep05: alpha=1.0000, lambda=1 
++ Fold03.Rep05: alpha=0.0000, lambda=1 
+- Fold03.Rep05: alpha=0.0000, lambda=1 
++ Fold03.Rep05: alpha=0.1111, lambda=1 
+- Fold03.Rep05: alpha=0.1111, lambda=1 
++ Fold03.Rep05: alpha=0.2222, lambda=1 
+- Fold03.Rep05: alpha=0.2222, lambda=1 
++ Fold03.Rep05: alpha=0.3333, lambda=1 
+- Fold03.Rep05: alpha=0.3333, lambda=1 
++ Fold03.Rep05: alpha=0.4444, lambda=1 
+- Fold03.Rep05: alpha=0.4444, lambda=1 
++ Fold03.Rep05: alpha=0.5556, lambda=1 
+- Fold03.Rep05: alpha=0.5556, lambda=1 
++ Fold03.Rep05: alpha=0.6667, lambda=1 
+- Fold03.Rep05: alpha=0.6667, lambda=1 
++ Fold03.Rep05: alpha=0.7778, lambda=1 
+- Fold03.Rep05: alpha=0.7778, lambda=1 
++ Fold03.Rep05: alpha=0.8889, lambda=1 
+- Fold03.Rep05: alpha=0.8889, lambda=1 
++ Fold03.Rep05: alpha=1.0000, lambda=1 
+- Fold03.Rep05: alpha=1.0000, lambda=1 
++ Fold04.Rep05: alpha=0.0000, lambda=1 
+- Fold04.Rep05: alpha=0.0000, lambda=1 
++ Fold04.Rep05: alpha=0.1111, lambda=1 
+- Fold04.Rep05: alpha=0.1111, lambda=1 
++ Fold04.Rep05: alpha=0.2222, lambda=1 
+- Fold04.Rep05: alpha=0.2222, lambda=1 
++ Fold04.Rep05: alpha=0.3333, lambda=1 
+- Fold04.Rep05: alpha=0.3333, lambda=1 
++ Fold04.Rep05: alpha=0.4444, lambda=1 
+- Fold04.Rep05: alpha=0.4444, lambda=1 
++ Fold04.Rep05: alpha=0.5556, lambda=1 
+- Fold04.Rep05: alpha=0.5556, lambda=1 
++ Fold04.Rep05: alpha=0.6667, lambda=1 
+- Fold04.Rep05: alpha=0.6667, lambda=1 
++ Fold04.Rep05: alpha=0.7778, lambda=1 
+- Fold04.Rep05: alpha=0.7778, lambda=1 
++ Fold04.Rep05: alpha=0.8889, lambda=1 
+- Fold04.Rep05: alpha=0.8889, lambda=1 
++ Fold04.Rep05: alpha=1.0000, lambda=1 
+- Fold04.Rep05: alpha=1.0000, lambda=1 
++ Fold05.Rep05: alpha=0.0000, lambda=1 
+- Fold05.Rep05: alpha=0.0000, lambda=1 
++ Fold05.Rep05: alpha=0.1111, lambda=1 
+- Fold05.Rep05: alpha=0.1111, lambda=1 
++ Fold05.Rep05: alpha=0.2222, lambda=1 
+- Fold05.Rep05: alpha=0.2222, lambda=1 
++ Fold05.Rep05: alpha=0.3333, lambda=1 
+- Fold05.Rep05: alpha=0.3333, lambda=1 
++ Fold05.Rep05: alpha=0.4444, lambda=1 
+- Fold05.Rep05: alpha=0.4444, lambda=1 
++ Fold05.Rep05: alpha=0.5556, lambda=1 
+- Fold05.Rep05: alpha=0.5556, lambda=1 
++ Fold05.Rep05: alpha=0.6667, lambda=1 
+- Fold05.Rep05: alpha=0.6667, lambda=1 
++ Fold05.Rep05: alpha=0.7778, lambda=1 
+- Fold05.Rep05: alpha=0.7778, lambda=1 
++ Fold05.Rep05: alpha=0.8889, lambda=1 
+- Fold05.Rep05: alpha=0.8889, lambda=1 
++ Fold05.Rep05: alpha=1.0000, lambda=1 
+- Fold05.Rep05: alpha=1.0000, lambda=1 
++ Fold06.Rep05: alpha=0.0000, lambda=1 
+- Fold06.Rep05: alpha=0.0000, lambda=1 
++ Fold06.Rep05: alpha=0.1111, lambda=1 
+- Fold06.Rep05: alpha=0.1111, lambda=1 
++ Fold06.Rep05: alpha=0.2222, lambda=1 
+- Fold06.Rep05: alpha=0.2222, lambda=1 
++ Fold06.Rep05: alpha=0.3333, lambda=1 
+- Fold06.Rep05: alpha=0.3333, lambda=1 
++ Fold06.Rep05: alpha=0.4444, lambda=1 
+- Fold06.Rep05: alpha=0.4444, lambda=1 
++ Fold06.Rep05: alpha=0.5556, lambda=1 
+- Fold06.Rep05: alpha=0.5556, lambda=1 
++ Fold06.Rep05: alpha=0.6667, lambda=1 
+- Fold06.Rep05: alpha=0.6667, lambda=1 
++ Fold06.Rep05: alpha=0.7778, lambda=1 
+- Fold06.Rep05: alpha=0.7778, lambda=1 
++ Fold06.Rep05: alpha=0.8889, lambda=1 
+- Fold06.Rep05: alpha=0.8889, lambda=1 
++ Fold06.Rep05: alpha=1.0000, lambda=1 
+- Fold06.Rep05: alpha=1.0000, lambda=1 
++ Fold07.Rep05: alpha=0.0000, lambda=1 
+- Fold07.Rep05: alpha=0.0000, lambda=1 
++ Fold07.Rep05: alpha=0.1111, lambda=1 
+- Fold07.Rep05: alpha=0.1111, lambda=1 
++ Fold07.Rep05: alpha=0.2222, lambda=1 
+- Fold07.Rep05: alpha=0.2222, lambda=1 
++ Fold07.Rep05: alpha=0.3333, lambda=1 
+- Fold07.Rep05: alpha=0.3333, lambda=1 
++ Fold07.Rep05: alpha=0.4444, lambda=1 
+- Fold07.Rep05: alpha=0.4444, lambda=1 
++ Fold07.Rep05: alpha=0.5556, lambda=1 
+- Fold07.Rep05: alpha=0.5556, lambda=1 
++ Fold07.Rep05: alpha=0.6667, lambda=1 
+- Fold07.Rep05: alpha=0.6667, lambda=1 
++ Fold07.Rep05: alpha=0.7778, lambda=1 
+- Fold07.Rep05: alpha=0.7778, lambda=1 
++ Fold07.Rep05: alpha=0.8889, lambda=1 
+- Fold07.Rep05: alpha=0.8889, lambda=1 
++ Fold07.Rep05: alpha=1.0000, lambda=1 
+- Fold07.Rep05: alpha=1.0000, lambda=1 
++ Fold08.Rep05: alpha=0.0000, lambda=1 
+- Fold08.Rep05: alpha=0.0000, lambda=1 
++ Fold08.Rep05: alpha=0.1111, lambda=1 
+- Fold08.Rep05: alpha=0.1111, lambda=1 
++ Fold08.Rep05: alpha=0.2222, lambda=1 
+- Fold08.Rep05: alpha=0.2222, lambda=1 
++ Fold08.Rep05: alpha=0.3333, lambda=1 
+- Fold08.Rep05: alpha=0.3333, lambda=1 
++ Fold08.Rep05: alpha=0.4444, lambda=1 
+- Fold08.Rep05: alpha=0.4444, lambda=1 
++ Fold08.Rep05: alpha=0.5556, lambda=1 
+- Fold08.Rep05: alpha=0.5556, lambda=1 
++ Fold08.Rep05: alpha=0.6667, lambda=1 
+- Fold08.Rep05: alpha=0.6667, lambda=1 
++ Fold08.Rep05: alpha=0.7778, lambda=1 
+- Fold08.Rep05: alpha=0.7778, lambda=1 
++ Fold08.Rep05: alpha=0.8889, lambda=1 
+- Fold08.Rep05: alpha=0.8889, lambda=1 
++ Fold08.Rep05: alpha=1.0000, lambda=1 
+- Fold08.Rep05: alpha=1.0000, lambda=1 
++ Fold09.Rep05: alpha=0.0000, lambda=1 
+- Fold09.Rep05: alpha=0.0000, lambda=1 
++ Fold09.Rep05: alpha=0.1111, lambda=1 
+- Fold09.Rep05: alpha=0.1111, lambda=1 
++ Fold09.Rep05: alpha=0.2222, lambda=1 
+- Fold09.Rep05: alpha=0.2222, lambda=1 
++ Fold09.Rep05: alpha=0.3333, lambda=1 
+- Fold09.Rep05: alpha=0.3333, lambda=1 
++ Fold09.Rep05: alpha=0.4444, lambda=1 
+- Fold09.Rep05: alpha=0.4444, lambda=1 
++ Fold09.Rep05: alpha=0.5556, lambda=1 
+- Fold09.Rep05: alpha=0.5556, lambda=1 
++ Fold09.Rep05: alpha=0.6667, lambda=1 
+- Fold09.Rep05: alpha=0.6667, lambda=1 
++ Fold09.Rep05: alpha=0.7778, lambda=1 
+- Fold09.Rep05: alpha=0.7778, lambda=1 
++ Fold09.Rep05: alpha=0.8889, lambda=1 
+- Fold09.Rep05: alpha=0.8889, lambda=1 
++ Fold09.Rep05: alpha=1.0000, lambda=1 
+- Fold09.Rep05: alpha=1.0000, lambda=1 
++ Fold10.Rep05: alpha=0.0000, lambda=1 
+- Fold10.Rep05: alpha=0.0000, lambda=1 
++ Fold10.Rep05: alpha=0.1111, lambda=1 
+- Fold10.Rep05: alpha=0.1111, lambda=1 
++ Fold10.Rep05: alpha=0.2222, lambda=1 
+- Fold10.Rep05: alpha=0.2222, lambda=1 
++ Fold10.Rep05: alpha=0.3333, lambda=1 
+- Fold10.Rep05: alpha=0.3333, lambda=1 
++ Fold10.Rep05: alpha=0.4444, lambda=1 
+- Fold10.Rep05: alpha=0.4444, lambda=1 
++ Fold10.Rep05: alpha=0.5556, lambda=1 
+- Fold10.Rep05: alpha=0.5556, lambda=1 
++ Fold10.Rep05: alpha=0.6667, lambda=1 
+- Fold10.Rep05: alpha=0.6667, lambda=1 
++ Fold10.Rep05: alpha=0.7778, lambda=1 
+- Fold10.Rep05: alpha=0.7778, lambda=1 
++ Fold10.Rep05: alpha=0.8889, lambda=1 
+- Fold10.Rep05: alpha=0.8889, lambda=1 
++ Fold10.Rep05: alpha=1.0000, lambda=1 
+- Fold10.Rep05: alpha=1.0000, lambda=1 
++ Fold01.Rep06: alpha=0.0000, lambda=1 
+- Fold01.Rep06: alpha=0.0000, lambda=1 
++ Fold01.Rep06: alpha=0.1111, lambda=1 
+- Fold01.Rep06: alpha=0.1111, lambda=1 
++ Fold01.Rep06: alpha=0.2222, lambda=1 
+- Fold01.Rep06: alpha=0.2222, lambda=1 
++ Fold01.Rep06: alpha=0.3333, lambda=1 
+- Fold01.Rep06: alpha=0.3333, lambda=1 
++ Fold01.Rep06: alpha=0.4444, lambda=1 
+- Fold01.Rep06: alpha=0.4444, lambda=1 
++ Fold01.Rep06: alpha=0.5556, lambda=1 
+- Fold01.Rep06: alpha=0.5556, lambda=1 
++ Fold01.Rep06: alpha=0.6667, lambda=1 
+- Fold01.Rep06: alpha=0.6667, lambda=1 
++ Fold01.Rep06: alpha=0.7778, lambda=1 
+- Fold01.Rep06: alpha=0.7778, lambda=1 
++ Fold01.Rep06: alpha=0.8889, lambda=1 
+- Fold01.Rep06: alpha=0.8889, lambda=1 
++ Fold01.Rep06: alpha=1.0000, lambda=1 
+- Fold01.Rep06: alpha=1.0000, lambda=1 
++ Fold02.Rep06: alpha=0.0000, lambda=1 
+- Fold02.Rep06: alpha=0.0000, lambda=1 
++ Fold02.Rep06: alpha=0.1111, lambda=1 
+- Fold02.Rep06: alpha=0.1111, lambda=1 
++ Fold02.Rep06: alpha=0.2222, lambda=1 
+- Fold02.Rep06: alpha=0.2222, lambda=1 
++ Fold02.Rep06: alpha=0.3333, lambda=1 
+- Fold02.Rep06: alpha=0.3333, lambda=1 
++ Fold02.Rep06: alpha=0.4444, lambda=1 
+- Fold02.Rep06: alpha=0.4444, lambda=1 
++ Fold02.Rep06: alpha=0.5556, lambda=1 
+- Fold02.Rep06: alpha=0.5556, lambda=1 
++ Fold02.Rep06: alpha=0.6667, lambda=1 
+- Fold02.Rep06: alpha=0.6667, lambda=1 
++ Fold02.Rep06: alpha=0.7778, lambda=1 
+- Fold02.Rep06: alpha=0.7778, lambda=1 
++ Fold02.Rep06: alpha=0.8889, lambda=1 
+- Fold02.Rep06: alpha=0.8889, lambda=1 
++ Fold02.Rep06: alpha=1.0000, lambda=1 
+- Fold02.Rep06: alpha=1.0000, lambda=1 
++ Fold03.Rep06: alpha=0.0000, lambda=1 
+- Fold03.Rep06: alpha=0.0000, lambda=1 
++ Fold03.Rep06: alpha=0.1111, lambda=1 
+- Fold03.Rep06: alpha=0.1111, lambda=1 
++ Fold03.Rep06: alpha=0.2222, lambda=1 
+- Fold03.Rep06: alpha=0.2222, lambda=1 
++ Fold03.Rep06: alpha=0.3333, lambda=1 
+- Fold03.Rep06: alpha=0.3333, lambda=1 
++ Fold03.Rep06: alpha=0.4444, lambda=1 
+- Fold03.Rep06: alpha=0.4444, lambda=1 
++ Fold03.Rep06: alpha=0.5556, lambda=1 
+- Fold03.Rep06: alpha=0.5556, lambda=1 
++ Fold03.Rep06: alpha=0.6667, lambda=1 
+- Fold03.Rep06: alpha=0.6667, lambda=1 
++ Fold03.Rep06: alpha=0.7778, lambda=1 
+- Fold03.Rep06: alpha=0.7778, lambda=1 
++ Fold03.Rep06: alpha=0.8889, lambda=1 
+- Fold03.Rep06: alpha=0.8889, lambda=1 
++ Fold03.Rep06: alpha=1.0000, lambda=1 
+- Fold03.Rep06: alpha=1.0000, lambda=1 
++ Fold04.Rep06: alpha=0.0000, lambda=1 
+- Fold04.Rep06: alpha=0.0000, lambda=1 
++ Fold04.Rep06: alpha=0.1111, lambda=1 
+- Fold04.Rep06: alpha=0.1111, lambda=1 
++ Fold04.Rep06: alpha=0.2222, lambda=1 
+- Fold04.Rep06: alpha=0.2222, lambda=1 
++ Fold04.Rep06: alpha=0.3333, lambda=1 
+- Fold04.Rep06: alpha=0.3333, lambda=1 
++ Fold04.Rep06: alpha=0.4444, lambda=1 
+- Fold04.Rep06: alpha=0.4444, lambda=1 
++ Fold04.Rep06: alpha=0.5556, lambda=1 
+- Fold04.Rep06: alpha=0.5556, lambda=1 
++ Fold04.Rep06: alpha=0.6667, lambda=1 
+- Fold04.Rep06: alpha=0.6667, lambda=1 
++ Fold04.Rep06: alpha=0.7778, lambda=1 
+- Fold04.Rep06: alpha=0.7778, lambda=1 
++ Fold04.Rep06: alpha=0.8889, lambda=1 
+- Fold04.Rep06: alpha=0.8889, lambda=1 
++ Fold04.Rep06: alpha=1.0000, lambda=1 
+- Fold04.Rep06: alpha=1.0000, lambda=1 
++ Fold05.Rep06: alpha=0.0000, lambda=1 
+- Fold05.Rep06: alpha=0.0000, lambda=1 
++ Fold05.Rep06: alpha=0.1111, lambda=1 
+- Fold05.Rep06: alpha=0.1111, lambda=1 
++ Fold05.Rep06: alpha=0.2222, lambda=1 
+- Fold05.Rep06: alpha=0.2222, lambda=1 
++ Fold05.Rep06: alpha=0.3333, lambda=1 
+- Fold05.Rep06: alpha=0.3333, lambda=1 
++ Fold05.Rep06: alpha=0.4444, lambda=1 
+- Fold05.Rep06: alpha=0.4444, lambda=1 
++ Fold05.Rep06: alpha=0.5556, lambda=1 
+- Fold05.Rep06: alpha=0.5556, lambda=1 
++ Fold05.Rep06: alpha=0.6667, lambda=1 
+- Fold05.Rep06: alpha=0.6667, lambda=1 
++ Fold05.Rep06: alpha=0.7778, lambda=1 
+- Fold05.Rep06: alpha=0.7778, lambda=1 
++ Fold05.Rep06: alpha=0.8889, lambda=1 
+- Fold05.Rep06: alpha=0.8889, lambda=1 
++ Fold05.Rep06: alpha=1.0000, lambda=1 
+- Fold05.Rep06: alpha=1.0000, lambda=1 
++ Fold06.Rep06: alpha=0.0000, lambda=1 
+- Fold06.Rep06: alpha=0.0000, lambda=1 
++ Fold06.Rep06: alpha=0.1111, lambda=1 
+- Fold06.Rep06: alpha=0.1111, lambda=1 
++ Fold06.Rep06: alpha=0.2222, lambda=1 
+- Fold06.Rep06: alpha=0.2222, lambda=1 
++ Fold06.Rep06: alpha=0.3333, lambda=1 
+- Fold06.Rep06: alpha=0.3333, lambda=1 
++ Fold06.Rep06: alpha=0.4444, lambda=1 
+- Fold06.Rep06: alpha=0.4444, lambda=1 
++ Fold06.Rep06: alpha=0.5556, lambda=1 
+- Fold06.Rep06: alpha=0.5556, lambda=1 
++ Fold06.Rep06: alpha=0.6667, lambda=1 
+- Fold06.Rep06: alpha=0.6667, lambda=1 
++ Fold06.Rep06: alpha=0.7778, lambda=1 
+- Fold06.Rep06: alpha=0.7778, lambda=1 
++ Fold06.Rep06: alpha=0.8889, lambda=1 
+- Fold06.Rep06: alpha=0.8889, lambda=1 
++ Fold06.Rep06: alpha=1.0000, lambda=1 
+- Fold06.Rep06: alpha=1.0000, lambda=1 
++ Fold07.Rep06: alpha=0.0000, lambda=1 
+- Fold07.Rep06: alpha=0.0000, lambda=1 
++ Fold07.Rep06: alpha=0.1111, lambda=1 
+- Fold07.Rep06: alpha=0.1111, lambda=1 
++ Fold07.Rep06: alpha=0.2222, lambda=1 
+- Fold07.Rep06: alpha=0.2222, lambda=1 
++ Fold07.Rep06: alpha=0.3333, lambda=1 
+- Fold07.Rep06: alpha=0.3333, lambda=1 
++ Fold07.Rep06: alpha=0.4444, lambda=1 
+- Fold07.Rep06: alpha=0.4444, lambda=1 
++ Fold07.Rep06: alpha=0.5556, lambda=1 
+- Fold07.Rep06: alpha=0.5556, lambda=1 
++ Fold07.Rep06: alpha=0.6667, lambda=1 
+- Fold07.Rep06: alpha=0.6667, lambda=1 
++ Fold07.Rep06: alpha=0.7778, lambda=1 
+- Fold07.Rep06: alpha=0.7778, lambda=1 
++ Fold07.Rep06: alpha=0.8889, lambda=1 
+- Fold07.Rep06: alpha=0.8889, lambda=1 
++ Fold07.Rep06: alpha=1.0000, lambda=1 
+- Fold07.Rep06: alpha=1.0000, lambda=1 
++ Fold08.Rep06: alpha=0.0000, lambda=1 
+- Fold08.Rep06: alpha=0.0000, lambda=1 
++ Fold08.Rep06: alpha=0.1111, lambda=1 
+- Fold08.Rep06: alpha=0.1111, lambda=1 
++ Fold08.Rep06: alpha=0.2222, lambda=1 
+- Fold08.Rep06: alpha=0.2222, lambda=1 
++ Fold08.Rep06: alpha=0.3333, lambda=1 
+- Fold08.Rep06: alpha=0.3333, lambda=1 
++ Fold08.Rep06: alpha=0.4444, lambda=1 
+- Fold08.Rep06: alpha=0.4444, lambda=1 
++ Fold08.Rep06: alpha=0.5556, lambda=1 
+- Fold08.Rep06: alpha=0.5556, lambda=1 
++ Fold08.Rep06: alpha=0.6667, lambda=1 
+- Fold08.Rep06: alpha=0.6667, lambda=1 
++ Fold08.Rep06: alpha=0.7778, lambda=1 
+- Fold08.Rep06: alpha=0.7778, lambda=1 
++ Fold08.Rep06: alpha=0.8889, lambda=1 
+- Fold08.Rep06: alpha=0.8889, lambda=1 
++ Fold08.Rep06: alpha=1.0000, lambda=1 
+- Fold08.Rep06: alpha=1.0000, lambda=1 
++ Fold09.Rep06: alpha=0.0000, lambda=1 
+- Fold09.Rep06: alpha=0.0000, lambda=1 
++ Fold09.Rep06: alpha=0.1111, lambda=1 
+- Fold09.Rep06: alpha=0.1111, lambda=1 
++ Fold09.Rep06: alpha=0.2222, lambda=1 
+- Fold09.Rep06: alpha=0.2222, lambda=1 
++ Fold09.Rep06: alpha=0.3333, lambda=1 
+- Fold09.Rep06: alpha=0.3333, lambda=1 
++ Fold09.Rep06: alpha=0.4444, lambda=1 
+- Fold09.Rep06: alpha=0.4444, lambda=1 
++ Fold09.Rep06: alpha=0.5556, lambda=1 
+- Fold09.Rep06: alpha=0.5556, lambda=1 
++ Fold09.Rep06: alpha=0.6667, lambda=1 
+- Fold09.Rep06: alpha=0.6667, lambda=1 
++ Fold09.Rep06: alpha=0.7778, lambda=1 
+- Fold09.Rep06: alpha=0.7778, lambda=1 
++ Fold09.Rep06: alpha=0.8889, lambda=1 
+- Fold09.Rep06: alpha=0.8889, lambda=1 
++ Fold09.Rep06: alpha=1.0000, lambda=1 
+- Fold09.Rep06: alpha=1.0000, lambda=1 
++ Fold10.Rep06: alpha=0.0000, lambda=1 
+- Fold10.Rep06: alpha=0.0000, lambda=1 
++ Fold10.Rep06: alpha=0.1111, lambda=1 
+- Fold10.Rep06: alpha=0.1111, lambda=1 
++ Fold10.Rep06: alpha=0.2222, lambda=1 
+- Fold10.Rep06: alpha=0.2222, lambda=1 
++ Fold10.Rep06: alpha=0.3333, lambda=1 
+- Fold10.Rep06: alpha=0.3333, lambda=1 
++ Fold10.Rep06: alpha=0.4444, lambda=1 
+- Fold10.Rep06: alpha=0.4444, lambda=1 
++ Fold10.Rep06: alpha=0.5556, lambda=1 
+- Fold10.Rep06: alpha=0.5556, lambda=1 
++ Fold10.Rep06: alpha=0.6667, lambda=1 
+- Fold10.Rep06: alpha=0.6667, lambda=1 
++ Fold10.Rep06: alpha=0.7778, lambda=1 
+- Fold10.Rep06: alpha=0.7778, lambda=1 
++ Fold10.Rep06: alpha=0.8889, lambda=1 
+- Fold10.Rep06: alpha=0.8889, lambda=1 
++ Fold10.Rep06: alpha=1.0000, lambda=1 
+- Fold10.Rep06: alpha=1.0000, lambda=1 
++ Fold01.Rep07: alpha=0.0000, lambda=1 
+- Fold01.Rep07: alpha=0.0000, lambda=1 
++ Fold01.Rep07: alpha=0.1111, lambda=1 
+- Fold01.Rep07: alpha=0.1111, lambda=1 
++ Fold01.Rep07: alpha=0.2222, lambda=1 
+- Fold01.Rep07: alpha=0.2222, lambda=1 
++ Fold01.Rep07: alpha=0.3333, lambda=1 
+- Fold01.Rep07: alpha=0.3333, lambda=1 
++ Fold01.Rep07: alpha=0.4444, lambda=1 
+- Fold01.Rep07: alpha=0.4444, lambda=1 
++ Fold01.Rep07: alpha=0.5556, lambda=1 
+- Fold01.Rep07: alpha=0.5556, lambda=1 
++ Fold01.Rep07: alpha=0.6667, lambda=1 
+- Fold01.Rep07: alpha=0.6667, lambda=1 
++ Fold01.Rep07: alpha=0.7778, lambda=1 
+- Fold01.Rep07: alpha=0.7778, lambda=1 
++ Fold01.Rep07: alpha=0.8889, lambda=1 
+- Fold01.Rep07: alpha=0.8889, lambda=1 
++ Fold01.Rep07: alpha=1.0000, lambda=1 
+- Fold01.Rep07: alpha=1.0000, lambda=1 
++ Fold02.Rep07: alpha=0.0000, lambda=1 
+- Fold02.Rep07: alpha=0.0000, lambda=1 
++ Fold02.Rep07: alpha=0.1111, lambda=1 
+- Fold02.Rep07: alpha=0.1111, lambda=1 
++ Fold02.Rep07: alpha=0.2222, lambda=1 
+- Fold02.Rep07: alpha=0.2222, lambda=1 
++ Fold02.Rep07: alpha=0.3333, lambda=1 
+- Fold02.Rep07: alpha=0.3333, lambda=1 
++ Fold02.Rep07: alpha=0.4444, lambda=1 
+- Fold02.Rep07: alpha=0.4444, lambda=1 
++ Fold02.Rep07: alpha=0.5556, lambda=1 
+- Fold02.Rep07: alpha=0.5556, lambda=1 
++ Fold02.Rep07: alpha=0.6667, lambda=1 
+- Fold02.Rep07: alpha=0.6667, lambda=1 
++ Fold02.Rep07: alpha=0.7778, lambda=1 
+- Fold02.Rep07: alpha=0.7778, lambda=1 
++ Fold02.Rep07: alpha=0.8889, lambda=1 
+- Fold02.Rep07: alpha=0.8889, lambda=1 
++ Fold02.Rep07: alpha=1.0000, lambda=1 
+- Fold02.Rep07: alpha=1.0000, lambda=1 
++ Fold03.Rep07: alpha=0.0000, lambda=1 
+- Fold03.Rep07: alpha=0.0000, lambda=1 
++ Fold03.Rep07: alpha=0.1111, lambda=1 
+- Fold03.Rep07: alpha=0.1111, lambda=1 
++ Fold03.Rep07: alpha=0.2222, lambda=1 
+- Fold03.Rep07: alpha=0.2222, lambda=1 
++ Fold03.Rep07: alpha=0.3333, lambda=1 
+- Fold03.Rep07: alpha=0.3333, lambda=1 
++ Fold03.Rep07: alpha=0.4444, lambda=1 
+- Fold03.Rep07: alpha=0.4444, lambda=1 
++ Fold03.Rep07: alpha=0.5556, lambda=1 
+- Fold03.Rep07: alpha=0.5556, lambda=1 
++ Fold03.Rep07: alpha=0.6667, lambda=1 
+- Fold03.Rep07: alpha=0.6667, lambda=1 
++ Fold03.Rep07: alpha=0.7778, lambda=1 
+- Fold03.Rep07: alpha=0.7778, lambda=1 
++ Fold03.Rep07: alpha=0.8889, lambda=1 
+- Fold03.Rep07: alpha=0.8889, lambda=1 
++ Fold03.Rep07: alpha=1.0000, lambda=1 
+- Fold03.Rep07: alpha=1.0000, lambda=1 
++ Fold04.Rep07: alpha=0.0000, lambda=1 
+- Fold04.Rep07: alpha=0.0000, lambda=1 
++ Fold04.Rep07: alpha=0.1111, lambda=1 
+- Fold04.Rep07: alpha=0.1111, lambda=1 
++ Fold04.Rep07: alpha=0.2222, lambda=1 
+- Fold04.Rep07: alpha=0.2222, lambda=1 
++ Fold04.Rep07: alpha=0.3333, lambda=1 
+- Fold04.Rep07: alpha=0.3333, lambda=1 
++ Fold04.Rep07: alpha=0.4444, lambda=1 
+- Fold04.Rep07: alpha=0.4444, lambda=1 
++ Fold04.Rep07: alpha=0.5556, lambda=1 
+- Fold04.Rep07: alpha=0.5556, lambda=1 
++ Fold04.Rep07: alpha=0.6667, lambda=1 
+- Fold04.Rep07: alpha=0.6667, lambda=1 
++ Fold04.Rep07: alpha=0.7778, lambda=1 
+- Fold04.Rep07: alpha=0.7778, lambda=1 
++ Fold04.Rep07: alpha=0.8889, lambda=1 
+- Fold04.Rep07: alpha=0.8889, lambda=1 
++ Fold04.Rep07: alpha=1.0000, lambda=1 
+- Fold04.Rep07: alpha=1.0000, lambda=1 
++ Fold05.Rep07: alpha=0.0000, lambda=1 
+- Fold05.Rep07: alpha=0.0000, lambda=1 
++ Fold05.Rep07: alpha=0.1111, lambda=1 
+- Fold05.Rep07: alpha=0.1111, lambda=1 
++ Fold05.Rep07: alpha=0.2222, lambda=1 
+- Fold05.Rep07: alpha=0.2222, lambda=1 
++ Fold05.Rep07: alpha=0.3333, lambda=1 
+- Fold05.Rep07: alpha=0.3333, lambda=1 
++ Fold05.Rep07: alpha=0.4444, lambda=1 
+- Fold05.Rep07: alpha=0.4444, lambda=1 
++ Fold05.Rep07: alpha=0.5556, lambda=1 
+- Fold05.Rep07: alpha=0.5556, lambda=1 
++ Fold05.Rep07: alpha=0.6667, lambda=1 
+- Fold05.Rep07: alpha=0.6667, lambda=1 
++ Fold05.Rep07: alpha=0.7778, lambda=1 
+- Fold05.Rep07: alpha=0.7778, lambda=1 
++ Fold05.Rep07: alpha=0.8889, lambda=1 
+- Fold05.Rep07: alpha=0.8889, lambda=1 
++ Fold05.Rep07: alpha=1.0000, lambda=1 
+- Fold05.Rep07: alpha=1.0000, lambda=1 
++ Fold06.Rep07: alpha=0.0000, lambda=1 
+- Fold06.Rep07: alpha=0.0000, lambda=1 
++ Fold06.Rep07: alpha=0.1111, lambda=1 
+- Fold06.Rep07: alpha=0.1111, lambda=1 
++ Fold06.Rep07: alpha=0.2222, lambda=1 
+- Fold06.Rep07: alpha=0.2222, lambda=1 
++ Fold06.Rep07: alpha=0.3333, lambda=1 
+- Fold06.Rep07: alpha=0.3333, lambda=1 
++ Fold06.Rep07: alpha=0.4444, lambda=1 
+- Fold06.Rep07: alpha=0.4444, lambda=1 
++ Fold06.Rep07: alpha=0.5556, lambda=1 
+- Fold06.Rep07: alpha=0.5556, lambda=1 
++ Fold06.Rep07: alpha=0.6667, lambda=1 
+- Fold06.Rep07: alpha=0.6667, lambda=1 
++ Fold06.Rep07: alpha=0.7778, lambda=1 
+- Fold06.Rep07: alpha=0.7778, lambda=1 
++ Fold06.Rep07: alpha=0.8889, lambda=1 
+- Fold06.Rep07: alpha=0.8889, lambda=1 
++ Fold06.Rep07: alpha=1.0000, lambda=1 
+- Fold06.Rep07: alpha=1.0000, lambda=1 
++ Fold07.Rep07: alpha=0.0000, lambda=1 
+- Fold07.Rep07: alpha=0.0000, lambda=1 
++ Fold07.Rep07: alpha=0.1111, lambda=1 
+- Fold07.Rep07: alpha=0.1111, lambda=1 
++ Fold07.Rep07: alpha=0.2222, lambda=1 
+- Fold07.Rep07: alpha=0.2222, lambda=1 
++ Fold07.Rep07: alpha=0.3333, lambda=1 
+- Fold07.Rep07: alpha=0.3333, lambda=1 
++ Fold07.Rep07: alpha=0.4444, lambda=1 
+- Fold07.Rep07: alpha=0.4444, lambda=1 
++ Fold07.Rep07: alpha=0.5556, lambda=1 
+- Fold07.Rep07: alpha=0.5556, lambda=1 
++ Fold07.Rep07: alpha=0.6667, lambda=1 
+- Fold07.Rep07: alpha=0.6667, lambda=1 
++ Fold07.Rep07: alpha=0.7778, lambda=1 
+- Fold07.Rep07: alpha=0.7778, lambda=1 
++ Fold07.Rep07: alpha=0.8889, lambda=1 
+- Fold07.Rep07: alpha=0.8889, lambda=1 
++ Fold07.Rep07: alpha=1.0000, lambda=1 
+- Fold07.Rep07: alpha=1.0000, lambda=1 
++ Fold08.Rep07: alpha=0.0000, lambda=1 
+- Fold08.Rep07: alpha=0.0000, lambda=1 
++ Fold08.Rep07: alpha=0.1111, lambda=1 
+- Fold08.Rep07: alpha=0.1111, lambda=1 
++ Fold08.Rep07: alpha=0.2222, lambda=1 
+- Fold08.Rep07: alpha=0.2222, lambda=1 
++ Fold08.Rep07: alpha=0.3333, lambda=1 
+- Fold08.Rep07: alpha=0.3333, lambda=1 
++ Fold08.Rep07: alpha=0.4444, lambda=1 
+- Fold08.Rep07: alpha=0.4444, lambda=1 
++ Fold08.Rep07: alpha=0.5556, lambda=1 
+- Fold08.Rep07: alpha=0.5556, lambda=1 
++ Fold08.Rep07: alpha=0.6667, lambda=1 
+- Fold08.Rep07: alpha=0.6667, lambda=1 
++ Fold08.Rep07: alpha=0.7778, lambda=1 
+- Fold08.Rep07: alpha=0.7778, lambda=1 
++ Fold08.Rep07: alpha=0.8889, lambda=1 
+- Fold08.Rep07: alpha=0.8889, lambda=1 
++ Fold08.Rep07: alpha=1.0000, lambda=1 
+- Fold08.Rep07: alpha=1.0000, lambda=1 
++ Fold09.Rep07: alpha=0.0000, lambda=1 
+- Fold09.Rep07: alpha=0.0000, lambda=1 
++ Fold09.Rep07: alpha=0.1111, lambda=1 
+- Fold09.Rep07: alpha=0.1111, lambda=1 
++ Fold09.Rep07: alpha=0.2222, lambda=1 
+- Fold09.Rep07: alpha=0.2222, lambda=1 
++ Fold09.Rep07: alpha=0.3333, lambda=1 
+- Fold09.Rep07: alpha=0.3333, lambda=1 
++ Fold09.Rep07: alpha=0.4444, lambda=1 
+- Fold09.Rep07: alpha=0.4444, lambda=1 
++ Fold09.Rep07: alpha=0.5556, lambda=1 
+- Fold09.Rep07: alpha=0.5556, lambda=1 
++ Fold09.Rep07: alpha=0.6667, lambda=1 
+- Fold09.Rep07: alpha=0.6667, lambda=1 
++ Fold09.Rep07: alpha=0.7778, lambda=1 
+- Fold09.Rep07: alpha=0.7778, lambda=1 
++ Fold09.Rep07: alpha=0.8889, lambda=1 
+- Fold09.Rep07: alpha=0.8889, lambda=1 
++ Fold09.Rep07: alpha=1.0000, lambda=1 
+- Fold09.Rep07: alpha=1.0000, lambda=1 
++ Fold10.Rep07: alpha=0.0000, lambda=1 
+- Fold10.Rep07: alpha=0.0000, lambda=1 
++ Fold10.Rep07: alpha=0.1111, lambda=1 
+- Fold10.Rep07: alpha=0.1111, lambda=1 
++ Fold10.Rep07: alpha=0.2222, lambda=1 
+- Fold10.Rep07: alpha=0.2222, lambda=1 
++ Fold10.Rep07: alpha=0.3333, lambda=1 
+- Fold10.Rep07: alpha=0.3333, lambda=1 
++ Fold10.Rep07: alpha=0.4444, lambda=1 
+- Fold10.Rep07: alpha=0.4444, lambda=1 
++ Fold10.Rep07: alpha=0.5556, lambda=1 
+- Fold10.Rep07: alpha=0.5556, lambda=1 
++ Fold10.Rep07: alpha=0.6667, lambda=1 
+- Fold10.Rep07: alpha=0.6667, lambda=1 
++ Fold10.Rep07: alpha=0.7778, lambda=1 
+- Fold10.Rep07: alpha=0.7778, lambda=1 
++ Fold10.Rep07: alpha=0.8889, lambda=1 
+- Fold10.Rep07: alpha=0.8889, lambda=1 
++ Fold10.Rep07: alpha=1.0000, lambda=1 
+- Fold10.Rep07: alpha=1.0000, lambda=1 
++ Fold01.Rep08: alpha=0.0000, lambda=1 
+- Fold01.Rep08: alpha=0.0000, lambda=1 
++ Fold01.Rep08: alpha=0.1111, lambda=1 
+- Fold01.Rep08: alpha=0.1111, lambda=1 
++ Fold01.Rep08: alpha=0.2222, lambda=1 
+- Fold01.Rep08: alpha=0.2222, lambda=1 
++ Fold01.Rep08: alpha=0.3333, lambda=1 
+- Fold01.Rep08: alpha=0.3333, lambda=1 
++ Fold01.Rep08: alpha=0.4444, lambda=1 
+- Fold01.Rep08: alpha=0.4444, lambda=1 
++ Fold01.Rep08: alpha=0.5556, lambda=1 
+- Fold01.Rep08: alpha=0.5556, lambda=1 
++ Fold01.Rep08: alpha=0.6667, lambda=1 
+- Fold01.Rep08: alpha=0.6667, lambda=1 
++ Fold01.Rep08: alpha=0.7778, lambda=1 
+- Fold01.Rep08: alpha=0.7778, lambda=1 
++ Fold01.Rep08: alpha=0.8889, lambda=1 
+- Fold01.Rep08: alpha=0.8889, lambda=1 
++ Fold01.Rep08: alpha=1.0000, lambda=1 
+- Fold01.Rep08: alpha=1.0000, lambda=1 
++ Fold02.Rep08: alpha=0.0000, lambda=1 
+- Fold02.Rep08: alpha=0.0000, lambda=1 
++ Fold02.Rep08: alpha=0.1111, lambda=1 
+- Fold02.Rep08: alpha=0.1111, lambda=1 
++ Fold02.Rep08: alpha=0.2222, lambda=1 
+- Fold02.Rep08: alpha=0.2222, lambda=1 
++ Fold02.Rep08: alpha=0.3333, lambda=1 
+- Fold02.Rep08: alpha=0.3333, lambda=1 
++ Fold02.Rep08: alpha=0.4444, lambda=1 
+- Fold02.Rep08: alpha=0.4444, lambda=1 
++ Fold02.Rep08: alpha=0.5556, lambda=1 
+- Fold02.Rep08: alpha=0.5556, lambda=1 
++ Fold02.Rep08: alpha=0.6667, lambda=1 
+- Fold02.Rep08: alpha=0.6667, lambda=1 
++ Fold02.Rep08: alpha=0.7778, lambda=1 
+- Fold02.Rep08: alpha=0.7778, lambda=1 
++ Fold02.Rep08: alpha=0.8889, lambda=1 
+- Fold02.Rep08: alpha=0.8889, lambda=1 
++ Fold02.Rep08: alpha=1.0000, lambda=1 
+- Fold02.Rep08: alpha=1.0000, lambda=1 
++ Fold03.Rep08: alpha=0.0000, lambda=1 
+- Fold03.Rep08: alpha=0.0000, lambda=1 
++ Fold03.Rep08: alpha=0.1111, lambda=1 
+- Fold03.Rep08: alpha=0.1111, lambda=1 
++ Fold03.Rep08: alpha=0.2222, lambda=1 
+- Fold03.Rep08: alpha=0.2222, lambda=1 
++ Fold03.Rep08: alpha=0.3333, lambda=1 
+- Fold03.Rep08: alpha=0.3333, lambda=1 
++ Fold03.Rep08: alpha=0.4444, lambda=1 
+- Fold03.Rep08: alpha=0.4444, lambda=1 
++ Fold03.Rep08: alpha=0.5556, lambda=1 
+- Fold03.Rep08: alpha=0.5556, lambda=1 
++ Fold03.Rep08: alpha=0.6667, lambda=1 
+- Fold03.Rep08: alpha=0.6667, lambda=1 
++ Fold03.Rep08: alpha=0.7778, lambda=1 
+- Fold03.Rep08: alpha=0.7778, lambda=1 
++ Fold03.Rep08: alpha=0.8889, lambda=1 
+- Fold03.Rep08: alpha=0.8889, lambda=1 
++ Fold03.Rep08: alpha=1.0000, lambda=1 
+- Fold03.Rep08: alpha=1.0000, lambda=1 
++ Fold04.Rep08: alpha=0.0000, lambda=1 
+- Fold04.Rep08: alpha=0.0000, lambda=1 
++ Fold04.Rep08: alpha=0.1111, lambda=1 
+- Fold04.Rep08: alpha=0.1111, lambda=1 
++ Fold04.Rep08: alpha=0.2222, lambda=1 
+- Fold04.Rep08: alpha=0.2222, lambda=1 
++ Fold04.Rep08: alpha=0.3333, lambda=1 
+- Fold04.Rep08: alpha=0.3333, lambda=1 
++ Fold04.Rep08: alpha=0.4444, lambda=1 
+- Fold04.Rep08: alpha=0.4444, lambda=1 
++ Fold04.Rep08: alpha=0.5556, lambda=1 
+- Fold04.Rep08: alpha=0.5556, lambda=1 
++ Fold04.Rep08: alpha=0.6667, lambda=1 
+- Fold04.Rep08: alpha=0.6667, lambda=1 
++ Fold04.Rep08: alpha=0.7778, lambda=1 
+- Fold04.Rep08: alpha=0.7778, lambda=1 
++ Fold04.Rep08: alpha=0.8889, lambda=1 
+- Fold04.Rep08: alpha=0.8889, lambda=1 
++ Fold04.Rep08: alpha=1.0000, lambda=1 
+- Fold04.Rep08: alpha=1.0000, lambda=1 
++ Fold05.Rep08: alpha=0.0000, lambda=1 
+- Fold05.Rep08: alpha=0.0000, lambda=1 
++ Fold05.Rep08: alpha=0.1111, lambda=1 
+- Fold05.Rep08: alpha=0.1111, lambda=1 
++ Fold05.Rep08: alpha=0.2222, lambda=1 
+- Fold05.Rep08: alpha=0.2222, lambda=1 
++ Fold05.Rep08: alpha=0.3333, lambda=1 
+- Fold05.Rep08: alpha=0.3333, lambda=1 
++ Fold05.Rep08: alpha=0.4444, lambda=1 
+- Fold05.Rep08: alpha=0.4444, lambda=1 
++ Fold05.Rep08: alpha=0.5556, lambda=1 
+- Fold05.Rep08: alpha=0.5556, lambda=1 
++ Fold05.Rep08: alpha=0.6667, lambda=1 
+- Fold05.Rep08: alpha=0.6667, lambda=1 
++ Fold05.Rep08: alpha=0.7778, lambda=1 
+- Fold05.Rep08: alpha=0.7778, lambda=1 
++ Fold05.Rep08: alpha=0.8889, lambda=1 
+- Fold05.Rep08: alpha=0.8889, lambda=1 
++ Fold05.Rep08: alpha=1.0000, lambda=1 
+- Fold05.Rep08: alpha=1.0000, lambda=1 
++ Fold06.Rep08: alpha=0.0000, lambda=1 
+- Fold06.Rep08: alpha=0.0000, lambda=1 
++ Fold06.Rep08: alpha=0.1111, lambda=1 
+- Fold06.Rep08: alpha=0.1111, lambda=1 
++ Fold06.Rep08: alpha=0.2222, lambda=1 
+- Fold06.Rep08: alpha=0.2222, lambda=1 
++ Fold06.Rep08: alpha=0.3333, lambda=1 
+- Fold06.Rep08: alpha=0.3333, lambda=1 
++ Fold06.Rep08: alpha=0.4444, lambda=1 
+- Fold06.Rep08: alpha=0.4444, lambda=1 
++ Fold06.Rep08: alpha=0.5556, lambda=1 
+- Fold06.Rep08: alpha=0.5556, lambda=1 
++ Fold06.Rep08: alpha=0.6667, lambda=1 
+- Fold06.Rep08: alpha=0.6667, lambda=1 
++ Fold06.Rep08: alpha=0.7778, lambda=1 
+- Fold06.Rep08: alpha=0.7778, lambda=1 
++ Fold06.Rep08: alpha=0.8889, lambda=1 
+- Fold06.Rep08: alpha=0.8889, lambda=1 
++ Fold06.Rep08: alpha=1.0000, lambda=1 
+- Fold06.Rep08: alpha=1.0000, lambda=1 
++ Fold07.Rep08: alpha=0.0000, lambda=1 
+- Fold07.Rep08: alpha=0.0000, lambda=1 
++ Fold07.Rep08: alpha=0.1111, lambda=1 
+- Fold07.Rep08: alpha=0.1111, lambda=1 
++ Fold07.Rep08: alpha=0.2222, lambda=1 
+- Fold07.Rep08: alpha=0.2222, lambda=1 
++ Fold07.Rep08: alpha=0.3333, lambda=1 
+- Fold07.Rep08: alpha=0.3333, lambda=1 
++ Fold07.Rep08: alpha=0.4444, lambda=1 
+- Fold07.Rep08: alpha=0.4444, lambda=1 
++ Fold07.Rep08: alpha=0.5556, lambda=1 
+- Fold07.Rep08: alpha=0.5556, lambda=1 
++ Fold07.Rep08: alpha=0.6667, lambda=1 
+- Fold07.Rep08: alpha=0.6667, lambda=1 
++ Fold07.Rep08: alpha=0.7778, lambda=1 
+- Fold07.Rep08: alpha=0.7778, lambda=1 
++ Fold07.Rep08: alpha=0.8889, lambda=1 
+- Fold07.Rep08: alpha=0.8889, lambda=1 
++ Fold07.Rep08: alpha=1.0000, lambda=1 
+- Fold07.Rep08: alpha=1.0000, lambda=1 
++ Fold08.Rep08: alpha=0.0000, lambda=1 
+- Fold08.Rep08: alpha=0.0000, lambda=1 
++ Fold08.Rep08: alpha=0.1111, lambda=1 
+- Fold08.Rep08: alpha=0.1111, lambda=1 
++ Fold08.Rep08: alpha=0.2222, lambda=1 
+- Fold08.Rep08: alpha=0.2222, lambda=1 
++ Fold08.Rep08: alpha=0.3333, lambda=1 
+- Fold08.Rep08: alpha=0.3333, lambda=1 
++ Fold08.Rep08: alpha=0.4444, lambda=1 
+- Fold08.Rep08: alpha=0.4444, lambda=1 
++ Fold08.Rep08: alpha=0.5556, lambda=1 
+- Fold08.Rep08: alpha=0.5556, lambda=1 
++ Fold08.Rep08: alpha=0.6667, lambda=1 
+- Fold08.Rep08: alpha=0.6667, lambda=1 
++ Fold08.Rep08: alpha=0.7778, lambda=1 
+- Fold08.Rep08: alpha=0.7778, lambda=1 
++ Fold08.Rep08: alpha=0.8889, lambda=1 
+- Fold08.Rep08: alpha=0.8889, lambda=1 
++ Fold08.Rep08: alpha=1.0000, lambda=1 
+- Fold08.Rep08: alpha=1.0000, lambda=1 
++ Fold09.Rep08: alpha=0.0000, lambda=1 
+- Fold09.Rep08: alpha=0.0000, lambda=1 
++ Fold09.Rep08: alpha=0.1111, lambda=1 
+- Fold09.Rep08: alpha=0.1111, lambda=1 
++ Fold09.Rep08: alpha=0.2222, lambda=1 
+- Fold09.Rep08: alpha=0.2222, lambda=1 
++ Fold09.Rep08: alpha=0.3333, lambda=1 
+- Fold09.Rep08: alpha=0.3333, lambda=1 
++ Fold09.Rep08: alpha=0.4444, lambda=1 
+- Fold09.Rep08: alpha=0.4444, lambda=1 
++ Fold09.Rep08: alpha=0.5556, lambda=1 
+- Fold09.Rep08: alpha=0.5556, lambda=1 
++ Fold09.Rep08: alpha=0.6667, lambda=1 
+- Fold09.Rep08: alpha=0.6667, lambda=1 
++ Fold09.Rep08: alpha=0.7778, lambda=1 
+- Fold09.Rep08: alpha=0.7778, lambda=1 
++ Fold09.Rep08: alpha=0.8889, lambda=1 
+- Fold09.Rep08: alpha=0.8889, lambda=1 
++ Fold09.Rep08: alpha=1.0000, lambda=1 
+- Fold09.Rep08: alpha=1.0000, lambda=1 
++ Fold10.Rep08: alpha=0.0000, lambda=1 
+- Fold10.Rep08: alpha=0.0000, lambda=1 
++ Fold10.Rep08: alpha=0.1111, lambda=1 
+- Fold10.Rep08: alpha=0.1111, lambda=1 
++ Fold10.Rep08: alpha=0.2222, lambda=1 
+- Fold10.Rep08: alpha=0.2222, lambda=1 
++ Fold10.Rep08: alpha=0.3333, lambda=1 
+- Fold10.Rep08: alpha=0.3333, lambda=1 
++ Fold10.Rep08: alpha=0.4444, lambda=1 
+- Fold10.Rep08: alpha=0.4444, lambda=1 
++ Fold10.Rep08: alpha=0.5556, lambda=1 
+- Fold10.Rep08: alpha=0.5556, lambda=1 
++ Fold10.Rep08: alpha=0.6667, lambda=1 
+- Fold10.Rep08: alpha=0.6667, lambda=1 
++ Fold10.Rep08: alpha=0.7778, lambda=1 
+- Fold10.Rep08: alpha=0.7778, lambda=1 
++ Fold10.Rep08: alpha=0.8889, lambda=1 
+- Fold10.Rep08: alpha=0.8889, lambda=1 
++ Fold10.Rep08: alpha=1.0000, lambda=1 
+- Fold10.Rep08: alpha=1.0000, lambda=1 
++ Fold01.Rep09: alpha=0.0000, lambda=1 
+- Fold01.Rep09: alpha=0.0000, lambda=1 
++ Fold01.Rep09: alpha=0.1111, lambda=1 
+- Fold01.Rep09: alpha=0.1111, lambda=1 
++ Fold01.Rep09: alpha=0.2222, lambda=1 
+- Fold01.Rep09: alpha=0.2222, lambda=1 
++ Fold01.Rep09: alpha=0.3333, lambda=1 
+- Fold01.Rep09: alpha=0.3333, lambda=1 
++ Fold01.Rep09: alpha=0.4444, lambda=1 
+- Fold01.Rep09: alpha=0.4444, lambda=1 
++ Fold01.Rep09: alpha=0.5556, lambda=1 
+- Fold01.Rep09: alpha=0.5556, lambda=1 
++ Fold01.Rep09: alpha=0.6667, lambda=1 
+- Fold01.Rep09: alpha=0.6667, lambda=1 
++ Fold01.Rep09: alpha=0.7778, lambda=1 
+- Fold01.Rep09: alpha=0.7778, lambda=1 
++ Fold01.Rep09: alpha=0.8889, lambda=1 
+- Fold01.Rep09: alpha=0.8889, lambda=1 
++ Fold01.Rep09: alpha=1.0000, lambda=1 
+- Fold01.Rep09: alpha=1.0000, lambda=1 
++ Fold02.Rep09: alpha=0.0000, lambda=1 
+- Fold02.Rep09: alpha=0.0000, lambda=1 
++ Fold02.Rep09: alpha=0.1111, lambda=1 
+- Fold02.Rep09: alpha=0.1111, lambda=1 
++ Fold02.Rep09: alpha=0.2222, lambda=1 
+- Fold02.Rep09: alpha=0.2222, lambda=1 
++ Fold02.Rep09: alpha=0.3333, lambda=1 
+- Fold02.Rep09: alpha=0.3333, lambda=1 
++ Fold02.Rep09: alpha=0.4444, lambda=1 
+- Fold02.Rep09: alpha=0.4444, lambda=1 
++ Fold02.Rep09: alpha=0.5556, lambda=1 
+- Fold02.Rep09: alpha=0.5556, lambda=1 
++ Fold02.Rep09: alpha=0.6667, lambda=1 
+- Fold02.Rep09: alpha=0.6667, lambda=1 
++ Fold02.Rep09: alpha=0.7778, lambda=1 
+- Fold02.Rep09: alpha=0.7778, lambda=1 
++ Fold02.Rep09: alpha=0.8889, lambda=1 
+- Fold02.Rep09: alpha=0.8889, lambda=1 
++ Fold02.Rep09: alpha=1.0000, lambda=1 
+- Fold02.Rep09: alpha=1.0000, lambda=1 
++ Fold03.Rep09: alpha=0.0000, lambda=1 
+- Fold03.Rep09: alpha=0.0000, lambda=1 
++ Fold03.Rep09: alpha=0.1111, lambda=1 
+- Fold03.Rep09: alpha=0.1111, lambda=1 
++ Fold03.Rep09: alpha=0.2222, lambda=1 
+- Fold03.Rep09: alpha=0.2222, lambda=1 
++ Fold03.Rep09: alpha=0.3333, lambda=1 
+- Fold03.Rep09: alpha=0.3333, lambda=1 
++ Fold03.Rep09: alpha=0.4444, lambda=1 
+- Fold03.Rep09: alpha=0.4444, lambda=1 
++ Fold03.Rep09: alpha=0.5556, lambda=1 
+- Fold03.Rep09: alpha=0.5556, lambda=1 
++ Fold03.Rep09: alpha=0.6667, lambda=1 
+- Fold03.Rep09: alpha=0.6667, lambda=1 
++ Fold03.Rep09: alpha=0.7778, lambda=1 
+- Fold03.Rep09: alpha=0.7778, lambda=1 
++ Fold03.Rep09: alpha=0.8889, lambda=1 
+- Fold03.Rep09: alpha=0.8889, lambda=1 
++ Fold03.Rep09: alpha=1.0000, lambda=1 
+- Fold03.Rep09: alpha=1.0000, lambda=1 
++ Fold04.Rep09: alpha=0.0000, lambda=1 
+- Fold04.Rep09: alpha=0.0000, lambda=1 
++ Fold04.Rep09: alpha=0.1111, lambda=1 
+- Fold04.Rep09: alpha=0.1111, lambda=1 
++ Fold04.Rep09: alpha=0.2222, lambda=1 
+- Fold04.Rep09: alpha=0.2222, lambda=1 
++ Fold04.Rep09: alpha=0.3333, lambda=1 
+- Fold04.Rep09: alpha=0.3333, lambda=1 
++ Fold04.Rep09: alpha=0.4444, lambda=1 
+- Fold04.Rep09: alpha=0.4444, lambda=1 
++ Fold04.Rep09: alpha=0.5556, lambda=1 
+- Fold04.Rep09: alpha=0.5556, lambda=1 
++ Fold04.Rep09: alpha=0.6667, lambda=1 
+- Fold04.Rep09: alpha=0.6667, lambda=1 
++ Fold04.Rep09: alpha=0.7778, lambda=1 
+- Fold04.Rep09: alpha=0.7778, lambda=1 
++ Fold04.Rep09: alpha=0.8889, lambda=1 
+- Fold04.Rep09: alpha=0.8889, lambda=1 
++ Fold04.Rep09: alpha=1.0000, lambda=1 
+- Fold04.Rep09: alpha=1.0000, lambda=1 
++ Fold05.Rep09: alpha=0.0000, lambda=1 
+- Fold05.Rep09: alpha=0.0000, lambda=1 
++ Fold05.Rep09: alpha=0.1111, lambda=1 
+- Fold05.Rep09: alpha=0.1111, lambda=1 
++ Fold05.Rep09: alpha=0.2222, lambda=1 
+- Fold05.Rep09: alpha=0.2222, lambda=1 
++ Fold05.Rep09: alpha=0.3333, lambda=1 
+- Fold05.Rep09: alpha=0.3333, lambda=1 
++ Fold05.Rep09: alpha=0.4444, lambda=1 
+- Fold05.Rep09: alpha=0.4444, lambda=1 
++ Fold05.Rep09: alpha=0.5556, lambda=1 
+- Fold05.Rep09: alpha=0.5556, lambda=1 
++ Fold05.Rep09: alpha=0.6667, lambda=1 
+- Fold05.Rep09: alpha=0.6667, lambda=1 
++ Fold05.Rep09: alpha=0.7778, lambda=1 
+- Fold05.Rep09: alpha=0.7778, lambda=1 
++ Fold05.Rep09: alpha=0.8889, lambda=1 
+- Fold05.Rep09: alpha=0.8889, lambda=1 
++ Fold05.Rep09: alpha=1.0000, lambda=1 
+- Fold05.Rep09: alpha=1.0000, lambda=1 
++ Fold06.Rep09: alpha=0.0000, lambda=1 
+- Fold06.Rep09: alpha=0.0000, lambda=1 
++ Fold06.Rep09: alpha=0.1111, lambda=1 
+- Fold06.Rep09: alpha=0.1111, lambda=1 
++ Fold06.Rep09: alpha=0.2222, lambda=1 
+- Fold06.Rep09: alpha=0.2222, lambda=1 
++ Fold06.Rep09: alpha=0.3333, lambda=1 
+- Fold06.Rep09: alpha=0.3333, lambda=1 
++ Fold06.Rep09: alpha=0.4444, lambda=1 
+- Fold06.Rep09: alpha=0.4444, lambda=1 
++ Fold06.Rep09: alpha=0.5556, lambda=1 
+- Fold06.Rep09: alpha=0.5556, lambda=1 
++ Fold06.Rep09: alpha=0.6667, lambda=1 
+- Fold06.Rep09: alpha=0.6667, lambda=1 
++ Fold06.Rep09: alpha=0.7778, lambda=1 
+- Fold06.Rep09: alpha=0.7778, lambda=1 
++ Fold06.Rep09: alpha=0.8889, lambda=1 
+- Fold06.Rep09: alpha=0.8889, lambda=1 
++ Fold06.Rep09: alpha=1.0000, lambda=1 
+- Fold06.Rep09: alpha=1.0000, lambda=1 
++ Fold07.Rep09: alpha=0.0000, lambda=1 
+- Fold07.Rep09: alpha=0.0000, lambda=1 
++ Fold07.Rep09: alpha=0.1111, lambda=1 
+- Fold07.Rep09: alpha=0.1111, lambda=1 
++ Fold07.Rep09: alpha=0.2222, lambda=1 
+- Fold07.Rep09: alpha=0.2222, lambda=1 
++ Fold07.Rep09: alpha=0.3333, lambda=1 
+- Fold07.Rep09: alpha=0.3333, lambda=1 
++ Fold07.Rep09: alpha=0.4444, lambda=1 
+- Fold07.Rep09: alpha=0.4444, lambda=1 
++ Fold07.Rep09: alpha=0.5556, lambda=1 
+- Fold07.Rep09: alpha=0.5556, lambda=1 
++ Fold07.Rep09: alpha=0.6667, lambda=1 
+- Fold07.Rep09: alpha=0.6667, lambda=1 
++ Fold07.Rep09: alpha=0.7778, lambda=1 
+- Fold07.Rep09: alpha=0.7778, lambda=1 
++ Fold07.Rep09: alpha=0.8889, lambda=1 
+- Fold07.Rep09: alpha=0.8889, lambda=1 
++ Fold07.Rep09: alpha=1.0000, lambda=1 
+- Fold07.Rep09: alpha=1.0000, lambda=1 
++ Fold08.Rep09: alpha=0.0000, lambda=1 
+- Fold08.Rep09: alpha=0.0000, lambda=1 
++ Fold08.Rep09: alpha=0.1111, lambda=1 
+- Fold08.Rep09: alpha=0.1111, lambda=1 
++ Fold08.Rep09: alpha=0.2222, lambda=1 
+- Fold08.Rep09: alpha=0.2222, lambda=1 
++ Fold08.Rep09: alpha=0.3333, lambda=1 
+- Fold08.Rep09: alpha=0.3333, lambda=1 
++ Fold08.Rep09: alpha=0.4444, lambda=1 
+- Fold08.Rep09: alpha=0.4444, lambda=1 
++ Fold08.Rep09: alpha=0.5556, lambda=1 
+- Fold08.Rep09: alpha=0.5556, lambda=1 
++ Fold08.Rep09: alpha=0.6667, lambda=1 
+- Fold08.Rep09: alpha=0.6667, lambda=1 
++ Fold08.Rep09: alpha=0.7778, lambda=1 
+- Fold08.Rep09: alpha=0.7778, lambda=1 
++ Fold08.Rep09: alpha=0.8889, lambda=1 
+- Fold08.Rep09: alpha=0.8889, lambda=1 
++ Fold08.Rep09: alpha=1.0000, lambda=1 
+- Fold08.Rep09: alpha=1.0000, lambda=1 
++ Fold09.Rep09: alpha=0.0000, lambda=1 
+- Fold09.Rep09: alpha=0.0000, lambda=1 
++ Fold09.Rep09: alpha=0.1111, lambda=1 
+- Fold09.Rep09: alpha=0.1111, lambda=1 
++ Fold09.Rep09: alpha=0.2222, lambda=1 
+- Fold09.Rep09: alpha=0.2222, lambda=1 
++ Fold09.Rep09: alpha=0.3333, lambda=1 
+- Fold09.Rep09: alpha=0.3333, lambda=1 
++ Fold09.Rep09: alpha=0.4444, lambda=1 
+- Fold09.Rep09: alpha=0.4444, lambda=1 
++ Fold09.Rep09: alpha=0.5556, lambda=1 
+- Fold09.Rep09: alpha=0.5556, lambda=1 
++ Fold09.Rep09: alpha=0.6667, lambda=1 
+- Fold09.Rep09: alpha=0.6667, lambda=1 
++ Fold09.Rep09: alpha=0.7778, lambda=1 
+- Fold09.Rep09: alpha=0.7778, lambda=1 
++ Fold09.Rep09: alpha=0.8889, lambda=1 
+- Fold09.Rep09: alpha=0.8889, lambda=1 
++ Fold09.Rep09: alpha=1.0000, lambda=1 
+- Fold09.Rep09: alpha=1.0000, lambda=1 
++ Fold10.Rep09: alpha=0.0000, lambda=1 
+- Fold10.Rep09: alpha=0.0000, lambda=1 
++ Fold10.Rep09: alpha=0.1111, lambda=1 
+- Fold10.Rep09: alpha=0.1111, lambda=1 
++ Fold10.Rep09: alpha=0.2222, lambda=1 
+- Fold10.Rep09: alpha=0.2222, lambda=1 
++ Fold10.Rep09: alpha=0.3333, lambda=1 
+- Fold10.Rep09: alpha=0.3333, lambda=1 
++ Fold10.Rep09: alpha=0.4444, lambda=1 
+- Fold10.Rep09: alpha=0.4444, lambda=1 
++ Fold10.Rep09: alpha=0.5556, lambda=1 
+- Fold10.Rep09: alpha=0.5556, lambda=1 
++ Fold10.Rep09: alpha=0.6667, lambda=1 
+- Fold10.Rep09: alpha=0.6667, lambda=1 
++ Fold10.Rep09: alpha=0.7778, lambda=1 
+- Fold10.Rep09: alpha=0.7778, lambda=1 
++ Fold10.Rep09: alpha=0.8889, lambda=1 
+- Fold10.Rep09: alpha=0.8889, lambda=1 
++ Fold10.Rep09: alpha=1.0000, lambda=1 
+- Fold10.Rep09: alpha=1.0000, lambda=1 
++ Fold01.Rep10: alpha=0.0000, lambda=1 
+- Fold01.Rep10: alpha=0.0000, lambda=1 
++ Fold01.Rep10: alpha=0.1111, lambda=1 
+- Fold01.Rep10: alpha=0.1111, lambda=1 
++ Fold01.Rep10: alpha=0.2222, lambda=1 
+- Fold01.Rep10: alpha=0.2222, lambda=1 
++ Fold01.Rep10: alpha=0.3333, lambda=1 
+- Fold01.Rep10: alpha=0.3333, lambda=1 
++ Fold01.Rep10: alpha=0.4444, lambda=1 
+- Fold01.Rep10: alpha=0.4444, lambda=1 
++ Fold01.Rep10: alpha=0.5556, lambda=1 
+- Fold01.Rep10: alpha=0.5556, lambda=1 
++ Fold01.Rep10: alpha=0.6667, lambda=1 
+- Fold01.Rep10: alpha=0.6667, lambda=1 
++ Fold01.Rep10: alpha=0.7778, lambda=1 
+- Fold01.Rep10: alpha=0.7778, lambda=1 
++ Fold01.Rep10: alpha=0.8889, lambda=1 
+- Fold01.Rep10: alpha=0.8889, lambda=1 
++ Fold01.Rep10: alpha=1.0000, lambda=1 
+- Fold01.Rep10: alpha=1.0000, lambda=1 
++ Fold02.Rep10: alpha=0.0000, lambda=1 
+- Fold02.Rep10: alpha=0.0000, lambda=1 
++ Fold02.Rep10: alpha=0.1111, lambda=1 
+- Fold02.Rep10: alpha=0.1111, lambda=1 
++ Fold02.Rep10: alpha=0.2222, lambda=1 
+- Fold02.Rep10: alpha=0.2222, lambda=1 
++ Fold02.Rep10: alpha=0.3333, lambda=1 
+- Fold02.Rep10: alpha=0.3333, lambda=1 
++ Fold02.Rep10: alpha=0.4444, lambda=1 
+- Fold02.Rep10: alpha=0.4444, lambda=1 
++ Fold02.Rep10: alpha=0.5556, lambda=1 
+- Fold02.Rep10: alpha=0.5556, lambda=1 
++ Fold02.Rep10: alpha=0.6667, lambda=1 
+- Fold02.Rep10: alpha=0.6667, lambda=1 
++ Fold02.Rep10: alpha=0.7778, lambda=1 
+- Fold02.Rep10: alpha=0.7778, lambda=1 
++ Fold02.Rep10: alpha=0.8889, lambda=1 
+- Fold02.Rep10: alpha=0.8889, lambda=1 
++ Fold02.Rep10: alpha=1.0000, lambda=1 
+- Fold02.Rep10: alpha=1.0000, lambda=1 
++ Fold03.Rep10: alpha=0.0000, lambda=1 
+- Fold03.Rep10: alpha=0.0000, lambda=1 
++ Fold03.Rep10: alpha=0.1111, lambda=1 
+- Fold03.Rep10: alpha=0.1111, lambda=1 
++ Fold03.Rep10: alpha=0.2222, lambda=1 
+- Fold03.Rep10: alpha=0.2222, lambda=1 
++ Fold03.Rep10: alpha=0.3333, lambda=1 
+- Fold03.Rep10: alpha=0.3333, lambda=1 
++ Fold03.Rep10: alpha=0.4444, lambda=1 
+- Fold03.Rep10: alpha=0.4444, lambda=1 
++ Fold03.Rep10: alpha=0.5556, lambda=1 
+- Fold03.Rep10: alpha=0.5556, lambda=1 
++ Fold03.Rep10: alpha=0.6667, lambda=1 
+- Fold03.Rep10: alpha=0.6667, lambda=1 
++ Fold03.Rep10: alpha=0.7778, lambda=1 
+- Fold03.Rep10: alpha=0.7778, lambda=1 
++ Fold03.Rep10: alpha=0.8889, lambda=1 
+- Fold03.Rep10: alpha=0.8889, lambda=1 
++ Fold03.Rep10: alpha=1.0000, lambda=1 
+- Fold03.Rep10: alpha=1.0000, lambda=1 
++ Fold04.Rep10: alpha=0.0000, lambda=1 
+- Fold04.Rep10: alpha=0.0000, lambda=1 
++ Fold04.Rep10: alpha=0.1111, lambda=1 
+- Fold04.Rep10: alpha=0.1111, lambda=1 
++ Fold04.Rep10: alpha=0.2222, lambda=1 
+- Fold04.Rep10: alpha=0.2222, lambda=1 
++ Fold04.Rep10: alpha=0.3333, lambda=1 
+- Fold04.Rep10: alpha=0.3333, lambda=1 
++ Fold04.Rep10: alpha=0.4444, lambda=1 
+- Fold04.Rep10: alpha=0.4444, lambda=1 
++ Fold04.Rep10: alpha=0.5556, lambda=1 
+- Fold04.Rep10: alpha=0.5556, lambda=1 
++ Fold04.Rep10: alpha=0.6667, lambda=1 
+- Fold04.Rep10: alpha=0.6667, lambda=1 
++ Fold04.Rep10: alpha=0.7778, lambda=1 
+- Fold04.Rep10: alpha=0.7778, lambda=1 
++ Fold04.Rep10: alpha=0.8889, lambda=1 
+- Fold04.Rep10: alpha=0.8889, lambda=1 
++ Fold04.Rep10: alpha=1.0000, lambda=1 
+- Fold04.Rep10: alpha=1.0000, lambda=1 
++ Fold05.Rep10: alpha=0.0000, lambda=1 
+- Fold05.Rep10: alpha=0.0000, lambda=1 
++ Fold05.Rep10: alpha=0.1111, lambda=1 
+- Fold05.Rep10: alpha=0.1111, lambda=1 
++ Fold05.Rep10: alpha=0.2222, lambda=1 
+- Fold05.Rep10: alpha=0.2222, lambda=1 
++ Fold05.Rep10: alpha=0.3333, lambda=1 
+- Fold05.Rep10: alpha=0.3333, lambda=1 
++ Fold05.Rep10: alpha=0.4444, lambda=1 
+- Fold05.Rep10: alpha=0.4444, lambda=1 
++ Fold05.Rep10: alpha=0.5556, lambda=1 
+- Fold05.Rep10: alpha=0.5556, lambda=1 
++ Fold05.Rep10: alpha=0.6667, lambda=1 
+- Fold05.Rep10: alpha=0.6667, lambda=1 
++ Fold05.Rep10: alpha=0.7778, lambda=1 
+- Fold05.Rep10: alpha=0.7778, lambda=1 
++ Fold05.Rep10: alpha=0.8889, lambda=1 
+- Fold05.Rep10: alpha=0.8889, lambda=1 
++ Fold05.Rep10: alpha=1.0000, lambda=1 
+- Fold05.Rep10: alpha=1.0000, lambda=1 
++ Fold06.Rep10: alpha=0.0000, lambda=1 
+- Fold06.Rep10: alpha=0.0000, lambda=1 
++ Fold06.Rep10: alpha=0.1111, lambda=1 
+- Fold06.Rep10: alpha=0.1111, lambda=1 
++ Fold06.Rep10: alpha=0.2222, lambda=1 
+- Fold06.Rep10: alpha=0.2222, lambda=1 
++ Fold06.Rep10: alpha=0.3333, lambda=1 
+- Fold06.Rep10: alpha=0.3333, lambda=1 
++ Fold06.Rep10: alpha=0.4444, lambda=1 
+- Fold06.Rep10: alpha=0.4444, lambda=1 
++ Fold06.Rep10: alpha=0.5556, lambda=1 
+- Fold06.Rep10: alpha=0.5556, lambda=1 
++ Fold06.Rep10: alpha=0.6667, lambda=1 
+- Fold06.Rep10: alpha=0.6667, lambda=1 
++ Fold06.Rep10: alpha=0.7778, lambda=1 
+- Fold06.Rep10: alpha=0.7778, lambda=1 
++ Fold06.Rep10: alpha=0.8889, lambda=1 
+- Fold06.Rep10: alpha=0.8889, lambda=1 
++ Fold06.Rep10: alpha=1.0000, lambda=1 
+- Fold06.Rep10: alpha=1.0000, lambda=1 
++ Fold07.Rep10: alpha=0.0000, lambda=1 
+- Fold07.Rep10: alpha=0.0000, lambda=1 
++ Fold07.Rep10: alpha=0.1111, lambda=1 
+- Fold07.Rep10: alpha=0.1111, lambda=1 
++ Fold07.Rep10: alpha=0.2222, lambda=1 
+- Fold07.Rep10: alpha=0.2222, lambda=1 
++ Fold07.Rep10: alpha=0.3333, lambda=1 
+- Fold07.Rep10: alpha=0.3333, lambda=1 
++ Fold07.Rep10: alpha=0.4444, lambda=1 
+- Fold07.Rep10: alpha=0.4444, lambda=1 
++ Fold07.Rep10: alpha=0.5556, lambda=1 
+- Fold07.Rep10: alpha=0.5556, lambda=1 
++ Fold07.Rep10: alpha=0.6667, lambda=1 
+- Fold07.Rep10: alpha=0.6667, lambda=1 
++ Fold07.Rep10: alpha=0.7778, lambda=1 
+- Fold07.Rep10: alpha=0.7778, lambda=1 
++ Fold07.Rep10: alpha=0.8889, lambda=1 
+- Fold07.Rep10: alpha=0.8889, lambda=1 
++ Fold07.Rep10: alpha=1.0000, lambda=1 
+- Fold07.Rep10: alpha=1.0000, lambda=1 
++ Fold08.Rep10: alpha=0.0000, lambda=1 
+- Fold08.Rep10: alpha=0.0000, lambda=1 
++ Fold08.Rep10: alpha=0.1111, lambda=1 
+- Fold08.Rep10: alpha=0.1111, lambda=1 
++ Fold08.Rep10: alpha=0.2222, lambda=1 
+- Fold08.Rep10: alpha=0.2222, lambda=1 
++ Fold08.Rep10: alpha=0.3333, lambda=1 
+- Fold08.Rep10: alpha=0.3333, lambda=1 
++ Fold08.Rep10: alpha=0.4444, lambda=1 
+- Fold08.Rep10: alpha=0.4444, lambda=1 
++ Fold08.Rep10: alpha=0.5556, lambda=1 
+- Fold08.Rep10: alpha=0.5556, lambda=1 
++ Fold08.Rep10: alpha=0.6667, lambda=1 
+- Fold08.Rep10: alpha=0.6667, lambda=1 
++ Fold08.Rep10: alpha=0.7778, lambda=1 
+- Fold08.Rep10: alpha=0.7778, lambda=1 
++ Fold08.Rep10: alpha=0.8889, lambda=1 
+- Fold08.Rep10: alpha=0.8889, lambda=1 
++ Fold08.Rep10: alpha=1.0000, lambda=1 
+- Fold08.Rep10: alpha=1.0000, lambda=1 
++ Fold09.Rep10: alpha=0.0000, lambda=1 
+- Fold09.Rep10: alpha=0.0000, lambda=1 
++ Fold09.Rep10: alpha=0.1111, lambda=1 
+- Fold09.Rep10: alpha=0.1111, lambda=1 
++ Fold09.Rep10: alpha=0.2222, lambda=1 
+- Fold09.Rep10: alpha=0.2222, lambda=1 
++ Fold09.Rep10: alpha=0.3333, lambda=1 
+- Fold09.Rep10: alpha=0.3333, lambda=1 
++ Fold09.Rep10: alpha=0.4444, lambda=1 
+- Fold09.Rep10: alpha=0.4444, lambda=1 
++ Fold09.Rep10: alpha=0.5556, lambda=1 
+- Fold09.Rep10: alpha=0.5556, lambda=1 
++ Fold09.Rep10: alpha=0.6667, lambda=1 
+- Fold09.Rep10: alpha=0.6667, lambda=1 
++ Fold09.Rep10: alpha=0.7778, lambda=1 
+- Fold09.Rep10: alpha=0.7778, lambda=1 
++ Fold09.Rep10: alpha=0.8889, lambda=1 
+- Fold09.Rep10: alpha=0.8889, lambda=1 
++ Fold09.Rep10: alpha=1.0000, lambda=1 
+- Fold09.Rep10: alpha=1.0000, lambda=1 
++ Fold10.Rep10: alpha=0.0000, lambda=1 
+- Fold10.Rep10: alpha=0.0000, lambda=1 
++ Fold10.Rep10: alpha=0.1111, lambda=1 
+- Fold10.Rep10: alpha=0.1111, lambda=1 
++ Fold10.Rep10: alpha=0.2222, lambda=1 
+- Fold10.Rep10: alpha=0.2222, lambda=1 
++ Fold10.Rep10: alpha=0.3333, lambda=1 
+- Fold10.Rep10: alpha=0.3333, lambda=1 
++ Fold10.Rep10: alpha=0.4444, lambda=1 
+- Fold10.Rep10: alpha=0.4444, lambda=1 
++ Fold10.Rep10: alpha=0.5556, lambda=1 
+- Fold10.Rep10: alpha=0.5556, lambda=1 
++ Fold10.Rep10: alpha=0.6667, lambda=1 
+- Fold10.Rep10: alpha=0.6667, lambda=1 
++ Fold10.Rep10: alpha=0.7778, lambda=1 
+- Fold10.Rep10: alpha=0.7778, lambda=1 
++ Fold10.Rep10: alpha=0.8889, lambda=1 
+- Fold10.Rep10: alpha=0.8889, lambda=1 
++ Fold10.Rep10: alpha=1.0000, lambda=1 
+- Fold10.Rep10: alpha=1.0000, lambda=1 
+Aggregating results
+Selecting tuning parameters
+Fitting alpha = 0, lambda = 0.0536 on full training set
+"
+"0","```r
+# knn
+set.seed(888)
+knn1 <- train(Win_Bid ~ ., data = df_mod1,
+                 preProcess = c(\"center\", \"scale\"), metric = \"ROC\",
+                 method = \"knn\", trControl = ctrl)
+```"
+"1","+ Fold01.Rep01: k=5 
+- Fold01.Rep01: k=5 
++ Fold01.Rep01: k=7 
+- Fold01.Rep01: k=7 
++ Fold01.Rep01: k=9 
+- Fold01.Rep01: k=9 
++ Fold02.Rep01: k=5 
+- Fold02.Rep01: k=5 
++ Fold02.Rep01: k=7 
+- Fold02.Rep01: k=7 
++ Fold02.Rep01: k=9 
+- Fold02.Rep01: k=9 
++ Fold03.Rep01: k=5 
+- Fold03.Rep01: k=5 
++ Fold03.Rep01: k=7 
+- Fold03.Rep01: k=7 
++ Fold03.Rep01: k=9 
+- Fold03.Rep01: k=9 
++ Fold04.Rep01: k=5 
+- Fold04.Rep01: k=5 
++ Fold04.Rep01: k=7 
+- Fold04.Rep01: k=7 
++ Fold04.Rep01: k=9 
+- Fold04.Rep01: k=9 
++ Fold05.Rep01: k=5 
+- Fold05.Rep01: k=5 
++ Fold05.Rep01: k=7 
+- Fold05.Rep01: k=7 
++ Fold05.Rep01: k=9 
+- Fold05.Rep01: k=9 
++ Fold06.Rep01: k=5 
+- Fold06.Rep01: k=5 
++ Fold06.Rep01: k=7 
+- Fold06.Rep01: k=7 
++ Fold06.Rep01: k=9 
+- Fold06.Rep01: k=9 
++ Fold07.Rep01: k=5 
+- Fold07.Rep01: k=5 
++ Fold07.Rep01: k=7 
+- Fold07.Rep01: k=7 
++ Fold07.Rep01: k=9 
+- Fold07.Rep01: k=9 
++ Fold08.Rep01: k=5 
+- Fold08.Rep01: k=5 
++ Fold08.Rep01: k=7 
+- Fold08.Rep01: k=7 
++ Fold08.Rep01: k=9 
+- Fold08.Rep01: k=9 
++ Fold09.Rep01: k=5 
+- Fold09.Rep01: k=5 
++ Fold09.Rep01: k=7 
+- Fold09.Rep01: k=7 
++ Fold09.Rep01: k=9 
+- Fold09.Rep01: k=9 
++ Fold10.Rep01: k=5 
+- Fold10.Rep01: k=5 
++ Fold10.Rep01: k=7 
+- Fold10.Rep01: k=7 
++ Fold10.Rep01: k=9 
+- Fold10.Rep01: k=9 
++ Fold01.Rep02: k=5 
+- Fold01.Rep02: k=5 
++ Fold01.Rep02: k=7 
+- Fold01.Rep02: k=7 
++ Fold01.Rep02: k=9 
+- Fold01.Rep02: k=9 
++ Fold02.Rep02: k=5 
+- Fold02.Rep02: k=5 
++ Fold02.Rep02: k=7 
+- Fold02.Rep02: k=7 
++ Fold02.Rep02: k=9 
+- Fold02.Rep02: k=9 
++ Fold03.Rep02: k=5 
+- Fold03.Rep02: k=5 
++ Fold03.Rep02: k=7 
+- Fold03.Rep02: k=7 
++ Fold03.Rep02: k=9 
+- Fold03.Rep02: k=9 
++ Fold04.Rep02: k=5 
+- Fold04.Rep02: k=5 
++ Fold04.Rep02: k=7 
+- Fold04.Rep02: k=7 
++ Fold04.Rep02: k=9 
+- Fold04.Rep02: k=9 
++ Fold05.Rep02: k=5 
+- Fold05.Rep02: k=5 
++ Fold05.Rep02: k=7 
+- Fold05.Rep02: k=7 
++ Fold05.Rep02: k=9 
+- Fold05.Rep02: k=9 
++ Fold06.Rep02: k=5 
+- Fold06.Rep02: k=5 
++ Fold06.Rep02: k=7 
+- Fold06.Rep02: k=7 
++ Fold06.Rep02: k=9 
+- Fold06.Rep02: k=9 
++ Fold07.Rep02: k=5 
+- Fold07.Rep02: k=5 
++ Fold07.Rep02: k=7 
+- Fold07.Rep02: k=7 
++ Fold07.Rep02: k=9 
+- Fold07.Rep02: k=9 
++ Fold08.Rep02: k=5 
+- Fold08.Rep02: k=5 
++ Fold08.Rep02: k=7 
+- Fold08.Rep02: k=7 
++ Fold08.Rep02: k=9 
+- Fold08.Rep02: k=9 
++ Fold09.Rep02: k=5 
+- Fold09.Rep02: k=5 
++ Fold09.Rep02: k=7 
+- Fold09.Rep02: k=7 
++ Fold09.Rep02: k=9 
+- Fold09.Rep02: k=9 
++ Fold10.Rep02: k=5 
+- Fold10.Rep02: k=5 
++ Fold10.Rep02: k=7 
+- Fold10.Rep02: k=7 
++ Fold10.Rep02: k=9 
+- Fold10.Rep02: k=9 
++ Fold01.Rep03: k=5 
+- Fold01.Rep03: k=5 
++ Fold01.Rep03: k=7 
+- Fold01.Rep03: k=7 
++ Fold01.Rep03: k=9 
+- Fold01.Rep03: k=9 
++ Fold02.Rep03: k=5 
+- Fold02.Rep03: k=5 
++ Fold02.Rep03: k=7 
+- Fold02.Rep03: k=7 
++ Fold02.Rep03: k=9 
+- Fold02.Rep03: k=9 
++ Fold03.Rep03: k=5 
+- Fold03.Rep03: k=5 
++ Fold03.Rep03: k=7 
+- Fold03.Rep03: k=7 
++ Fold03.Rep03: k=9 
+- Fold03.Rep03: k=9 
++ Fold04.Rep03: k=5 
+- Fold04.Rep03: k=5 
++ Fold04.Rep03: k=7 
+- Fold04.Rep03: k=7 
++ Fold04.Rep03: k=9 
+- Fold04.Rep03: k=9 
++ Fold05.Rep03: k=5 
+- Fold05.Rep03: k=5 
++ Fold05.Rep03: k=7 
+- Fold05.Rep03: k=7 
++ Fold05.Rep03: k=9 
+- Fold05.Rep03: k=9 
++ Fold06.Rep03: k=5 
+- Fold06.Rep03: k=5 
++ Fold06.Rep03: k=7 
+- Fold06.Rep03: k=7 
++ Fold06.Rep03: k=9 
+- Fold06.Rep03: k=9 
++ Fold07.Rep03: k=5 
+- Fold07.Rep03: k=5 
++ Fold07.Rep03: k=7 
+- Fold07.Rep03: k=7 
++ Fold07.Rep03: k=9 
+- Fold07.Rep03: k=9 
++ Fold08.Rep03: k=5 
+- Fold08.Rep03: k=5 
++ Fold08.Rep03: k=7 
+- Fold08.Rep03: k=7 
++ Fold08.Rep03: k=9 
+- Fold08.Rep03: k=9 
++ Fold09.Rep03: k=5 
+- Fold09.Rep03: k=5 
++ Fold09.Rep03: k=7 
+- Fold09.Rep03: k=7 
++ Fold09.Rep03: k=9 
+- Fold09.Rep03: k=9 
++ Fold10.Rep03: k=5 
+- Fold10.Rep03: k=5 
++ Fold10.Rep03: k=7 
+- Fold10.Rep03: k=7 
++ Fold10.Rep03: k=9 
+- Fold10.Rep03: k=9 
++ Fold01.Rep04: k=5 
+- Fold01.Rep04: k=5 
++ Fold01.Rep04: k=7 
+- Fold01.Rep04: k=7 
++ Fold01.Rep04: k=9 
+- Fold01.Rep04: k=9 
++ Fold02.Rep04: k=5 
+- Fold02.Rep04: k=5 
++ Fold02.Rep04: k=7 
+- Fold02.Rep04: k=7 
++ Fold02.Rep04: k=9 
+- Fold02.Rep04: k=9 
++ Fold03.Rep04: k=5 
+- Fold03.Rep04: k=5 
++ Fold03.Rep04: k=7 
+- Fold03.Rep04: k=7 
++ Fold03.Rep04: k=9 
+- Fold03.Rep04: k=9 
++ Fold04.Rep04: k=5 
+- Fold04.Rep04: k=5 
++ Fold04.Rep04: k=7 
+- Fold04.Rep04: k=7 
++ Fold04.Rep04: k=9 
+- Fold04.Rep04: k=9 
++ Fold05.Rep04: k=5 
+- Fold05.Rep04: k=5 
++ Fold05.Rep04: k=7 
+- Fold05.Rep04: k=7 
++ Fold05.Rep04: k=9 
+- Fold05.Rep04: k=9 
++ Fold06.Rep04: k=5 
+- Fold06.Rep04: k=5 
++ Fold06.Rep04: k=7 
+- Fold06.Rep04: k=7 
++ Fold06.Rep04: k=9 
+- Fold06.Rep04: k=9 
++ Fold07.Rep04: k=5 
+- Fold07.Rep04: k=5 
++ Fold07.Rep04: k=7 
+- Fold07.Rep04: k=7 
++ Fold07.Rep04: k=9 
+- Fold07.Rep04: k=9 
++ Fold08.Rep04: k=5 
+- Fold08.Rep04: k=5 
++ Fold08.Rep04: k=7 
+- Fold08.Rep04: k=7 
++ Fold08.Rep04: k=9 
+- Fold08.Rep04: k=9 
++ Fold09.Rep04: k=5 
+- Fold09.Rep04: k=5 
++ Fold09.Rep04: k=7 
+- Fold09.Rep04: k=7 
++ Fold09.Rep04: k=9 
+- Fold09.Rep04: k=9 
++ Fold10.Rep04: k=5 
+- Fold10.Rep04: k=5 
++ Fold10.Rep04: k=7 
+- Fold10.Rep04: k=7 
++ Fold10.Rep04: k=9 
+- Fold10.Rep04: k=9 
++ Fold01.Rep05: k=5 
+- Fold01.Rep05: k=5 
++ Fold01.Rep05: k=7 
+- Fold01.Rep05: k=7 
++ Fold01.Rep05: k=9 
+- Fold01.Rep05: k=9 
++ Fold02.Rep05: k=5 
+- Fold02.Rep05: k=5 
++ Fold02.Rep05: k=7 
+- Fold02.Rep05: k=7 
++ Fold02.Rep05: k=9 
+- Fold02.Rep05: k=9 
++ Fold03.Rep05: k=5 
+- Fold03.Rep05: k=5 
++ Fold03.Rep05: k=7 
+- Fold03.Rep05: k=7 
++ Fold03.Rep05: k=9 
+- Fold03.Rep05: k=9 
++ Fold04.Rep05: k=5 
+- Fold04.Rep05: k=5 
++ Fold04.Rep05: k=7 
+- Fold04.Rep05: k=7 
++ Fold04.Rep05: k=9 
+- Fold04.Rep05: k=9 
++ Fold05.Rep05: k=5 
+- Fold05.Rep05: k=5 
++ Fold05.Rep05: k=7 
+- Fold05.Rep05: k=7 
++ Fold05.Rep05: k=9 
+- Fold05.Rep05: k=9 
++ Fold06.Rep05: k=5 
+- Fold06.Rep05: k=5 
++ Fold06.Rep05: k=7 
+- Fold06.Rep05: k=7 
++ Fold06.Rep05: k=9 
+- Fold06.Rep05: k=9 
++ Fold07.Rep05: k=5 
+- Fold07.Rep05: k=5 
++ Fold07.Rep05: k=7 
+- Fold07.Rep05: k=7 
++ Fold07.Rep05: k=9 
+- Fold07.Rep05: k=9 
++ Fold08.Rep05: k=5 
+- Fold08.Rep05: k=5 
++ Fold08.Rep05: k=7 
+- Fold08.Rep05: k=7 
++ Fold08.Rep05: k=9 
+- Fold08.Rep05: k=9 
++ Fold09.Rep05: k=5 
+- Fold09.Rep05: k=5 
++ Fold09.Rep05: k=7 
+- Fold09.Rep05: k=7 
++ Fold09.Rep05: k=9 
+- Fold09.Rep05: k=9 
++ Fold10.Rep05: k=5 
+- Fold10.Rep05: k=5 
++ Fold10.Rep05: k=7 
+- Fold10.Rep05: k=7 
++ Fold10.Rep05: k=9 
+- Fold10.Rep05: k=9 
++ Fold01.Rep06: k=5 
+- Fold01.Rep06: k=5 
++ Fold01.Rep06: k=7 
+- Fold01.Rep06: k=7 
++ Fold01.Rep06: k=9 
+- Fold01.Rep06: k=9 
++ Fold02.Rep06: k=5 
+- Fold02.Rep06: k=5 
++ Fold02.Rep06: k=7 
+- Fold02.Rep06: k=7 
++ Fold02.Rep06: k=9 
+- Fold02.Rep06: k=9 
++ Fold03.Rep06: k=5 
+- Fold03.Rep06: k=5 
++ Fold03.Rep06: k=7 
+- Fold03.Rep06: k=7 
++ Fold03.Rep06: k=9 
+- Fold03.Rep06: k=9 
++ Fold04.Rep06: k=5 
+- Fold04.Rep06: k=5 
++ Fold04.Rep06: k=7 
+- Fold04.Rep06: k=7 
++ Fold04.Rep06: k=9 
+- Fold04.Rep06: k=9 
++ Fold05.Rep06: k=5 
+- Fold05.Rep06: k=5 
++ Fold05.Rep06: k=7 
+- Fold05.Rep06: k=7 
++ Fold05.Rep06: k=9 
+- Fold05.Rep06: k=9 
++ Fold06.Rep06: k=5 
+- Fold06.Rep06: k=5 
++ Fold06.Rep06: k=7 
+- Fold06.Rep06: k=7 
++ Fold06.Rep06: k=9 
+- Fold06.Rep06: k=9 
++ Fold07.Rep06: k=5 
+- Fold07.Rep06: k=5 
++ Fold07.Rep06: k=7 
+- Fold07.Rep06: k=7 
++ Fold07.Rep06: k=9 
+- Fold07.Rep06: k=9 
++ Fold08.Rep06: k=5 
+- Fold08.Rep06: k=5 
++ Fold08.Rep06: k=7 
+- Fold08.Rep06: k=7 
++ Fold08.Rep06: k=9 
+- Fold08.Rep06: k=9 
++ Fold09.Rep06: k=5 
+- Fold09.Rep06: k=5 
++ Fold09.Rep06: k=7 
+- Fold09.Rep06: k=7 
++ Fold09.Rep06: k=9 
+- Fold09.Rep06: k=9 
++ Fold10.Rep06: k=5 
+- Fold10.Rep06: k=5 
++ Fold10.Rep06: k=7 
+- Fold10.Rep06: k=7 
++ Fold10.Rep06: k=9 
+- Fold10.Rep06: k=9 
++ Fold01.Rep07: k=5 
+- Fold01.Rep07: k=5 
++ Fold01.Rep07: k=7 
+- Fold01.Rep07: k=7 
++ Fold01.Rep07: k=9 
+- Fold01.Rep07: k=9 
++ Fold02.Rep07: k=5 
+- Fold02.Rep07: k=5 
++ Fold02.Rep07: k=7 
+- Fold02.Rep07: k=7 
++ Fold02.Rep07: k=9 
+- Fold02.Rep07: k=9 
++ Fold03.Rep07: k=5 
+- Fold03.Rep07: k=5 
++ Fold03.Rep07: k=7 
+- Fold03.Rep07: k=7 
++ Fold03.Rep07: k=9 
+- Fold03.Rep07: k=9 
++ Fold04.Rep07: k=5 
+- Fold04.Rep07: k=5 
++ Fold04.Rep07: k=7 
+- Fold04.Rep07: k=7 
++ Fold04.Rep07: k=9 
+- Fold04.Rep07: k=9 
++ Fold05.Rep07: k=5 
+- Fold05.Rep07: k=5 
++ Fold05.Rep07: k=7 
+- Fold05.Rep07: k=7 
++ Fold05.Rep07: k=9 
+- Fold05.Rep07: k=9 
++ Fold06.Rep07: k=5 
+- Fold06.Rep07: k=5 
++ Fold06.Rep07: k=7 
+- Fold06.Rep07: k=7 
++ Fold06.Rep07: k=9 
+- Fold06.Rep07: k=9 
++ Fold07.Rep07: k=5 
+- Fold07.Rep07: k=5 
++ Fold07.Rep07: k=7 
+- Fold07.Rep07: k=7 
++ Fold07.Rep07: k=9 
+- Fold07.Rep07: k=9 
++ Fold08.Rep07: k=5 
+- Fold08.Rep07: k=5 
++ Fold08.Rep07: k=7 
+- Fold08.Rep07: k=7 
++ Fold08.Rep07: k=9 
+- Fold08.Rep07: k=9 
++ Fold09.Rep07: k=5 
+- Fold09.Rep07: k=5 
++ Fold09.Rep07: k=7 
+- Fold09.Rep07: k=7 
++ Fold09.Rep07: k=9 
+- Fold09.Rep07: k=9 
++ Fold10.Rep07: k=5 
+- Fold10.Rep07: k=5 
++ Fold10.Rep07: k=7 
+- Fold10.Rep07: k=7 
++ Fold10.Rep07: k=9 
+- Fold10.Rep07: k=9 
++ Fold01.Rep08: k=5 
+- Fold01.Rep08: k=5 
++ Fold01.Rep08: k=7 
+- Fold01.Rep08: k=7 
++ Fold01.Rep08: k=9 
+- Fold01.Rep08: k=9 
++ Fold02.Rep08: k=5 
+- Fold02.Rep08: k=5 
++ Fold02.Rep08: k=7 
+- Fold02.Rep08: k=7 
++ Fold02.Rep08: k=9 
+- Fold02.Rep08: k=9 
++ Fold03.Rep08: k=5 
+- Fold03.Rep08: k=5 
++ Fold03.Rep08: k=7 
+- Fold03.Rep08: k=7 
++ Fold03.Rep08: k=9 
+- Fold03.Rep08: k=9 
++ Fold04.Rep08: k=5 
+- Fold04.Rep08: k=5 
++ Fold04.Rep08: k=7 
+- Fold04.Rep08: k=7 
++ Fold04.Rep08: k=9 
+- Fold04.Rep08: k=9 
++ Fold05.Rep08: k=5 
+- Fold05.Rep08: k=5 
++ Fold05.Rep08: k=7 
+- Fold05.Rep08: k=7 
++ Fold05.Rep08: k=9 
+- Fold05.Rep08: k=9 
++ Fold06.Rep08: k=5 
+- Fold06.Rep08: k=5 
++ Fold06.Rep08: k=7 
+- Fold06.Rep08: k=7 
++ Fold06.Rep08: k=9 
+- Fold06.Rep08: k=9 
++ Fold07.Rep08: k=5 
+- Fold07.Rep08: k=5 
++ Fold07.Rep08: k=7 
+- Fold07.Rep08: k=7 
++ Fold07.Rep08: k=9 
+- Fold07.Rep08: k=9 
++ Fold08.Rep08: k=5 
+- Fold08.Rep08: k=5 
++ Fold08.Rep08: k=7 
+- Fold08.Rep08: k=7 
++ Fold08.Rep08: k=9 
+- Fold08.Rep08: k=9 
++ Fold09.Rep08: k=5 
+- Fold09.Rep08: k=5 
++ Fold09.Rep08: k=7 
+- Fold09.Rep08: k=7 
++ Fold09.Rep08: k=9 
+- Fold09.Rep08: k=9 
++ Fold10.Rep08: k=5 
+- Fold10.Rep08: k=5 
++ Fold10.Rep08: k=7 
+- Fold10.Rep08: k=7 
++ Fold10.Rep08: k=9 
+- Fold10.Rep08: k=9 
++ Fold01.Rep09: k=5 
+- Fold01.Rep09: k=5 
++ Fold01.Rep09: k=7 
+- Fold01.Rep09: k=7 
++ Fold01.Rep09: k=9 
+- Fold01.Rep09: k=9 
++ Fold02.Rep09: k=5 
+- Fold02.Rep09: k=5 
++ Fold02.Rep09: k=7 
+- Fold02.Rep09: k=7 
++ Fold02.Rep09: k=9 
+- Fold02.Rep09: k=9 
++ Fold03.Rep09: k=5 
+- Fold03.Rep09: k=5 
++ Fold03.Rep09: k=7 
+- Fold03.Rep09: k=7 
++ Fold03.Rep09: k=9 
+- Fold03.Rep09: k=9 
++ Fold04.Rep09: k=5 
+- Fold04.Rep09: k=5 
++ Fold04.Rep09: k=7 
+- Fold04.Rep09: k=7 
++ Fold04.Rep09: k=9 
+- Fold04.Rep09: k=9 
++ Fold05.Rep09: k=5 
+- Fold05.Rep09: k=5 
++ Fold05.Rep09: k=7 
+- Fold05.Rep09: k=7 
++ Fold05.Rep09: k=9 
+- Fold05.Rep09: k=9 
++ Fold06.Rep09: k=5 
+- Fold06.Rep09: k=5 
++ Fold06.Rep09: k=7 
+- Fold06.Rep09: k=7 
++ Fold06.Rep09: k=9 
+- Fold06.Rep09: k=9 
++ Fold07.Rep09: k=5 
+- Fold07.Rep09: k=5 
++ Fold07.Rep09: k=7 
+- Fold07.Rep09: k=7 
++ Fold07.Rep09: k=9 
+- Fold07.Rep09: k=9 
++ Fold08.Rep09: k=5 
+- Fold08.Rep09: k=5 
++ Fold08.Rep09: k=7 
+- Fold08.Rep09: k=7 
++ Fold08.Rep09: k=9 
+- Fold08.Rep09: k=9 
++ Fold09.Rep09: k=5 
+- Fold09.Rep09: k=5 
++ Fold09.Rep09: k=7 
+- Fold09.Rep09: k=7 
++ Fold09.Rep09: k=9 
+- Fold09.Rep09: k=9 
++ Fold10.Rep09: k=5 
+- Fold10.Rep09: k=5 
++ Fold10.Rep09: k=7 
+- Fold10.Rep09: k=7 
++ Fold10.Rep09: k=9 
+- Fold10.Rep09: k=9 
++ Fold01.Rep10: k=5 
+- Fold01.Rep10: k=5 
++ Fold01.Rep10: k=7 
+- Fold01.Rep10: k=7 
++ Fold01.Rep10: k=9 
+- Fold01.Rep10: k=9 
++ Fold02.Rep10: k=5 
+- Fold02.Rep10: k=5 
++ Fold02.Rep10: k=7 
+- Fold02.Rep10: k=7 
++ Fold02.Rep10: k=9 
+- Fold02.Rep10: k=9 
++ Fold03.Rep10: k=5 
+- Fold03.Rep10: k=5 
++ Fold03.Rep10: k=7 
+- Fold03.Rep10: k=7 
++ Fold03.Rep10: k=9 
+- Fold03.Rep10: k=9 
++ Fold04.Rep10: k=5 
+- Fold04.Rep10: k=5 
++ Fold04.Rep10: k=7 
+- Fold04.Rep10: k=7 
++ Fold04.Rep10: k=9 
+- Fold04.Rep10: k=9 
++ Fold05.Rep10: k=5 
+- Fold05.Rep10: k=5 
++ Fold05.Rep10: k=7 
+- Fold05.Rep10: k=7 
++ Fold05.Rep10: k=9 
+- Fold05.Rep10: k=9 
++ Fold06.Rep10: k=5 
+- Fold06.Rep10: k=5 
++ Fold06.Rep10: k=7 
+- Fold06.Rep10: k=7 
++ Fold06.Rep10: k=9 
+- Fold06.Rep10: k=9 
++ Fold07.Rep10: k=5 
+- Fold07.Rep10: k=5 
++ Fold07.Rep10: k=7 
+- Fold07.Rep10: k=7 
++ Fold07.Rep10: k=9 
+- Fold07.Rep10: k=9 
++ Fold08.Rep10: k=5 
+- Fold08.Rep10: k=5 
++ Fold08.Rep10: k=7 
+- Fold08.Rep10: k=7 
++ Fold08.Rep10: k=9 
+- Fold08.Rep10: k=9 
++ Fold09.Rep10: k=5 
+- Fold09.Rep10: k=5 
++ Fold09.Rep10: k=7 
+- Fold09.Rep10: k=7 
++ Fold09.Rep10: k=9 
+- Fold09.Rep10: k=9 
++ Fold10.Rep10: k=5 
+- Fold10.Rep10: k=5 
++ Fold10.Rep10: k=7 
+- Fold10.Rep10: k=7 
++ Fold10.Rep10: k=9 
+- Fold10.Rep10: k=9 
+Aggregating results
+Selecting tuning parameters
+Fitting k = 7 on full training set
+"

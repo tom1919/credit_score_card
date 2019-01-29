@@ -1,0 +1,17 @@
+"0","```r
+# create a new dataset of the subjects we'd like to compare
+newdata <- data.frame(Target_Profit = c(100, 50),
+                      Competitor_Bids_Total = c(0, 0),
+                      Competitor_Bids_A_J = c(0, 0),
+                      Region_Group_ = c(1, 0),
+                      Sector_Group_ = c(1, 0),
+                      Estimated_Completion_Years = c(0, 0),
+                      Bidding_Costs = c(0,0)) %>%
+  mutate_at(c(\"Region_Group_\", \"Sector_Group_\"), funs(as.factor(.)))
+# the diff() function is the second value minus the first
+# so the following statement is comparing two observations
+exp(diff(predict(glm3, newdata = newdata, type = \"link\")))
+```"
+"1","     2 
+1.0111 
+"

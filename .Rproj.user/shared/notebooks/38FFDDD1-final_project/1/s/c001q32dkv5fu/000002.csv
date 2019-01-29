@@ -1,0 +1,54 @@
+"0","```r
+df_mod4 <- df_mod3 %>%
+  mutate(Sector_x_Region = 
+           (as.numeric(Sector_Group_)-1) * (as.numeric(Region_Group_)-1))
+glm4 <- glm(Win_Bid ~ ., data=df_mod4, family = binomial(link = \"logit\"))
+summary(glm4)
+```"
+"1","
+Call:
+glm(formula = Win_Bid ~ ., family = binomial(link = \"logit\"), 
+    data = df_mod4)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-1.9214  -0.2468  -0.0726  -0.0128   3.3661  
+
+Coefficients:
+                            Estimate Std. Error z value Pr(>|z|)    
+(Intercept)                 4.809036   2.749501   1.749   0.0803 .  
+Target_Profit              -0.138426   0.029426  -4.704 2.55e-06 ***
+Competitor_Bids_Total      -0.680709   0.087488  -7.781 7.22e-15 ***
+Competitor_Bids_A_J        -0.949593   0.172269  -5.512 3.54e-08 ***
+Region_Group_1              2.316642   2.544839   0.910   0.3626    
+Sector_Group_1              3.259135   2.599665   1.254   0.2100    
+Estimated_Completion_Years  0.166799   0.075404   2.212   0.0270 *  
+Bidding_Costs               0.001320   0.001183   1.116   0.2643    
+Sector_x_Region             0.702466   2.613103   0.269   0.7881    
+---
+Signif. codes:  0 â€˜***â€™ 0.001 â€˜**â€™ 0.01 â€˜*â€™ 0.05 â€˜.â€™ 0.1 â€˜ â€™ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 477.88  on 542  degrees of freedom
+Residual deviance: 193.90  on 534  degrees of freedom
+AIC: 211.9
+
+Number of Fisher Scoring iterations: 8
+"
+"0","```r
+# interaction is not signifigant
+anova(glm4 , glm3, test = \"LRT\") 
+```"
+"1","Analysis of Deviance Table
+
+Model 1: Win_Bid ~ Target_Profit + Competitor_Bids_Total + Competitor_Bids_A_J + 
+    Region_Group_ + Sector_Group_ + Estimated_Completion_Years + 
+    Bidding_Costs + Sector_x_Region
+Model 2: Win_Bid ~ Target_Profit + Competitor_Bids_Total + Competitor_Bids_A_J + 
+    Region_Group_ + Sector_Group_ + Estimated_Completion_Years + 
+    Bidding_Costs
+  Resid. Df Resid. Dev Df  Deviance Pr(>Chi)
+1       534     193.90                      
+2       535     193.97 -1 -0.072387   0.7879
+"

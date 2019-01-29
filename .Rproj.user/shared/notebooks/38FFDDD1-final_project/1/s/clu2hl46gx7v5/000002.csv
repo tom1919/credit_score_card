@@ -1,0 +1,9 @@
+"0","```r
+# All VIF less than 3
+mod_vif <- lm(Win_Bid ~ ., data=df_mod3)
+```"
+"1","using type = \"numeric\" with a factor response will be ignoredã¤¼ã¸±-ã¤¼ã¸² not meaningful for factors
+"
+"0","```r
+ols_vif_tol(mod_vif) %>% arrange(VIF)
+```"

@@ -1,0 +1,63 @@
+---
+title: "baseline_model"
+output: html_document
+---
+
+```{r}
+# helper functions
+source("./helper_functions.R")
+# load / install packages
+LoadPackages(c("dplyr", 'haven', "caret", "stringr", "tibble"))
+
+# read in data
+accepts <- read_sas("../data/orginal/accepted_customers.sas7bdat") %>%
+  select(-`_freq_`)
+accepts[accepts==""] <- "MISSING"
+accepts[accepts$PROF=="MISSING",]$PROF <- "Others"
+accepts$GB <- as.factor(accepts$GB)
+```
+
+```{r}
+# Create train, evaluation and test sets
+set.seed(888)
+split_index_train <- createDataPartition(accepts$GB, p = .7, list = FALSE)
+train <- accepts[split_index_train,]
+test <- accepts[-split_index_train,]
+```
+
+
+
+```{r}
+ctrl <- trainControl(method = "cv", number = 5,
+                     verboseIter = TRUE)
+```
+
+```{r}
+# RandomForest
+set.seed(888)
+# tuning grid
+rf_grid <- expand.grid(mtry = c(2,5,9,12,15, 18,21, 23), 
+                       min.node.size = c( 3, 5, 9, 15, 18, 23, 28, 32, 37,45),
+                       splitrule = c( 'extratrees'))
+
+# train random forest model using cv
+rf <- train(GB ~. , data = train,
+            tuneGrid = rf_grid, num.tree = 1000, 
+            importance = 'permutation', metric = "Accuracy", method = "ranger", 
+            trControl = ctrl)
+
+# best ROC from cv
+rf$results %>% arrange(desc(Accuracy)) # mtry=5, min.node=32, roc = .66
+
+# varible importance
+varImp(rf)
+
+# saveRDS(rf, "../data/rf_baseline.rds")
+```
+
+```{r}
+confusionMatrix(data = predict(rf, test), reference = test$GB)
+```
+
+
+

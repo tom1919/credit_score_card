@@ -1,0 +1,39 @@
+"0","```r
+mod2_resample <- data.frame(\"glm\" = glm2$resample$ROC, 
+                            \"rf\" = rf2$resample$ROC, 
+                            \"glmnet\" = glmnet2$resample$ROC,
+                            \"knn\" = knn2$resample$ROC)
+glm_re2 <- mod2_resample %>% 
+  select(glm) %>% 
+  mutate(Model = \"Log Reg\") %>%
+  rename(\"C-Stat\" = glm)
+rf_re2 <- mod2_resample %>% 
+  select(rf) %>% 
+  mutate(Model = \"RandomForest\") %>%
+  rename(\"C-Stat\" = rf)
+glmnet_re2 <- mod2_resample %>% 
+  select(glmnet) %>% 
+  mutate(Model = \"Elastic Net\") %>%
+  rename(\"C-Stat\" = glmnet)
+knn_re2 <- mod2_resample %>% 
+  select(knn) %>% 
+  mutate(Model = \"KNN\") %>%
+  rename(\"C-Stat\" = knn)
+mod2_long <- glm_re2 %>% 
+  bind_rows(rf_re2) %>% 
+  bind_rows(glmnet_re2) %>% 
+  bind_rows(knn_re2) %>%
+  mutate(\"Model\", funs(as.factor(.)))
+ggplot(data=  mod2_long, aes(y=`C-Stat` , x=Model, fill=Model ) ) +
+  geom_boxplot() +
+  labs(title = \"Cross Validated Model 2 Comparison\",
+       x = \"Model Type\",
+       y = \"C - Statistic\") +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = .5, size = 26, face = \"bold\"),
+        axis.text=element_text(size=19),
+        axis.title=element_text(size=21),
+        legend.text=element_text(size=13),
+        legend.title=element_text(size=13)) +
+  guides(fill=FALSE)
+```"

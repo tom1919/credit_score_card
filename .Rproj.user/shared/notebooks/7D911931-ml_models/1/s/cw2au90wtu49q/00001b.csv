@@ -1,0 +1,5 @@
+"0","# saveRDS(enet, ""../data/enet.rds"")
+enet <- readRDS(enet, ""../data/enet.rds"")
+"
+"2","Error in readRDS(enet, ""../data/enet.rds"") : bad 'file' argument
+"

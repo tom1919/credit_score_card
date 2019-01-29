@@ -1,0 +1,39 @@
+"0","```r
+med_c2 <- mod2_long %>% 
+  group_by(Model) %>% 
+  summarize(med = median(`C-Stat`)) %>%
+  arrange(med)
+glm2_2 <- glm(Win_Bid ~ ., data=df_mod2, family = binomial(link = \"logit\"))
+summary(glm2)
+```"
+"1","
+Call:
+NULL
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-2.1594  -0.4785  -0.2925  -0.1188   2.7647  
+
+Coefficients:
+                             Estimate Std. Error z value Pr(>|z|)    
+(Intercept)                 -8.140263   0.836257  -9.734  < 2e-16 ***
+Reg_Grp1                     2.011108   0.471884   4.262 2.03e-05 ***
+Sec_Grp1                     1.812902   0.421838   4.298 1.73e-05 ***
+Estimated_Cost__Millions_    0.015777   0.002539   6.213 5.19e-10 ***
+Estimated_Years_to_Complete  0.064899   0.065267   0.994     0.32    
+---
+Signif. codes:  0 â€˜***â€™ 0.001 â€˜**â€™ 0.01 â€˜*â€™ 0.05 â€˜.â€™ 0.1 â€˜ â€™ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 477.88  on 542  degrees of freedom
+Residual deviance: 318.90  on 538  degrees of freedom
+AIC: 328.9
+
+Number of Fisher Scoring iterations: 6
+"
+"0","```r
+exp(1.812902)
+```"
+"1","[1] 6.128206
+"

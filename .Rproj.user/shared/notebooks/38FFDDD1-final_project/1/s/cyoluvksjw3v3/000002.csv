@@ -1,0 +1,162 @@
+"0","```r
+# model 1
+set.seed(44)
+train_pred1 <- df_mod1 %>% select(-Win_Bid)
+permute_train1 <- apply(train_pred1, 2, function(x) sample(x))
+sim_x1 <- rbind(train_pred1, permute_train1)
+group_vals1 <- c(\"train\", \"random\")
+group_y1 <- factor(rep(group_vals1, each = nrow(train_pred1)))
+sim_x1$train <- group_y1
+sim_x1 <- sim_x1 %>%
+  dplyr::mutate(train = ifelse(train == \"train\", \"pos\", \"neg\")) %>%
+  dplyr::mutate_at(\"train\", as.factor)
+sim_x1$train <- relevel(sim_x1$train, \"pos\")
+ctrl2 <- trainControl(method = \"repeatedcv\", number = 10, repeats = 1,
+                     classProbs=TRUE,
+                     verboseIter = TRUE)
+rf_sim1 <- train(train ~ ., data=sim_x1, tuneGrid = grid_rf1,  
+             method = \"ranger\", metric = \"Accuracy\", 
+             trControl=ctrl2)
+```"
+"1","+ Fold01.Rep1: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold01.Rep1: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold01.Rep1: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold01.Rep1: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold02.Rep1: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold02.Rep1: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold02.Rep1: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold02.Rep1: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold03.Rep1: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold03.Rep1: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold03.Rep1: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold03.Rep1: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold04.Rep1: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold04.Rep1: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold04.Rep1: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold04.Rep1: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold05.Rep1: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold05.Rep1: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold05.Rep1: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold05.Rep1: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold06.Rep1: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold06.Rep1: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold06.Rep1: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold06.Rep1: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold07.Rep1: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold07.Rep1: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold07.Rep1: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold07.Rep1: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold08.Rep1: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold08.Rep1: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold08.Rep1: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold08.Rep1: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold09.Rep1: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold09.Rep1: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold09.Rep1: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold09.Rep1: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold10.Rep1: splitrule=extratrees, mtry=1, min.node.size=1 
+- Fold10.Rep1: splitrule=extratrees, mtry=1, min.node.size=1 
++ Fold10.Rep1: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold10.Rep1: splitrule=extratrees, mtry=2, min.node.size=1 
+Aggregating results
+Selecting tuning parameters
+Fitting mtry = 2, splitrule = extratrees, min.node.size = 1 on full training set
+"
+"0","```r
+# Accuracy
+rf_sim1$results$Accuracy
+```"
+"1","[1] 0.4852695 0.5073649
+"
+"0","```r
+# model 2
+set.seed(44)
+train_pred2 <- df_mod2 %>% select(-Win_Bid)
+permute_train2 <- apply(train_pred2, 2, function(x) sample(x))
+sim_x2 <- rbind(train_pred2, permute_train2)
+group_vals2 <- c(\"train\", \"random\")
+group_y2 <- factor(rep(group_vals2, each = nrow(train_pred2)))
+sim_x2$train <- group_y2
+sim_x2 <- sim_x2 %>%
+  dplyr::mutate(train = ifelse(train == \"train\", \"pos\", \"neg\")) %>%
+  dplyr::mutate_at(\"train\", as.factor)
+sim_x2$train <- relevel(sim_x2$train, \"pos\")
+rf_sim2 <- train(train ~ ., data=sim_x2, tuneGrid = grid_rf2,  
+             method = \"ranger\", metric = \"Accuracy\", 
+             trControl=ctrl2)
+```"
+"1","+ Fold01.Rep1: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold01.Rep1: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold01.Rep1: splitrule=extratrees, mtry=3, min.node.size=1 
+- Fold01.Rep1: splitrule=extratrees, mtry=3, min.node.size=1 
++ Fold01.Rep1: splitrule=extratrees, mtry=4, min.node.size=1 
+- Fold01.Rep1: splitrule=extratrees, mtry=4, min.node.size=1 
++ Fold02.Rep1: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold02.Rep1: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold02.Rep1: splitrule=extratrees, mtry=3, min.node.size=1 
+- Fold02.Rep1: splitrule=extratrees, mtry=3, min.node.size=1 
++ Fold02.Rep1: splitrule=extratrees, mtry=4, min.node.size=1 
+- Fold02.Rep1: splitrule=extratrees, mtry=4, min.node.size=1 
++ Fold03.Rep1: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold03.Rep1: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold03.Rep1: splitrule=extratrees, mtry=3, min.node.size=1 
+- Fold03.Rep1: splitrule=extratrees, mtry=3, min.node.size=1 
++ Fold03.Rep1: splitrule=extratrees, mtry=4, min.node.size=1 
+- Fold03.Rep1: splitrule=extratrees, mtry=4, min.node.size=1 
++ Fold04.Rep1: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold04.Rep1: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold04.Rep1: splitrule=extratrees, mtry=3, min.node.size=1 
+- Fold04.Rep1: splitrule=extratrees, mtry=3, min.node.size=1 
++ Fold04.Rep1: splitrule=extratrees, mtry=4, min.node.size=1 
+- Fold04.Rep1: splitrule=extratrees, mtry=4, min.node.size=1 
++ Fold05.Rep1: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold05.Rep1: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold05.Rep1: splitrule=extratrees, mtry=3, min.node.size=1 
+- Fold05.Rep1: splitrule=extratrees, mtry=3, min.node.size=1 
++ Fold05.Rep1: splitrule=extratrees, mtry=4, min.node.size=1 
+- Fold05.Rep1: splitrule=extratrees, mtry=4, min.node.size=1 
++ Fold06.Rep1: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold06.Rep1: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold06.Rep1: splitrule=extratrees, mtry=3, min.node.size=1 
+- Fold06.Rep1: splitrule=extratrees, mtry=3, min.node.size=1 
++ Fold06.Rep1: splitrule=extratrees, mtry=4, min.node.size=1 
+- Fold06.Rep1: splitrule=extratrees, mtry=4, min.node.size=1 
++ Fold07.Rep1: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold07.Rep1: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold07.Rep1: splitrule=extratrees, mtry=3, min.node.size=1 
+- Fold07.Rep1: splitrule=extratrees, mtry=3, min.node.size=1 
++ Fold07.Rep1: splitrule=extratrees, mtry=4, min.node.size=1 
+- Fold07.Rep1: splitrule=extratrees, mtry=4, min.node.size=1 
++ Fold08.Rep1: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold08.Rep1: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold08.Rep1: splitrule=extratrees, mtry=3, min.node.size=1 
+- Fold08.Rep1: splitrule=extratrees, mtry=3, min.node.size=1 
++ Fold08.Rep1: splitrule=extratrees, mtry=4, min.node.size=1 
+- Fold08.Rep1: splitrule=extratrees, mtry=4, min.node.size=1 
++ Fold09.Rep1: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold09.Rep1: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold09.Rep1: splitrule=extratrees, mtry=3, min.node.size=1 
+- Fold09.Rep1: splitrule=extratrees, mtry=3, min.node.size=1 
++ Fold09.Rep1: splitrule=extratrees, mtry=4, min.node.size=1 
+- Fold09.Rep1: splitrule=extratrees, mtry=4, min.node.size=1 
++ Fold10.Rep1: splitrule=extratrees, mtry=2, min.node.size=1 
+- Fold10.Rep1: splitrule=extratrees, mtry=2, min.node.size=1 
++ Fold10.Rep1: splitrule=extratrees, mtry=3, min.node.size=1 
+- Fold10.Rep1: splitrule=extratrees, mtry=3, min.node.size=1 
++ Fold10.Rep1: splitrule=extratrees, mtry=4, min.node.size=1 
+- Fold10.Rep1: splitrule=extratrees, mtry=4, min.node.size=1 
+Aggregating results
+Selecting tuning parameters
+Fitting mtry = 4, splitrule = extratrees, min.node.size = 1 on full training set
+"
+"0","```r
+# Accuracy
+rf_sim2$results$Accuracy
+```"
+"1","[1] 0.4908751 0.4964646 0.4973404
+"
+"0","```r
+# accuracy for both is less than 50%. This suggests that the predictor space is
+# well saturated and as long as any new observations that are in the invdivual
+# ranges of the predictors will also be in the joint range of them
+```"

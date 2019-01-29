@@ -1,0 +1,27 @@
+"0","```r
+df <- df_cast
+# max 8 predictors based on rule of thumb
+table(df$Win_Bid)
+```"
+"1","
+  0   1 
+456  87 
+"
+"0","```r
+# percentage of times bid is won in each region
+# make a bar chart of this
+# make a new binary variable Yes = Northeast or Southeast or West and no otherwise
+reg_p <- df %>% 
+  group_by(Region_of_Country) %>% 
+  summarise(n = n(), win = sum(Win_Bid)) %>%
+  mutate(percent_win = win/n) %>%
+  arrange(percent_win)
+# percentage of times bid is won in each sector
+# make a new binary variable Yes = 5 or 6 or 4 and no other wise
+# make a bar chart of this
+sec_p <- df %>% 
+  group_by(Sector) %>% 
+  summarise(n = n(), win = sum(Win_Bid)) %>%
+  mutate(percent_win = win/n) %>%
+  arrange(percent_win)  
+```"

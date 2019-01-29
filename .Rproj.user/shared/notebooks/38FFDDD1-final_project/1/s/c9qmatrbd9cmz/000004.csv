@@ -1,0 +1,25 @@
+"0","```r
+sec_lab <- data.frame(\"sec_grp\" = c(0,0,0, rep(1,7)))
+sec_p <- sec_p %>% bind_cols(sec_lab) %>%
+  mutate_at(\"sec_grp\", funs(as.factor(.))) %>%
+  mutate_at(\"Sector\", funs(as.factor(.)))
+sec_p <- sec_p %>% arrange(Sector)
+c_sec <- data.frame(c_sec = c(\"Transportation\", \"Lodging\", \"Multi-family residential\",
+                              \"Amusement/recreation\", \"Highway/street\", \"Education\", 
+                              \"Healthcare\", \"Manufacturing\", \"Power\", \"Military\"))
+sec_p <- bind_cols(sec_p, c_sec)
+ggplot(sec_p, aes(x = c_sec, y = percent_win, fill = sec_grp)) + 
+  geom_bar(stat = 'identity', position = \"identity\") +
+  labs(title = \"Proportion of Winning Bids By Sector\",
+       x = \"Construction Sector\",
+       y = \"Proportion of Bids Won\",
+       legend.title = \"F\") +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = .5, size = 22, face = \"bold\"),
+        axis.text=element_text(size=14),
+        axis.title=element_text(size=18),
+        legend.text=element_text(size=13),
+        legend.title=element_text(size=13)) +
+  labs(fill = \"Sector Group\") +
+  coord_flip()
+```"

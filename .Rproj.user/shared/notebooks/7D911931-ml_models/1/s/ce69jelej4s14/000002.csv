@@ -1,4 +1,5 @@
-"0","confusionMatrix(data = predict(enet, test), reference = test$GB)
+"0","# elastic net model
+confusionMatrix(data = predict(enet, test), reference = test$GB)
 "
 "1","Confusion Matrix and Statistics
 

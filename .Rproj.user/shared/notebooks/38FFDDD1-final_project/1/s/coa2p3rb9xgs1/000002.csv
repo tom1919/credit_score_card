@@ -1,0 +1,6 @@
+"0","```r
+data <- paste0('C:/Users/tommy/Google Drive/Coursework/',
+               'logistic_regression/data/')
+raw <- paste0('C:/Users/tommy/Google Drive/Coursework/',
+               'logistic_regression/data/raw/')
+```"
