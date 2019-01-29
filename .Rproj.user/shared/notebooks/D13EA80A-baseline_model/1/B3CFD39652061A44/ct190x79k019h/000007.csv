@@ -1,0 +1,5 @@
+"0","# Create train, evaluation and test sets"
+"0","set.seed(888)"
+"0","split_index_train <- createDataPartition(accepts$GB, p = .7, list = FALSE)"
+"0","train <- accepts[split_index_train,]"
+"0","test <- accepts[-split_index_train,]"

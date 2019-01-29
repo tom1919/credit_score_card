@@ -1,0 +1,2 @@
+"0","imp_feat <- boruta_df %>% filter(decision == ""Confirmed"") %>% pull(col)"
+"0","train2 <- train %>% select(c(""GB"", imp_feat))"

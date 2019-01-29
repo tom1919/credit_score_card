@@ -1,0 +1,5 @@
+"0","# elastic net model
+confusionMatrix(data = predict(enet, test), reference = test$GB)
+"
+"2","Error in predict(enet, test) : object 'enet' not found
+"
