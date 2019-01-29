@@ -11,8 +11,7 @@ Load custom functions, libraries and data
 # helper functions
 source("./helper_functions.R")
 # load / install packages
-LoadPackages(c("dplyr", 'haven', 'missForest', "stringr",
-               "Boruta", "tibble", 'caret', "onehot"))
+LoadPackages(c("dplyr", 'haven', 'missForest', "stringr", "tibble"))
 
 # read in data
 accepts <- read_sas("../data/orginal/accepted_customers.sas7bdat")
