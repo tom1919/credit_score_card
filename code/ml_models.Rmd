@@ -75,6 +75,7 @@ boruta_df <- attStats(final_boruta) %>%
 boruta_df %>% filter(decision == "Confirmed")
 
 # saveRDS(boruta_train, "../boruta_train.rds")
+# boruta_train <- readRDS("../boruta_train.rds")
 ```
 
 Select the variables indicated as important by Boruta algorithm
@@ -147,7 +148,7 @@ rf <- train(GB ~. , data = train2,
 rf$results %>% arrange(desc(ROC)) # mtry=12, min.node=45, roc = .7492746
 
 # varible importance
-varImp(rf3)
+varImp(rf)
 
 saveRDS(rf, "../data/rf.rds")
 ```

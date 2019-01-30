@@ -1,0 +1,11 @@
+"0","for(i in 1:length(result_all_sig_factor)) {"
+"0","  train <- smbinning.gen(df = train, ivout = result_all_sig_factor[[i]], "
+"0","                         chrname = paste(result_all_sig_factor[[i]]$x, "
+"0","                                         ""_bin"", sep = """"))"
+"0","}"
+"2","‘<=’ not meaningful for factors"
+"2","‘>’ not meaningful for factors"
+"2","Error in smbinning.gen(df = train, ivout = result_all_sig_factor[[i]],  : 
+  Number of bins in dataset different from original result.
+  Likely due to splitting population in training/testing sample.
+"

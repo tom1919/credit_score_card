@@ -1,7 +1,0 @@
-"0","missing_flags <- all %>% "
-"0","  mutate(TMADD_unk = ifelse(is.na(TMADD), 1, 0),"
-"0","         TMJOB1_unk = ifelse(is.na(TMJOB1), 1, 0),"
-"0","         RESID_unk = ifelse(is.na(RESID), 1, 0)) %>%"
-"0","  select(TMADD_unk, TMJOB1_unk, RESID_unk)"
-"0","# not creating flag for product, children and pers_h because there was very"
-"0","#  little missing"

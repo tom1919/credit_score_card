@@ -1,8 +1,0 @@
-"0","enconder <- onehot(all2, max_levels = 15)"
-"0","all3 <- predict(enconder, all2) %>% "
-"0","  as.data.frame() %>%"
-"0","  select(-`GB=0`)"
-"0","names(all3) <- make.names(names(all3))"
-"0","names(all3)[1] = ""GB"""
-"0","all3 <- all3 %>% mutate(GB = ifelse(GB == 1, ""B"", ""G""))"
-"0","all3$GB <- as.factor(all3$GB)"

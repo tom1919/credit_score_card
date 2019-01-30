@@ -1,5 +1,6 @@
-"0","# varible importance"
-"0","varImp(rf)"
+"0","# varible importance
+varImp(rf)
+"
 "1","ranger"
 "1"," "
 "1","variable importance

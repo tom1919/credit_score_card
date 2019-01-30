@@ -1,5 +1,0 @@
-"0","accepts2 <- all3 %>% filter(!is.na(GB))"
-"0","reject2 <- all3 %>% filter(is.na(GB))"
-"0","set.seed(888)"
-"0","train <- accepts2 %>% sample_frac(size = .7) "
-"0","test <- accepts2 %>% anti_join(train, by = ""id"")"

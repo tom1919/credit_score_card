@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1548779237066.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "4587C5A5",
+    "lastKnownWriteTime" : 1548771878,
+    "last_content_update" : 1548771878,
+    "path" : "C:/Users/tommy/Google Drive/Coursework/Spring 1/Financial Analytics/credit_score_card/code/ml_models.Rmd",
+    "project_path" : "code/ml_models.Rmd",
+    "properties" : {
+        "cursorPosition" : "109,35",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}
