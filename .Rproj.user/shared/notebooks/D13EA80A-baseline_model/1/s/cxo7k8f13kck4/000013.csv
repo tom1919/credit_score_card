@@ -1,0 +1,14 @@
+"0"," read_sas(""../data/orginal/accepted_customers.sas7bdat"") %>%
+  select(-`_freq_`)
+"
+"2","Found more than one class ""tbl_df"" in cache; using the first, from namespace 'tibble'
+"
+"2","Also defined by ‘prioritizr’
+"
+"2","Found more than one class ""tbl_df"" in cache; using the first, from namespace 'tibble'
+"
+"2","Also defined by ‘prioritizr’
+"
+"2","Error in (function (classes, fdef, mtable)  : 
+  unable to find an inherited method for function â€˜selectâ€™ for signature â€˜""tbl_df""â€™
+"

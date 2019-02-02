@@ -1,3 +1,4 @@
 "0","rejects2 <- readRDS(""../data/rejects_v2.rds"")"
+"0","accepts2 <- readRDS(""../data/accepts_v2.rds"")"
 "0","train <- readRDS(""../data/train.rds"")"
 "0","test <- readRDS(""../data/test.rds"")"

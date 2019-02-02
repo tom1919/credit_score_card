@@ -1,4 +1,0 @@
-"0","train$good = abs(as.numeric(train$GB) - 2)"
-"0","train <- train %>% select(good, everything(), -GB)"
-"0","test$good = abs(as.numeric(test$GB) - 2)"
-"0","test <- test %>% select(good, everything(), -GB, -id)"

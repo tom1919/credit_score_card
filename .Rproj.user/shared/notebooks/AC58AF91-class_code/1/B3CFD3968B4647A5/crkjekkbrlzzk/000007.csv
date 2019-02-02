@@ -1,0 +1,34 @@
+"0","# Add Scores to Initial Model #
+pdo <- 20 # points to double the odds
+score <- 600
+odds <- 50
+fact <- pdo/log(2)
+os <- score - fact*log(odds)
+var_names <- names(initial_score$coefficients[-1])
+for(i in var_names) {
+  beta <- initial_score$coefficients[i]
+  beta0 <- initial_score$coefficients[""(Intercept)""]
+  nvar <- length(var_names)
+  WOE_var <- train[[i]]
+  points_name <- paste(str_sub(i, end = -4), ""points"", sep="""")
+  train[[points_name]] <- -(WOE_var*(beta) + (beta0/nvar))*fact + os/nvar
+}
+colini <- (ncol(train)-nvar + 1)
+colend <- ncol(train)
+train$Score <- rowSums(train[, colini:colend])
+hist(train$Score, breaks = 50, main = ""Distribution of Scores"", xlab = ""Score"")
+for(i in var_names) {
+  beta <- initial_score$coefficients[i]
+  beta0 <- initial_score$coefficients[""(Intercept)""]
+  nvar <- length(var_names)
+  WOE_var <- test[[i]]
+  points_name <- paste(str_sub(i, end = -4), ""points"", sep="""")
+  
+  test[[points_name]] <- -(WOE_var*(beta) + (beta0/nvar))*fact + os/nvar
+}
+colini <- (ncol(test)-nvar + 1)
+colend <- ncol(test)
+test$Score <- rowSums(test[, colini:colend])
+"
+"2","Error in rowSums(test[, colini:colend]) : 'x' must be numeric
+"

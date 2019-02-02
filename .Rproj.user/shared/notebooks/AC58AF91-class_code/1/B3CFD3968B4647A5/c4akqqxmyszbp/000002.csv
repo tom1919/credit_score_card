@@ -1,0 +1,2 @@
+"0","accepts <- read.csv(file = ""./credit_score_card/data/orginal/accepts.csv"", "
+"0","                    header = TRUE)"

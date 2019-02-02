@@ -1,0 +1,41 @@
+"0","# predict on test set"
+"0","test_comb$pred <- predict(score_card2, newdata=test_comb, type='response')"
+"0","# cast as numeric (bc smbinning needs numeric)"
+"0","test_comb$GB <- as.character(test_comb$GB) %>% as.numeric()"
+"0","# model performance on test set"
+"0","smbinning.metrics(dataset = test_comb, prediction = ""pred"", "
+"0","                  actualclass = ""GB"", report = 1)"
+"1","
+  Overall Performance Metrics 
+  -------------------------------------------------- 
+                    KS : 0.5081 (Excellent)
+                   AUC : 0.8156 (Good)
+
+  Classification Matrix 
+  -------------------------------------------------- 
+           Cutoff (>=) : 0.0305 (Optimal)
+   True Positives (TP) : 593
+  False Positives (FP) : 177
+  False Negatives (FN) : 149
+   True Negatives (TN) : 431
+   Total Positives (P) : 742
+   Total Negatives (N) : 608
+
+  Business/Performance Metrics 
+  -------------------------------------------------- 
+      %Records>=Cutoff : 0.5704
+             Good Rate : 0.7701 (Vs 0.5496 Overall)
+              Bad Rate : 0.2299 (Vs 0.4504 Overall)
+        Accuracy (ACC) : 0.7585
+     Sensitivity (TPR) : 0.7992
+ False Neg. Rate (FNR) : 0.2008
+ False Pos. Rate (FPR) : 0.2911
+     Specificity (TNR) : 0.7089
+       Precision (PPV) : 0.7701
+  False Discovery Rate : 0.2299
+    False Omision Rate : 0.2569
+  Inv. Precision (NPV) : 0.7431
+
+  Note: 0 rows deleted due to missing data.
+
+"

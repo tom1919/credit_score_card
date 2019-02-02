@@ -1,0 +1,41 @@
+"0","# predict on test set (used by smbinnin.metrics)"
+"0","test$pred <- predict(score_card1, newdata=test, type='response')"
+"0","# cast as numeric (bc smbinning needs numeric)"
+"0","test$GB <- as.character(test$GB) %>% as.numeric()"
+"0","# model performance on test set"
+"0","smbinning.metrics(dataset = test, prediction = ""pred"", "
+"0","                  actualclass = ""GB"", report = 1)"
+"1","
+  Overall Performance Metrics 
+  -------------------------------------------------- 
+                    KS : 0.3556 (Fair)
+                   AUC : 0.7026 (Fair)
+
+  Classification Matrix 
+  -------------------------------------------------- 
+           Cutoff (>=) : 0.0286 (Optimal)
+   True Positives (TP) : 341
+  False Positives (FP) : 157
+  False Negatives (FN) : 131
+   True Negatives (TN) : 271
+   Total Positives (P) : 472
+   Total Negatives (N) : 428
+
+  Business/Performance Metrics 
+  -------------------------------------------------- 
+      %Records>=Cutoff : 0.5533
+             Good Rate : 0.6847 (Vs 0.5244 Overall)
+              Bad Rate : 0.3153 (Vs 0.4756 Overall)
+        Accuracy (ACC) : 0.6800
+     Sensitivity (TPR) : 0.7225
+ False Neg. Rate (FNR) : 0.2775
+ False Pos. Rate (FPR) : 0.3668
+     Specificity (TNR) : 0.6332
+       Precision (PPV) : 0.6847
+  False Discovery Rate : 0.3153
+    False Omision Rate : 0.3259
+  Inv. Precision (NPV) : 0.6741
+
+  Note: 0 rows deleted due to missing data.
+
+"

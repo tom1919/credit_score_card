@@ -1,0 +1,399 @@
+# functions to stadardize and destandardize 
+standardize <- function(x){
+  x.std = (x - mean(x))/sd(x)
+  return(x.std)
+}
+
+destandardize <- function(x.std, x){
+  x.old = (x.std * sd(x)) + mean(x)
+  return(x.old)
+}
+
+# load packages
+library(dplyr)
+library(tidyr)
+library(scales)
+library(mc2d)
+library(EnvStats)
+library(ks)
+library(ggplot2)
+library(triangle)
+library(stringr)
+library(xlsx)
+
+# file paths
+raw <- 'C:/Users/tommy/Google Drive/Coursework/2simulation/data/raw/'
+data <- 'C:/Users/tommy/Google Drive/Coursework/2simulation/data/'
+
+# read in cost data
+cost <- read.xlsx(paste0(raw, "Analysis_Data.xlsx"), 
+                  sheetIndex = 2, startRow = 3)
+
+# read in price data
+price <- read.xlsx(paste0(raw, "Analysis_Data.xlsx"), 
+                   sheetIndex = 1, startRow = 3)
+
+# filter for specified date range
+# select the cost columns
+# cast cost cols to character and then to numeric
+# collaspe the values in the 3 three columns into 1 column (per_change)
+per_change <- cost %>% 
+  filter(Date >= as.Date("1991-06-30") & Date <= as.Date("2006-06-30")) %>%
+  select(5:7) %>%
+  mutate_all(funs(as.character(.))) %>%
+  mutate_all(funs(as.numeric(.))) %>%
+  gather(key = cost_type, value = per_change)
+
+# Mean and SD of historical costs
+mean <- mean(per_change$per_change)
+sd <- sd(per_change$per_change)
+
+# number of simulations
+s_size = 2000000
+
+start <- Sys.time()
+
+################################################################################
+# Simulation 1: Drilling Costs for 2019 
+# normal dist. for 2007 - 2012 inclusive
+# triangle dist. for 2013 - 2015 inclusive
+# triangle dist. for 2015 - 2019 inclusive
+
+set.seed(888)
+
+# initial average cost (2006)
+C06 <- 2279.8
+# sample of percent changes for 2007 from normal dist
+r <- rnorm(n = s_size, mean=mean, sd=sd)
+# 2007 simulated costs
+C_t <- C06*(1+r)
+
+# simulated costs from 2008-2012 inclusive
+# after this loop C_t will contain x simulated costs for 2012
+for(i in 1:5){
+  # sample of percent changes
+  r <- rnorm(n = s_size, mean=mean, sd=sd)
+  # calc cost at time t+1
+  C_t <- C_t*(1+r)
+}
+
+# simulated costs from 2013-2015 inclusive
+# after this loop C_t will contain x simulated costs for 2015
+for(j in 1:3){
+  # samples of percent changes triangle dist
+  r <- rtriangle(n = s_size, a=-0.22, b = -0.07, c = -0.0917)
+  # cost at time t+1 (2013-2015 inclusive)
+  C_t <- C_t*(1+r)
+}
+
+# simulated costs from 2016-2019 inclusive
+# after this loop C_t will contain x simulated costs for 2019
+for(k in 1:4){
+  # samples of percent changes triangle dist
+  r <- rtriangle(n = s_size, a=0.02, b = 0.06, c = 0.05)
+  # cost at time t+1 (2016-2019 inclusive)
+  C_t <- C_t*(1+r)
+}  
+
+###############################################################################
+# Total Cost of Single Dry Well
+
+# drilling costs
+drilling <- C_t * 1000
+
+# cost of lease: $960 * number of acres
+lease <- 960 * rnorm(n = s_size, mean = 600, sd = 50)
+
+# cost of seismic sections: $43,000 * number of sections
+seismic <- 43000 * rnorm(n = s_size, mean = 3, sd = .35) 
+
+# cost of pro overhead
+overhead <- rtriangle(n = s_size, a = 172000, b = 279500, c = 215000)
+
+# total cost for dry well
+dry_costs <- drilling + lease + seismic + overhead
+
+###############################################################################
+# Total "Year 0" (initial) Costs of Wet Well
+
+# completion costs
+complete <- rnorm(n = s_size, mean = 390000, sd = 50000)
+
+initial_costs <- drilling + lease + seismic  + complete + overhead
+
+################################################################################
+# Simulation of intitial production and decline rate for barrels of oil per day
+# using choleski decomp 
+
+# decline rate simulation
+dr <- runif(n = s_size, min = .15, max = .32)
+# initial production rate simulation
+ipr <- rlnorm(n = s_size, meanlog = 6, sdlog = .28)
+# correlation matrix
+R <- matrix(data=cbind(1,.64, .64, 1), nrow=2)
+# choleski decomp for adding correlation structure
+U <- t(chol(R))
+# create a mtx of the stadardized rates
+both_rates <- cbind(standardize(dr), standardize(ipr))
+# mtx multiplication to add correlation between columns of trasposed mtx
+corr_rates <- U %*% t(both_rates)
+# untranspose the mtx
+corr_rates <- t(corr_rates)
+# undo the standarization
+corr_rates <- cbind(destandardize(corr_rates[,1], dr),
+                    destandardize(corr_rates[,2], ipr))
+# correlated rates
+corr_dr <- corr_rates[,1]
+corr_ipr <- corr_rates[,2]
+
+################################################################################
+# Calcuate total barrels of oil per year
+
+# 2020 initial barrels of oil per day
+rate_beg_1 <- corr_ipr
+rate_end_1 <- (1 - corr_dr) * rate_beg_1
+oil_vol_1 <- 182.5 * (rate_beg_1 + rate_end_1)
+
+# data frame with barrels per day rates and total barrels for 2020
+yr <- data.frame(dr = 1 - corr_dr,
+                 rate_beg_2019 = rate_beg_1,
+                 rate_end_2019 = rate_end_1,
+                 oil_vol_2019 = oil_vol_1)
+
+# Calculate the yearly total barrels of oil for 2021-2034 inclusive
+for(i in 2021:2034){
+  # beginning barrels per day rate is the previous years ending barrels per day
+  yr[paste0("rate_beg_",i)] <- yr[paste0("rate_end_", i - 1)]
+  # ending barrels per day rate is (1 - decline rate) * beggining rate
+  yr[paste0("rate_end_",i)] <- yr["dr"] * yr[paste0("rate_beg_",i)]
+  # total barrels for the year: 182.5 * (beg rate + end rate)
+  yr[paste0("oil_vol_",i)] <- 182.5*(yr[paste0("rate_end_",i)] +
+                                       yr[paste0("rate_beg_",i)])
+}
+
+# create df with just the yearly total barrells of oil
+oil_vols <- yr %>% select(starts_with("oil"))
+
+###############################################################################
+# Simulate sale price per barrell for each year 2020 - 2034 inclusive
+
+# create data frame with row length = number of simulations
+price_sim <- data.frame(foo = matrix(NA,nrow = s_size))
+
+# Simulate price for each year from price projections tab of spreadsheet 
+# price is a df that has the data from the price projections tab
+i <- 2 # revenue starts in 2020
+for(yr in 2020:2034) {
+  # create a col that as simulation of price for each year
+  price_sim[paste0("price_", yr)] <- rtriangle(n = s_size, 
+                                               a = price[i,3], # min
+                                               b = price[i,2], # max
+                                               c = price[i,4]) # mode
+  i <- i + 1
+}
+
+# remove dummy col
+price_sim <- price_sim %>% select(-foo)
+
+###############################################################################
+# Simulate operating cost per barrel for each year 2020 - 2034 inclusive
+
+# create data frame with row length = number of simulations
+opc_sim <- data.frame(foo = matrix(NA,nrow = s_size))
+
+# simulate operating cost per barrell for each year
+for(yr in 2020:2034) {
+  # create a col that as simulation of cost per barrel for each year
+  opc_sim[paste0("cost_", yr)] <- rnorm(n = s_size, mean = 2.25, sd = .3)
+}
+
+# remove dummy col
+opc_sim <- opc_sim %>% select(-foo)
+################################################################################
+# Net Revenue Interest and Operating Costs Simulation
+
+# Net Revenue Interest
+nri <- rnorm(n = s_size, mean = .75, sd = .02)
+
+################################################################################
+# Calculation for Net Present Value
+
+# # Final net revenue (fnr) calculation
+fnr <- oil_vols * price_sim * nri * (1-.046) - (oil_vols * opc_sim) - overhead
+# rename the cols
+names(fnr) <- str_replace_all(names(fnr), "oil_vol_", "")
+
+# divide the fnr for each year by weighted average cost of capital
+yr_terms <- fnr
+
+for(i in 1:15){
+  yr_terms[,i] <- yr_terms[,i]  / (1.1^i) 
+}
+
+# calculate npv
+yr_terms["int_costs"] <- -initial_costs
+yr_terms["npv"] <- rowSums(yr_terms)
+################################################################################
+# elapsed time to run simulation
+end <- Sys.time()
+run_time1 <- end - start
+
+summary(yr_terms$npv)
+summary(dry_costs)
+
+
+################################################################################
+# Histograms
+
+dry_cost_med <- median(dry_costs)/1000
+npv_med <- median(yr_terms$npv) / 1000
+
+# dry well cost
+ggplot(data = data.frame(dry_costs = dry_costs/1000), aes(x = dry_costs)) +
+  geom_histogram(bins = 100, color = "#3F97D0", fill = "#F7AD50")+
+  geom_vline(xintercept = dry_cost_med, color = "red") +
+  # have to manually speciy annotate layer
+  annotate("text", x = dry_cost_med + 1500, y = 100500, 
+           color = "red", label = "$4.45M")  +
+  labs(title = "2019 Simulated Cost Distribution (Dry Well)",
+       x = "Cost ($1000s Per Well)",
+       y = "Frequency") +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = .5, size = 18, face = "bold"),
+        axis.text=element_text(size=12),
+        axis.title=element_text(size=14),
+        legend.text=element_text(size=11),
+        legend.title=element_text(size=12)) +
+  scale_y_continuous(labels = comma) +
+  scale_x_continuous(labels = comma, breaks = c(1000,5000,10000,15000, 20000))
+
+# NPV
+ggplot(data = data.frame(yr_terms), aes(x = npv/1000)) +
+  geom_histogram(bins = 100, color = "#3F97D0", fill = "#F7AD50")+
+  geom_vline(xintercept = npv_med, color = "red") +
+  # have to manually speciy annotate layer
+  annotate("text", x = npv_med + 4800, y = 121000, 
+           color = "red", label = "$13.9M") +
+  labs(title = "Simulated Net Present Value Distribution",
+       x = "Net Present Value ($1000s Per Well)",
+       y = "Frequency") +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = .5, size = 18, face = "bold"),
+        axis.text=element_text(size=12),
+        axis.title=element_text(size=14),
+        legend.text=element_text(size=11),
+        legend.title=element_text(size=12)) +
+  scale_y_continuous(labels = comma) +
+  scale_x_continuous(labels = comma, breaks = seq(0,60000,20000))
+
+summary(yr_terms$npv)
+summary(dry_costs)
+
+#############################################################################################
+#Wet well Proportion simulation
+
+# Create a distirbution of the probability of production
+# P(p) = p(h) * p(r) 
+# Range of p(h) and p(r are confindes and truncated between min and max)
+
+library(truncnorm)
+library(Hmisc)
+
+set.seed(888)
+s.size <- 100000 #Change number of simulations here
+
+# Creating trunctacted distributions for p(h), p(r), and p(p)
+planned.wells <- as.data.frame(round(runif(s.size, min = 10, max = 30)))
+colnames(planned.wells) <- c("number")
+planned.wells$sim_num <- sprintf("Simulation[%s]",seq(1:nrow(planned.wells)))
+
+# Dataframe expansion (creating things for each well). 
+planned.expanded <- as.data.frame(planned.wells[rep(row.names(planned.wells), planned.wells$number), 1:ncol(planned.wells)])
+colnames(planned.expanded) <- c("number", "sim_num")
+
+h.dist <- rtruncnorm(nrow(planned.expanded), a = 0, b = 1, mean = .99, sd = .05)
+r.dist <- rtruncnorm(nrow(planned.expanded), a = 0, b = 1, mean = .8, sd = .1)
+p.prod <- h.dist*r.dist
+planned.expanded$probability <- p.prod
+
+#Creating a bernoulli distribution 
+bern <- rbinom(nrow(planned.expanded), size = 1, planned.expanded$probability)
+planned.expanded$bern <- bern
+
+#Getting distirbutions of proportions
+proportions <- planned.expanded %>% 
+  group_by(sim_num) %>% 
+  dplyr::summarize(prop = sum(bern)/mean(number))
+
+# Calculate VaR
+describe(proportions$prop)
+
+rm(planned.wells, price_sim, proportions, bern, h.dist, overhead, p.prod, r.dist)
+
+#################################################################################
+#Combine well proportion simulation and cost/NPV simulations
+
+wet <- filter(planned.expanded, bern == 1)
+dry <- filter(planned.expanded, bern == 0)
+
+#if well is wet, assign an NPV from distribution simulated above
+#if well is dry, assign a cost from distribution simulated above
+
+wet$npv <- sample(yr_terms$npv, size = nrow(wet), replace=FALSE)
+dry$cost <- sample(dry_costs, size = nrow(dry), replace = FALSE)
+
+wet$cost <- NA
+dry$npv <- NA
+
+#recombine wet and dry well dataframes
+all <- rbind(wet, dry)
+
+#for each simulation number (group of wells), subtract total cost of dry wells from the total NPV of wet wells
+total.npv <- all %>%
+  dplyr::group_by(sim_num) %>%
+  dplyr::summarize(total_npv = sum(npv, na.rm = TRUE) - sum(cost, na.rm = TRUE)) %>%
+  dplyr::ungroup()
+
+
+#histogram
+ggplot(data = data.frame(total.npv), aes(x = total_npv/1000)) +
+  geom_histogram(bins = 25, color = "#3F97D0", fill = "#F7AD50")+
+  labs(title = "Simulated Net Present Value Distribution",
+       x = "Net Present Value (per $1,000)",
+       y = "Frequency") +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = .5, size = 20, face = "bold"),
+        axis.text=element_text(size=12),
+        axis.title=element_text(size=14),
+        legend.text=element_text(size=11),
+        legend.title=element_text(size=12)) +
+  scale_y_continuous(labels = comma) +
+  scale_x_continuous(labels = comma)
+
+#VaR and CVaR
+describe(total.npv$total_npv)
+VaR = quantile(total.npv$total_npv, 0.05)
+
+tail = ifelse(total.npv$total_npv < VaR, total.npv$total_npv, NA)
+CVaR = mean(tail, na.rm = TRUE)
+
+#expected return
+er = mean(total.npv$total_npv)
+
+
+#histogram
+ggplot() +
+  geom_histogram(data = data.frame(total.npv), aes(x = total_npv/1000), 
+                 bins = 25, color = "#3F97D0", fill = "#F7AD50") +
+  geom_vline(aes(xintercept = VaR/1000), color = "red", size = 1) +
+  labs(title = "Simulated Net Present Value Distribution",
+       x = "Net Present Value (per $1,000)",
+       y = "Frequency") +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = .5, size = 20, face = "bold"),
+        axis.text=element_text(size=12),
+        axis.title=element_text(size=14),
+        legend.text=element_text(size=11),
+        legend.title=element_text(size=12)) +
+  scale_y_continuous(labels = comma) +
+  scale_x_continuous(labels = comma)

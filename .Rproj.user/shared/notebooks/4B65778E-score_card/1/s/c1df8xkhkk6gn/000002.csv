@@ -1,0 +1,4 @@
+"0","# woe values for numeric variables"
+"0","rejects_scored <- gen_woe(sm_result1, df = rejects_scored)"
+"0","# woe values for factor varialbes"
+"0","rejects_scored <- gen_woe(sm_result2, df = rejects_scored)"

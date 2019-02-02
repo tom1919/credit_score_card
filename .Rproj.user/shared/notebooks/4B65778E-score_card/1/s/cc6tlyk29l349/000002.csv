@@ -1,0 +1,8 @@
+"0","# numeric variables bins"
+"0","train_comb <- bin_cols(sm_result3, df = train_comb, numeric = T)"
+"0","# factor varialbes bins"
+"0","train_comb <- bin_cols(sm_result4, df = train_comb, numeric = F)"
+"0","# woe values for numeric variables"
+"0","train_comb <- gen_woe(sm_result3, df = train_comb)"
+"0","# woe values for factor varialbes"
+"0","train_comb <- gen_woe(sm_result4, df = train_comb)"

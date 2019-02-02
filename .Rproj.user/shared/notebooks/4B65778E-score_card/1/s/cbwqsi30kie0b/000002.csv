@@ -1,0 +1,7 @@
+"0","# generate a score for each person"
+"0","all_scored <- allocate_points(mod = score_card2, df = all_scored,"
+"0","                              pdo = 50, score = 500, odds = 20)"
+"0","# create buckets / categories for the scores "
+"0","all_scored$buckets <- cut(all_scored$Score, breaks = c(seq(300, 750, 50)))"
+"0","# create predicted probabilities for each person"
+"0","all_scored$pred <- predict(score_card2, newdata=all_scored, type='response')"

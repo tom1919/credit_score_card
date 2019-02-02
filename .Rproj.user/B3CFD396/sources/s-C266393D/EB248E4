@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1549119328231.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "EB248E4",
+    "lastKnownWriteTime" : 1543118244,
+    "last_content_update" : 1543118244,
+    "path" : "C:/Users/tommy/Google Drive/Coursework/simulation/hw4.R",
+    "project_path" : null,
+    "properties" : {
+        "cursorPosition" : "252,64",
+        "scrollLine" : "233"
+    },
+    "relative_order" : 7,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
