@@ -295,6 +295,8 @@ for(i in 1:length(bin_cols)) {
 }
 
 score_card <- do.call(bind_rows, score_list) %>% mutate(points = round(points))
+
+write.csv(score_card, "../data/score_card.csv")
 ```
 
 Adjust observations for the weights
@@ -433,6 +435,30 @@ p2 <- ggplot(cutoffs, aes(x= cutoff, y = bad_per)) +
 grid.arrange(p1, p2, ncol = 1)
 ```
         
+Confusion Matrix for unadjusted test set using score cutoff
+```{r}
+test_scored2 <- all_scored %>%
+  filter(set == "test") %>%
+  mutate(pred_cut = ifelse(Score > 519, 0,1)) %>% 
+  select(GB, pred_cut, Score, everything())
 
+cm <- confusionMatrix(data = as.factor(test_scored2$pred_cut), 
+                reference = as.factor(test_scored2$GB))
+
+draw_confusion_matrix(cm)
+```
+
+
+Confusion Matrix for adjusted test set using score cutoff
+```{r}
+test_scored <- test_scored %>%
+  mutate(pred_cut = ifelse(Score > 519, 0,1)) %>% 
+  select(GB, pred_cut, Score, everything())
+
+cm <- confusionMatrix(data = as.factor(test_scored$pred_cut), 
+                reference = as.factor(test_scored$GB))
+
+draw_confusion_matrix(cm)
+```
 
 

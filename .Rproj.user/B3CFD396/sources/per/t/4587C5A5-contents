@@ -1,0 +1,164 @@
+---
+title: "ml_models"
+output: html_document
+---
+
+Load helper functions and libraries
+```{r}
+# helper functions
+source("./helper_functions.R")
+# load / install packages
+LoadPackages(c("dplyr", "caret", "tibble"))
+```
+
+Read in data
+```{r}
+rejects2 <- readRDS("../data/rejects_v2.rds")
+train <- readRDS("../data/train.rds")
+test <- readRDS("../data/test.rds")
+```
+
+one hot encode variables
+```{r}
+# object to create one hot encoded variables
+enconder <- onehot(train, max_levels = 15)
+
+# create one hot encoded variables
+train <- predict(enconder, train) %>% 
+  as.data.frame() %>%
+  select(-`GB=0`)
+
+test <- predict(enconder, test) %>% 
+  as.data.frame() %>%
+  select(-`GB=0`)
+
+rejects2 <- predict(enconder, rejects2) %>% 
+  as.data.frame() %>%
+  select(-`GB=0`)
+
+# change column names syntactically valid
+names(train) <- make.names(names(train))
+names(test) <- make.names(names(test))
+names(rejects2) <- make.names(names(rejects2))
+
+# rename target variable to be GB (good/bad)
+names(train)[1] = "GB"
+names(test)[1] = "GB"
+names(rejects2)[1] = "GB"
+
+# make GB values to be B or G. (train function produces error if its 1 or 0)
+train <- train %>% mutate(GB = ifelse(GB == 1, "B", "G"))
+test <- test %>% mutate(GB = ifelse(GB == 1, "B", "G"))
+rejects2 <- rejects2 %>% mutate(GB = ifelse(GB == 1, "B", "G"))
+
+# cast target variable as factor
+train$GB <- as.factor(train$GB)
+test$GB <- as.factor(test$GB)
+rejects2$GB <- as.factor(rejects2$GB)
+```
+
+Explore variable importance with Boruta algorithm
+```{r}
+set.seed(888)
+# run the algorithm
+boruta_train <- Boruta(GB ~. , data = train %>% select( -`X_freq_`), 
+                       doTrace = 2, maxRuns = 40)
+# make a rough cut for any variables that the algo wasn't able to decide on
+final_boruta <- TentativeRoughFix(boruta_train)
+
+# create a df of feature importance
+boruta_df <- attStats(final_boruta) %>% 
+  rownames_to_column("col") %>%
+  arrange(desc(meanImp))
+
+# look at the variables that were confirmed as important
+boruta_df %>% filter(decision == "Confirmed")
+
+# saveRDS(boruta_train, "../boruta_train.rds")
+# boruta_train <- readRDS("../boruta_train.rds")
+```
+
+Select the variables indicated as important by Boruta algorithm
+```{r}
+imp_feat <- boruta_df %>% filter(decision == "Confirmed") %>% pull(col)
+train2 <- train %>% select(c("GB", imp_feat))
+```
+
+Configuration for model tunning
+```{r}
+#  create list with indexes for each cv fold
+#  this makes the models more comaparable bc each one will use the same folds
+set.seed(888)
+cv_folds <- createFolds(train2$GB, k = 5, list = TRUE, returnTrain = TRUE)
+
+# create object to control model tuning
+# save predictions to get out of sample predictions for stacking
+ctrl <- trainControl(method = "cv", index = cv_folds, savePredictions = 'final',
+                     verboseIter = T, classProbs = TRUE, 
+                     summaryFunction=twoClassSummary)
+```
+
+Elastic net model
+```{r}
+set.seed(888)
+# tunning grid
+enet_grid <- expand.grid(alpha = seq(0,1, length = 15), 
+                         lambda = c(seq(0.005, 1, length =  300))) %>%
+  sample_frac(.4) 
+
+# train elastic net model using CV
+enet <- train(GB ~. , data = train2, 
+              tuneGrid = enet_grid,
+              preProcess = c("center", "scale"), metric = "ROC",
+              method = "glmnet", trControl = ctrl)
+
+# best ROC from CV
+enet$results %>% arrange(desc(ROC)) #0.7484943
+
+# get the coeficents for best fit elastic net model
+enet_coef <- coef(enet$finalModel, enet$bestTune$lambda) %>% 
+  as.matrix() %>% as.data.frame() %>% rownames_to_column("feat")
+
+# rename coef df
+names(enet_coef) <- c("feat", "coef")
+
+# arrange coef by largest absolute value (variable importance)
+enet_coef %>% arrange(desc(abs(coef)))
+
+# saveRDS(enet, "../data/enet.rds")
+# enet <- readRDS("../data/enet.rds")
+```
+
+Random Forest model
+```{r}
+# RandomForest
+set.seed(888)
+# tuning grid
+rf_grid <- expand.grid(mtry = c(2,5,9,12,15, 18,21, 25, 30), 
+                       min.node.size = c( 3, 5, 9, 15, 18, 23, 28, 32, 37,45),
+                       splitrule = c( 'extratrees'))
+
+# train random forest model using cv
+rf <- train(GB ~. , data = train2,
+            tuneGrid = rf_grid, num.tree = 2000, 
+            importance = 'permutation', metric = "ROC", method = "ranger", 
+            trControl = ctrl)
+
+# best ROC from cv
+rf$results %>% arrange(desc(ROC)) # mtry=12, min.node=45, roc = .7492746
+
+# varible importance
+varImp(rf)
+
+saveRDS(rf, "../data/rf.rds")
+```
+
+Performance on test set
+```{r}
+# elastic net model
+confusionMatrix(data = predict(enet, test), reference = test$GB)
+
+# random forest model
+confusionMatrix(data = predict(rf, test), reference = test$GB)
+```
+

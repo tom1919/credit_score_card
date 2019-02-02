@@ -1,0 +1,6 @@
+"0","test_scored <- test_scored %>%"
+"0","  mutate(pred_cut = ifelse(Score > 519, 0,1)) %>% "
+"0","  select(GB, pred_cut, Score, everything())"
+"0","cm <- confusionMatrix(data = as.factor(test_scored$pred_cut), "
+"0","                reference = as.factor(test_scored$GB))"
+"0","draw_confusion_matrix(cm)"
