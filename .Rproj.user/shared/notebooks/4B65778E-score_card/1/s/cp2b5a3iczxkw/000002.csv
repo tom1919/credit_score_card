@@ -1,5 +1,0 @@
-"0","for(i in names(sm_result3)) {"
-"0","  sm_result3[[i]]$bands[1] <- min(test_comb[[i]], na.rm = TRUE)"
-"0","  sm_result3[[i]]$bands[length(sm_result3[[i]]$bands)] <- max(test_comb[[i]], "
-"0","                                                                na.rm = TRUE)"
-"0","}"

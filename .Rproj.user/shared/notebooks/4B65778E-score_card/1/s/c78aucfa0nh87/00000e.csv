@@ -1,8 +1,0 @@
-"0","# average prob for each score bucket"
-"0","score_bucket <- scored_adj %>% "
-"0","  group_by(buckets) %>% "
-"0","  summarize(""Avg Probability"" = mean(pred), count = n(), "
-"0","            bad_n = sum(GB) , ""Default Rate"" = bad_n / count) %>%"
-"0","  mutate(buckets = str_replace_all(buckets,"","", "", "")) %>%"
-"0","  select(buckets, ""Avg Probability"", ""Default Rate"") %>% "
-"0","  gather(key, value, -buckets)"

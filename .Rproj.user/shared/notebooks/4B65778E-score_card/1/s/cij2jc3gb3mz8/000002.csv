@@ -1,4 +1,0 @@
-"0","# duplicate rows based on the freq / weight column so that it's a representative"
-"0","# sample of applicants"
-"0","scored_adj <- all_scored[rep(seq_along(all_scored$`_freq_`), "
-"0","                             all_scored$`_freq_`), ]"

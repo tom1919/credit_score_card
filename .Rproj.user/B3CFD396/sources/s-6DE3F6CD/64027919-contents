@@ -3,21 +3,11 @@ title: "R Notebook"
 output: html_notebook
 ---
 
-
-```{r}
-library(gmodels)
-library(vcd)
-library(smbinning)
-library(dplyr)
-library(stringr)
-```
-
-
-
 ```{r}
 accepts <- read.csv(file = "./credit_score_card/data/orginal/accepts.csv", 
                     header = TRUE)
 
+fp <- 'C:/Users/tommy/Google Drive/Coursework/Spring 1/Financial Analytics/credit_score_card/data/orginal/accepts.csv'
 ```
 
 ```{r}
@@ -145,8 +135,7 @@ smbinning.metrics(dataset = test, prediction = "pred", actualclass = "bad", plot
 smbinning.metrics(dataset = test, prediction = "pred", actualclass = "bad", plot = "auc")
 
 accepts$pred <- predict(initial_score, newdata=accepts, type='response')
-smbinning.metrics(dataset = test, prediction = "pred", 
-                  actualclass = "bad", report = 1)
+smbinning.metrics(dataset = test, prediction = "pred", actualclass = "bad", report = 1)
 ```
 
 
@@ -189,7 +178,7 @@ colini <- (ncol(test)-nvar + 1)
 colend <- ncol(test)
 test$Score <- rowSums(test[, colini:colend])
 
-accepts_scored <- rbind(train, test %>% select(names(train)))
+accepts_scored <- rbind(train, test)
 hist(accepts_scored$Score, breaks = 50, main = "Distribution of Scores", xlab = "Score")
 ```
 
@@ -198,8 +187,7 @@ hist(accepts_scored$Score, breaks = 50, main = "Distribution of Scores", xlab = 
 
 
 # Reject Inference - Load Reject Data #
-rejects <- read.csv(file = "./credit_score_card/data/orginal/rejects.csv", 
-                    header = TRUE)
+rejects <- read.csv(file = "C:/Users/adlabarr/Documents/Courses/IAA/Financial Analytics/Data/rejects.csv", header = TRUE)
 
 for(i in names(result_all_sig)) {
   result_all_sig[[i]]$bands[1] <- min(rejects[[i]], na.rm = TRUE)
@@ -251,10 +239,6 @@ for(i in var_names) {
 colini <- (ncol(rejects_scored)-nvar + 1)
 colend <- ncol(rejects_scored)
 rejects_scored$Score <- rowSums(rejects_scored[, colini:colend])
-
-```
-
-```{r}
 
 # Reject Inference - Hard Cut-off #
 rejects_scored$pred <- predict(initial_score, newdata=rejects_scored, type='response')

@@ -1,6 +1,0 @@
-"0","train_comb$set <- ""train"""
-"0","train_comb$GB <- as.character(train_comb$GB) %>% as.numeric()"
-"0","test_comb$set <- ""test"""
-"0","all_scored <- bind_rows(train_comb, test_comb %>% "
-"0","                          select(names(train_comb))) %>%"
-"0","  as.data.frame()"
