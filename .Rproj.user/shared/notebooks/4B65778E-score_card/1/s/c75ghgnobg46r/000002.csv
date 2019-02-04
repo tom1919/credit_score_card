@@ -1,17 +1,6 @@
-"0","train2 <- train %>% select(GB, `_freq_`, ends_with(""WOE""))"
-"0","train2 <- train2 %>% select(GB, "
-"0","                            `_freq_`, "
-"0","                            AGE_WOE, "
-"0","                            TMJOB1_WOE, "
-"0","                            income_cash_ratio_WOE,"
-"0","                            CARDS_WOE, adult_WOE )"
-"0","# create log regression model"
-"0","score_card1 <- glm(data = train2, GB ~ . -`_freq_`,"
-"0","                   weights = train$`_freq_`, "
-"0","                   family = ""binomial"","
-"0","                   control = list(maxit = 100))"
-"0","# coefs, pvalues etc of model"
-"0","summary(score_card1)"
+"0","# coefs, pvalues etc of model
+summary(score_card1)
+"
 "1","
 Call:
 "

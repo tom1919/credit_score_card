@@ -1,8 +1,0 @@
-"0","# train set: woe values for numeric variables"
-"0","train <- gen_woe(sm_result1, df = train)"
-"0","# train set: woe values for factor varialbes"
-"0","train <- gen_woe(sm_result2, df = train)"
-"0","# test set woe values for numeric variables"
-"0","test <- gen_woe(sm_result1, df = test)"
-"0","# test set: woe values for factor varialbes"
-"0","test <- gen_woe(sm_result2, df = test)"

@@ -351,7 +351,7 @@ for(i in 1:length(bin_cols)) {
 
 score_card <- do.call(bind_rows, score_list) %>% mutate(points = round(points))
 
-write.csv(score_card, "../data/score_card.csv")
+#write.csv(score_card, "../data/score_card.csv")
 ```
 
 Adjust observations for the weights
@@ -428,7 +428,9 @@ cutoffs <- data.frame('cutoff' = 400:600,
          good_rev = 2000 * good_n, # revenye from goods
          bad_cost = -52000 * bad_n, # costs from bads
          profit = good_rev + bad_cost,
-         profit_per_cust = profit / (nrow(test_scored)))
+         profit_per_cust = profit / (nrow(test_scored)),
+         profit_per_accept = profit / accepts_n)
+
 
 # optimal cut off to max profit
 max_profit <- max(cutoffs$profit_per_cust)
@@ -448,7 +450,7 @@ ggplot(cutoffs, aes(x= cutoff, y = profit_per_cust)) +
   geom_vline(xintercept = opt_cut, color = 'red') +
   labs(title = "Cutoff Score: Profit",
        x = "Cutoff Score",
-       y = "Profit Per Customer ($)") +
+       y = "Profit Per Applicant ($)") +
   theme_bw() +
   theme(plot.title = element_text(hjust = .5, size = 22, face = "bold"),
         axis.text=element_text(size=13),

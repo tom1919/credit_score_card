@@ -1,8 +1,0 @@
-"0","# numeric variables bins"
-"0","train <- bin_cols(sm_result1, df = train, numeric = T)"
-"0","# factor varialbes bins"
-"0","train <- bin_cols(sm_result2, df = train, numeric = F)"
-"0","# test set: numeric variables bins"
-"0","test <- bin_cols(sm_result1, df = test, numeric = T)"
-"0","# test set: factor varialbes bins"
-"0","test <- bin_cols(sm_result2, df =test, numeric = F)"
