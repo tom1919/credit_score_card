@@ -1,4 +1,0 @@
-"0","# numeric variables bins"
-"0","rejects_scored <- bin_cols(sm_result1, df = rejects2, numeric = T)"
-"0","# factor varialbes bins"
-"0","rejects_scored <- bin_cols(sm_result2, df =rejects_scored, numeric = F)"
