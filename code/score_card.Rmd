@@ -441,6 +441,9 @@ opt_acpt <- cutoffs %>% filter(profit_per_cust == max_profit) %>%
 # bad % for optimal cut
 opt_bad <- cutoffs %>% filter(profit_per_cust == max_profit) %>% 
   pull(bad_per)
+# profit per accept for optimal cutoff: $1,116.27
+profit_per_accept <- cutoffs %>% 
+  filter(cutoff == opt_cut) %>% pull(profit_per_accept)
 ```
 
 ```{r}
@@ -518,4 +521,23 @@ cm <- confusionMatrix(data = as.factor(test_scored$pred_cut),
 draw_confusion_matrix(cm)
 ```
 
+Original profit per accept and per applicant
+```{r}
+# number of accepts that were good. adjusted for oversampling so that it's
+# representative of population
+# # correct weight not 30. it should be 29.95975 to be exact
+good_n_org <- accepts2 %>% filter(GB == 0) %>% nrow() *29.95975 
+# number of accepts that were bad
+bad_n_org =  accepts2 %>% filter(GB == 1) %>% nrow()
+
+# revenue from the good custumers. $2,000 per good loan
+rev_org <- good_n_org * 2000
+# costs from the bad customers. -$52,000 per bad loan
+cost_org <- bad_n_org * -52000
+# profit per accepted customer. revenue less cost divided by number of accepts
+profit_per_accept_org = (rev_org + cost_org) / (good_n_org + bad_n_org) #$256
+# profit per applicant. profit divided by total applicants
+profit_per_applicant = (rev_org + cost_org) / ((good_n_org + bad_n_org) / .75)
+# $192
+```
 
